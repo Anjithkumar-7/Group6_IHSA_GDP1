@@ -4,12 +4,22 @@
   <title>Upload Details</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 0;
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
-
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .content {
+      flex: 1;
+      padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+    }
     header {
       background-color: #2f4f81;
       padding: 20px;
@@ -62,6 +72,12 @@
       opacity: 0.8;
       background-color: #2f4f81;
     }
+    footer {
+      background-color: #2f4f81;
+      color: #c13438;
+      padding: 10px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -85,7 +101,7 @@
     </nav>
   </header>
   <br> <br>
-
+  <div class = "content">
   <div class="container">
     <h2>Select an option to upload details</h2>
     <button class="upload-btn" id="rider-btn">Upload Rider Details</button>
@@ -95,7 +111,7 @@
   <div class="container sub-window" id="sub-window">
     <!-- Sub-window content dynamically added here -->
   </div>
-
+  </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
@@ -118,5 +134,8 @@ function openSubWindow(title) {
 }
 });
 </script>
+<footer style="background-color: #2f4f81; color: #c13438; padding: 10px; text-align: center;">
+  <p>&copy; IHSA. All rights reserved.</p>
+</footer>
 </body>
 </html>

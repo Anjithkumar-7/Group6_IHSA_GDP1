@@ -4,14 +4,19 @@
   <title>Horse and Rider Randomizer</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+     html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
     body {
       display: flex;
       flex-direction: column;
-      align-items: center;
       font-family: Arial, sans-serif;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
+    
 
     header {
       background-color: #2f4f81;
@@ -89,24 +94,34 @@
     th {
       background-color: #f2f2f2;
     }
+    footer {
+      background-color: #2f4f81;
+      color: #c13438;
+      padding: 10px;
+      text-align: center;
+    }
+    .content {
+      flex: 1;
+      padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+    }
   </style>
 </head>
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#" style="color: #c13438;">
-        <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Admin Dashboard
+        <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Randomiser
       </a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="ihsaHome.html">Logout</a>
           </li>
         </ul>
       </div>
     </nav>
   </header>
-
+<div class = "content">
   <div class="container">
     <div class="horse-list">
       <h5>Horse Names</h5>
@@ -126,6 +141,7 @@
     <table id="randomCombinations"></table>
 
   </div>
+</div>
   <script>
     var horses = [
       "Black Beauty",
@@ -218,5 +234,8 @@
     displayHorseNames();
     displayRiderNames();
   </script>
+  <footer style="background-color: #2f4f81; color: #c13438; padding: 10px; text-align: center;">
+    <p>&copy; IHSA. All rights reserved.</p>
+  </footer>
 </body>
 </html>
