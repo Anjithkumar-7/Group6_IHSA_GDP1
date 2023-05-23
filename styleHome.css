@@ -247,6 +247,10 @@ nav ul li a {
   footer p {
   font-size: 12px;
   }
+  .mr-2 {
+    height: 100px; /* Adjust the height as desired */
+  }
+
   }
   
   
