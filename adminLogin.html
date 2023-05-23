@@ -52,11 +52,35 @@
   <div class="container">
     <img src="ihsa-logo.jpg" alt="IHSA Logo" class="logo">
     <h2>Admin Login</h2>
-    <form action="/admin" method="post">
+    <form>
+      <label for="usertype">User Type:</label>
+        <select id="usertype" name="usertype">
+            <option value="admin">Admin</option>
+            <option value="Show admin">Show Admin</option>
+        </select>
+        <br><br>
       <input type="text" id="username" name="username" placeholder="Username" required><br>
       <input type="password" id="password" name="password" placeholder="Password" required><br>
-      <button type="submit">Login</button>
+      
     </form>
+    <button type="submit" onclick="validateLogin()">Login</button>
   </div>
+  <script>
+    function validateLogin() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Check if username and password are correct
+      if (username === "admin" && password === "admin123") {
+        alert("Login successful!");
+        // Redirect to dashboard or desired page
+        window.location.href = "admin.html";
+      } else {
+        alert("Invalid login credentials. Please try again.");
+      }
+    }
+  </script>
+
 </body>
+
 </html>
