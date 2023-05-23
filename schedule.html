@@ -2,9 +2,10 @@
 <html>
 
 <head>
-  <title>Event Schedule</title>
+  <title>Order List</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+    /* CSS styles for the table */
     html, body {
       height: 100%;
       margin: 0;
@@ -94,74 +95,62 @@
       text-align: center;
     }
   </style>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#" style="color: #c13438;">
-        <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Event Scheduling
-      </a>
-     
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="ihsaHome.html">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <div class="content">
-  <h1>Event Schedule</h1>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#" style="color: #c13438;">
+            <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Schedule
+          </a>
+         
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="ihsaHome.html">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <div class = "content">
+  <h2>Schedule</h2>
+
   <table>
     <thead>
       <tr>
-        <th>Event Name</th>
-        <th>Date and Time</th>
-        <th>Location</th>
-        <th>Action</th>
-        <th>Schedule</th>
+        <th>Order</th>
+        <th>Rider ID</th>
+        <th>Rider Name</th>
+        <th>Rider School</th>
+        <th>Horse Name</th>
+        <th>Horse Provider</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Horse Show 1</td>
-        <td>2023-06-15 12:30 pm</td>
-        <td>Main Arena</td>
-        <td><button class="edit-button">Edit</button></td>
-        <td><button class="schedule-button" onclick="getSchedule()">Schedule</button></td>
+        <td>1</td>
+        <td>R123</td>
+        <td>John Doe</td>
+        <td>ABC School</td>
+        <td>Black Beauty</td>
+        <td>XYZ Stables</td>
       </tr>
       <tr>
-        <td>Horse Show 2</td>
-        <td>2023-06-18 10:00 am</td>
-        <td>Dressage Arena</td>
-        <td><button class="edit-button">Edit</button></td>
-        <td><button class="schedule-button">Schedule</button></td>
+        <td>2</td>
+        <td>R456</td>
+        <td>Jane Smith</td>
+        <td>DEF School</td>
+        <td>Midnight</td>
+        <td>PQR Ranch</td>
       </tr>
-      <tr>
-        <td>Horse Show 3</td>
-        <td>2023-06-20 5:00 pm</td>
-        <td>Cross Country Course</td>
-        <td><button class="edit-button">Edit</button></td>
-        <td><button class="schedule-button">Schedule</button></td>
-      </tr>
-      <!-- Add more event rows here -->
+      <!-- Add more rows as needed -->
     </tbody>
   </table>
-  <br><br>
-  <button class="create-button">Create New Event</button>
-  </div>
-  <!-- Add event editing form or modal here -->
-  <script>
-    function getSchedule(){
-      window.location.href="schedule.html"
-    }
-  </script>
+      </div>
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

@@ -46,40 +46,16 @@
       background-color: #f2f2f2;
     }
 
-    .edit-button {
+    .upload-button {
       background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
+      color: #ffffff;
       border: none;
+      padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
     }
 
-    .create-button {
-      background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .create-button:hover {
-      background-color: #2f4f81;
-    }
-
-    .edit-button:hover {
-      background-color: #2f4f81;
-    }
-    .schedule-button{
-      background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .schedule-button:hover {
+    .upload-button:hover {
       background-color: #2f4f81;
     }
     .btn-icon {
@@ -101,7 +77,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#" style="color: #c13438;">
-        <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Event Scheduling
+        <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Patterns
       </a>
      
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,8 +100,8 @@
         <th>Event Name</th>
         <th>Date and Time</th>
         <th>Location</th>
-        <th>Action</th>
-        <th>Schedule</th>
+        <th>Pattern Name</th>
+        <th>Pattern Image and Description</th>
       </tr>
     </thead>
     <tbody>
@@ -133,35 +109,39 @@
         <td>Horse Show 1</td>
         <td>2023-06-15 12:30 pm</td>
         <td>Main Arena</td>
-        <td><button class="edit-button">Edit</button></td>
-        <td><button class="schedule-button" onclick="getSchedule()">Schedule</button></td>
+        <td>Rookie H</td>
+        
+          <td>
+            <input type="file" class="file-input" />
+            <button class="upload-button">Upload</button>
+          </td>
       </tr>
       <tr>
         <td>Horse Show 2</td>
         <td>2023-06-18 10:00 am</td>
         <td>Dressage Arena</td>
-        <td><button class="edit-button">Edit</button></td>
-        <td><button class="schedule-button">Schedule</button></td>
+        <td>Level I N</td>
+        <td>
+          <input type="file" class="file-input" />
+          <button class="upload-button">Upload</button>
+        </td>
       </tr>
       <tr>
         <td>Horse Show 3</td>
         <td>2023-06-20 5:00 pm</td>
         <td>Cross Country Course</td>
-        <td><button class="edit-button">Edit</button></td>
-        <td><button class="schedule-button">Schedule</button></td>
+        <td>Level II</td>
+          <td>
+            <input type="file" class="file-input" />
+            <button class="upload-button">Upload</button>
+          </td>
       </tr>
       <!-- Add more event rows here -->
     </tbody>
   </table>
-  <br><br>
-  <button class="create-button">Create New Event</button>
   </div>
   <!-- Add event editing form or modal here -->
-  <script>
-    function getSchedule(){
-      window.location.href="schedule.html"
-    }
-  </script>
+
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
