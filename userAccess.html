@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Add User</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0px;
+    }
+
+    header {
+      background-color: #2f4f81;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: inline-block;
+      width: 120px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 5px;
+      width: 200px;
+      margin-bottom: 10px;
+    }
+
+    button[type="submit"] {
+      padding: 5px 10px;
+      background-color: #c13438;
+    }
+
+    button[type="submit"]:hover{
+      background-color: #2f4f81;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    button.edit-button {
+      padding: 5px 10px;
+      background-color: #c13438;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+
+    button.edit-button:hover {
+      background-color: #2f4f81;
+    }
+
+    footer {
+      background-color: #2f4f81;
+      color: #c13438;
+      padding: 10px;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#" style="color: #c13438;">
+        <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">User Manager
+      </a>
+     
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="ihsaHome.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="container">
+    <h1>Add User</h1>
+    <form id="userForm">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"
+        required>
+      </div>
+      <div>
+        <label for="password">Initial Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Add User</button>
+    </form>
+
+    <table id="userTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Initial Password</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- User rows will be added dynamically here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById("userForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      var name = document.getElementById("name").value;
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+      // Create a new user row
+      var userRow = document.createElement("tr");
+      var nameCell = document.createElement("td");
+      var usernameCell = document.createElement("td");
+      var passwordCell = document.createElement("td");
+      var actionCell = document.createElement("td");
+      var editButton = document.createElement("button");
+
+      nameCell.textContent = name;
+      usernameCell.textContent = username;
+      passwordCell.textContent = password;
+      editButton.textContent = "Edit";
+      editButton.className = "edit-button";
+
+      actionCell.appendChild(editButton);
+
+      userRow.appendChild(nameCell);
+      userRow.appendChild(usernameCell);
+      userRow.appendChild(passwordCell);
+      userRow.appendChild(actionCell);
+
+      // Append the new user row to the table
+      document.getElementById("userTable").getElementsByTagName("tbody")[0].appendChild(userRow);
+
+      // Clear the form fields
+      document.getElementById("name").value = "";
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+    });
+  </script>
+
+  <footer>
+    <p>&copy; IHSA. All rights reserved.</p>
+  </footer>
+</body>
+</html>
