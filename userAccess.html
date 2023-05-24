@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
   <title>Add User</title>
   <style>
     body {
@@ -20,6 +22,7 @@
 
     h1 {
       margin-bottom: 20px;
+      
     }
 
     form {
@@ -42,6 +45,7 @@
     button[type="submit"] {
       padding: 5px 10px;
       background-color: #c13438;
+      color: white;
     }
 
     button[type="submit"]:hover{
@@ -67,7 +71,7 @@
       background-color: #f5f5f5;
     }
 
-    button.edit-button {
+    .edit-button {
       padding: 5px 10px;
       background-color: #c13438;
       color: white;
@@ -76,7 +80,7 @@
       border-radius: 3px;
     }
 
-    button.edit-button:hover {
+    .edit-button:hover {
       background-color: #2f4f81;
     }
 
@@ -87,6 +91,17 @@
       text-align: center;
       margin-top: 50px;
     }
+
+    .mail-button {
+    background-color: #c13438;
+    color: white;
+  }
+
+  .mail-button:hover {
+    
+    background-color: #2f4f81 ;
+  }
+
   </style>
 </head>
 <body>
@@ -121,6 +136,11 @@
         required>
       </div>
       <div>
+        <label for="emailId">Email ID:</label>
+        <input type="text" id="emailID" name="emailID"
+        required>
+      </div>
+      <div>
         <label for="password">Initial Password:</label>
         <input type="password" id="password" name="password" required>
       </div>
@@ -134,6 +154,7 @@
           <th>Username</th>
           <th>Initial Password</th>
           <th>Action</th>
+          <th>Email ID</th>
         </tr>
       </thead>
       <tbody>
@@ -150,6 +171,7 @@
       var name = document.getElementById("name").value;
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
+      var emailID = document.getElementById("emailID").value
 
       // Create a new user row
       var userRow = document.createElement("tr");
@@ -157,20 +179,30 @@
       var usernameCell = document.createElement("td");
       var passwordCell = document.createElement("td");
       var actionCell = document.createElement("td");
-      var editButton = document.createElement("button");
+      var editButton = document.createElement("button"); 
+      var emailIDCell = document.createElement("td");
+      var mailButton = document.createElement("button");
+
+      mailButton.innerHTML = '<i class="fa fa-envelope"></i>';
 
       nameCell.textContent = name;
       usernameCell.textContent = username;
       passwordCell.textContent = password;
+      emailIDCell.textContent = emailID;
       editButton.textContent = "Edit";
       editButton.className = "edit-button";
+      mailButton.className = "mail-button"
+      
+      
 
       actionCell.appendChild(editButton);
+      emailIDCell.appendChild(mailButton);
 
       userRow.appendChild(nameCell);
       userRow.appendChild(usernameCell);
       userRow.appendChild(passwordCell);
       userRow.appendChild(actionCell);
+      userRow.appendChild(emailIDCell);
 
       // Append the new user row to the table
       document.getElementById("userTable").getElementsByTagName("tbody")[0].appendChild(userRow);
@@ -179,6 +211,7 @@
       document.getElementById("name").value = "";
       document.getElementById("username").value = "";
       document.getElementById("password").value = "";
+      document.getElementById("emailID").value = "";
     });
   </script>
 
