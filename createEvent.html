@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          display: flex;
+          flex-direction: column;
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+        .content {
+          flex: 1;
+          padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+        }
+         header {
+          background-color: #2f4f81;
+          padding: 20px;
+          color: #ffffff;
+        }
+    
+        nav a {
+          margin-right: 10px;
+          color: #ffffff;
+        }
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+    
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+    
+        th {
+          background-color: #f2f2f2;
+        }
+    
+        .edit-button {
+          background-color: #c13438;
+          color: white;
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    
+        .create-button {
+          background-color: #c13438;
+          color: white;
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+    
+        .create-button:hover {
+          background-color: #2f4f81;
+        }
+    
+        .edit-button:hover {
+          background-color: #2f4f81;
+        }
+        .schedule-button{
+          background-color: #c13438;
+          color: white;
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        .schedule-button:hover {
+          background-color: #2f4f81;
+        }
+        .btn-icon {
+          font-size: 24px;
+          margin-bottom: 
+          10px;
+        }
+        footer {
+          background-color: #2f4f81;
+          color: #c13438;
+          padding: 10px;
+          text-align: center;
+        }
+      </style>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#" style="color: #c13438;">
+            <img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2">Event Scheduling
+          </a>
+         
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="ihsaHome.html">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <br><br>
+      <div class = "content">
+        <form id="eventForm">
+          <label for="eventName">Event Name:</label>
+          <input type="text" id="eventName" required>
+        
+          <label for="eventDate">Event Date:</label>
+          <input type="date" id="eventDate" required>
+        
+          <label for="eventTime">Event Time:</label>
+          <input type="time" id="eventTime" required>
+        
+          <label for="eventLocation">Event Location:</label>
+          <input type="text" id="eventLocation" required>
+        
+          <input type="submit" value="Submit">
+        </form>
+        
+      </div>
+     
+      <script>
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+          event.preventDefault(); // Prevent form submission
+      
+          // Retrieve entered data
+          const eventName = document.getElementById('eventName').value;
+          const eventDate = document.getElementById('eventDate').value;
+          const eventTime = document.getElementById('eventTime').value;
+          const eventLocation = document.getElementById('eventLocation').value;
+
+          localStorage.setItem('eventName', eventName);
+          localStorage.setItem('eventDate', eventDate);
+          localStorage.setItem('eventTime', eventTime);
+          localStorage.setItem('eventLocation', eventLocation);
+      
+          // Perform any desired actions with the captured data
+          // For example, you can store the data in a database or display it on another page
+      
+          // Reset the form after submission (optional)
+          event.target.reset();
+        });
+      </script>
+      <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+      <footer style="background-color: #2f4f81; color: #c13438; padding: 10px; text-align: center;">
+        <p>&copy; IHSA. All rights reserved.</p>
+      </footer>
+</body>
+</html>

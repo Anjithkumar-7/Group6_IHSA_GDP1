@@ -38,11 +38,9 @@
     .upload-btn {
       background-color: #c13438;
       color: white;
-      padding: 14px 20px;
-      margin: 8px 0;
-      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
       cursor: pointer;
-      width: 100%;
     }
 
     .upload-btn:hover {
@@ -62,8 +60,9 @@
     .submit-btn {
       background-color: #c13438;
       color: white;         
-      padding: 10px 15px;
+      padding: 8px 16px;
       margin-top: 10px;
+      border-radius: 4px;
       border: none;
       cursor: pointer;
     }
@@ -72,6 +71,21 @@
       opacity: 0.8;
       background-color: #2f4f81;
     }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
     footer {
       background-color: #2f4f81;
       color: #c13438;
@@ -102,12 +116,29 @@
   </header>
   <br> <br>
   <div class = "content">
-  <div class="container">
-    <h2>Select an option to upload details</h2>
-    <button class="upload-btn" id="rider-btn">Upload Rider Details</button>
-    <button class="upload-btn" id="horse-btn">Upload Horse Details</button>
-  </div>
-
+    <table>
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Date and Time</th>
+          <th>Location</th>
+          <th>Rider Details</th>
+          <th>Horse Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Horse Event 1</td>
+          <td>2023-06-15 12:30 pm</td>
+          <td>Main Arena</td>
+            <td><button class="upload-btn" id="rider-btn">Upload Rider Details</button></td>
+            <td><button class="upload-btn" id="horse-btn">Upload Horse Details</button></td>
+        </tr>
+  
+        <!-- Add more event rows here -->
+      </tbody>
+    </table>
+ 
   <div class="container sub-window" id="sub-window">
     <!-- Sub-window content dynamically added here -->
   </div>
