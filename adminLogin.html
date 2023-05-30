@@ -44,13 +44,15 @@
     }
 
     .logo {
+      width:150px;
+      height: 150px;
       margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="ihsa-logo.jpg" alt="IHSA Logo" class="logo">
+    <img src="ihsa-logo4.png" alt="IHSA Logo" class="logo">
     <h2>Admin Login</h2>
     <form>
       <label for="usertype">User Type:</label>
@@ -76,7 +78,13 @@
         alert("Login successful!");
         // Redirect to dashboard or desired page
         window.location.href = "adminHome.html";
-      } else {
+      }
+      else if (userType === "show_admin" && username === "showadmin" && password === "admin123") {
+        alert("Login successful!");
+        // Redirect to dashboard or desired page
+        window.location.href = "show_admin.html";
+      }
+       else {
         alert("Invalid login credentials. Please try again.");
       }
     }

@@ -1,138 +1,284 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Horse Events</title>
+
   <link rel="stylesheet" href="styleHome.css">
+
   <style>
+
     /* CSS styling for the announcements section */
+
     .announcements {
+
       max-width: 100%;
+
       overflow: hidden;
+
       position: relative;
+
     }
-    
+
+   
+
     .announcements .slider {
+
       display: flex;
+
       animation: scroll 30s linear infinite;
+
     }
-    
+
+   
+
     .announcements .slider img {
+
       width: 100%;
+
       height: auto;
+
       object-fit: cover;
+
     }
-    
+
+   
+
     .announcements .marquee {
+
       white-space: nowrap;
+
       animation: marquee 15s linear infinite;
+
     }
-    
+
+   
+
     @keyframes scroll {
+
       0% {
+
         transform: translateX(100%);
+
       }
+
       100% {
+
         transform: translateX(-100%);
+
       }
+
     }
-    
+
+   
+
     @keyframes marquee {
+
       0% {
+
         transform: translateX(100%);
+
       }
+
       100% {
+
         transform: translateX(-100%);
+
       }
+
     }
+
   </style>
+
 </head>
+
 <body>
+
   <header>
+
     <nav>
+
       <ul>
-        <li><a href="#" style="display: flex; align-items: center;"><img src="ihsa-logo.jpg" alt="IHSA Logo" height="30" class="mr-2"></a></li>
+
+        <li><a href="#" style="display: flex; align-items: center;"><img src="ihsa-logo4.png" alt="IHSA Logo" height=100% width=40px class="mr-2"></a></li>
+
         <li><a href="#events">Events</a></li>
+
         <li><a href="#about">About</a></li>
+
         <li><a href="#">Map</a></li>
+
         <li><a href="#contact">Contact</a></li>
+
         <li><a href="#photos">Photos</a></li>
+
         <div class="nav-right">
+
           <li><a href="adminLogin.html">Login</a></li>
+
         </div>
+
       </ul>
+
     </nav>
+
   </header>
+
   <div class="announcements">
+
     <div class="slider">
+
       <div class="marquee">
+
         <p>Rider John has been promoted to Division 3. Congratulations, John!</p>
+
         <p>Rider James has been promoted to Division 2. Congratulations, James!</p>
+
         <p>Rider Ben has been promoted to Division 4. Congratulations, Ben!</p>
+
       </div>
+
     </div>
+
   </div>
+
   <section class="hero">
+
     <div class="container">
+
       <h1>Horse Events</h1>
+
       <p>Experience the thrill of equestrian competition.</p>
+
     </div>
+
   </section>
+
+
+
 
   <section id="events" class="events">
+
     <div class="container">
+
       <h2>Upcoming Events</h2>
+
       <div class="event-card">
+
         <h3>NWM Horse Show</h3>
+
         <p>Date: <span>17th May, 2023</span></p>
+
         <p>Location: <span>Maryville, Missouri</span></p>
+
       </div>
+
       <!-- Add more event cards here -->
+
     </div>
+
   </section>
+
+
+
 
   <section id="about" class="about">
+
     <div class="container">
+
       <h2>About Horse Events</h2>
+
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac turpis urna. Ut nec est in erat mollis tincidunt.</p>
+
       <a href="#" class="btn">Learn More</a>
+
     </div>
+
   </section>
 
+
+
+
   <section id="photos" class="photos">
+
     <div class="container">
+
       <h2>Photos</h2>
+
       <p>Click here to view the recent horse show event photos</p>
+
       <a href="photos.html">Click for photos</a>
+
     </div>
+
     </section>
-  
+
+ 
+
     <section id="contact" class="contact">
+
       <div class="container">
+
         <h2>Contact Us</h2>
+
         <p>Have any questions? Get in touch with us.</p>
+
         <form>
+
           <input type="text" placeholder="Your Name">
+
           <input type="email" placeholder="Your Email">
+
           <textarea placeholder="Your Message"></textarea>
+
           <button type="submit" class="btn">Send Message</button>
+
           <div style="text-align: center; margin-top: 20px;">
+
             <h3>Contact Information:</h3>
+
             <br>
+
             <p>Phone: 123-456-7890</p>
+
             <p>Email: info@example.com</p>
+
             <p>Address: 123 Street, City, Country</p>
+
           </div>
+
         </form>
+
       </div>
+
     </section>
-  
+
+ 
+
     <footer>
+
       <div class="container">
+
         <p>&copy; 2023 Horse Events. All rights reserved.</p>
+
       </div>
+
     </footer>
+
   </body>
+
   </html>
-  
+
+ 
+
+
+ 
+
