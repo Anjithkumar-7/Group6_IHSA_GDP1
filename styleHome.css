@@ -22,51 +22,80 @@ body {
  
 
 /* Header */
-header {
+nav {
   background-color: #2f4f81;
-  color: #fff;
-  height: max-content;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 
- nav{
-  height:60px;
- }
+.logo {
+  height: 100%;
+  
+}
 
-nav ul {
+.logo img {
+  height: 100%;
+  width: 90px;
+}
+
+.navbar-links {
   list-style-type: none;
-  bottom: 0%;
-}
-.nav-right {
-  float: right;
-}
-
- 
-
-nav ul li {
-  padding: 10px 30px 10px;
-  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: flex;
 }
 
- 
-
-nav ul li:hover {
-  background-color: #c13438;
+.navbar-links li {
+  margin-right: 20px;
 }
 
- 
+.navbar-links li:last-child {
+  margin-right: 0;
+}
 
-nav ul li a {
-  color: #fff;
+.navbar-links a {
   text-decoration: none;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: larger;
+  font-family: Arial, sans-serif;
+ 
 }
 
- 
+.navbar-links a:hover{
+    background-color: #c13438;
+}
+
+.login-tab {
+  margin-left: 20px;
+}
+
+.login-tab a {
+  text-decoration: none;
+  color: #fff;
+  background-color: #2f4f81;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: larger;
+  font-family: Arial, sans-serif;
+}
+
+.login-tab a:hover {
+  background-color: #c13438;
+  color: #fff;
+}
 
 /* Hero Section */
 .hero {
   background-image: url("horse1.jpg");
-  background-size: cover;
-  background-position: center;
+  background-size: 50%;
+  background-position: center center;
+  background-repeat: unset;
   padding: 100px 0;
   text-align: center;
   color: #fff;
