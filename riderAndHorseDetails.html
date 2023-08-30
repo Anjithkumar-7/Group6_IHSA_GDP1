@@ -35,6 +35,21 @@
       width: 100%;
     }
 
+    .add-btn{
+      background-color: #c13438;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 300px;
+    }
+    .add-btn:hover{
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
+
+
     .upload-btn:hover {
       opacity: 0.8;
       background-color: #2f4f81;
@@ -49,6 +64,15 @@
       background-color: #f2f2f2;
     }
 
+    .delete-class-btn{
+      cursor: pointer;
+      background-color: #c13438;
+    }
+
+    .delete-class-btn:hover {
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
     .submit-btn {
       background-color: #c13438;
       color: white;         
@@ -62,6 +86,11 @@
       opacity: 0.8;
       background-color: #2f4f81;
     }
+
+    .classes-list {
+      display: none;
+    }
+
   </style>
 </head>
 <body>
@@ -86,15 +115,107 @@
   </header>
   <br> <br>
 
+  <div class="add-classes">
+    <button class="add-btn" id="classes-btn">Add/Remove Classes</button>
+    <div class="classes-list" id="classes-list">
+      <!-- Dynamic content for classes -->
+      <h4>Classes List:</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Class Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample rows for demonstration -->
+          <tr>
+            <td>Class 1</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 8 – Open Hunter Seat Equitation over Fences</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 6 – Intermediate Hunter Seat Equitation over Fences</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 4 – Limit Hunter Seat Equitation over Fences- Section A</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 4 – Limit Hunter Seat Equitation over Fences- Section B</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 7 – Open Hunter Seat Equitation on the Flat</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 5 – Intermediate Hunter Seat Equitation on the Flat</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 3 – Limit Hunter Seat Equitation on the Flat- Section A</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 2B – Novice Hunter Seat Equitation- Section A</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 3 – Limit Hunter Seat Equitation on the Flat- Section B</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 2B – Novice Hunter Seat Equitation- Section B</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 2A – Pre-Novice Hunter Seat Equitation- Section A</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 2B – Novice Hunter Seat Equitation- Section C</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 2A – Pre-Novice Hunter Seat Equitation- Section B</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 1 – Introductory Hunter Seat Equitation- Section Heat A</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 1 – Introductory Hunter Seat Equitation- Section Heat B</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+          <tr>
+            <td>Class 1 – Introductory Hunter Seat Equitation- Section Heat C</td>
+            <td><button class="delete-class-btn">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Input to add new class -->
+      <input type="text" id="class-input" placeholder="Enter class name">
+      <button class="submit-btn" id="add-class-btn">Add</button>
+    </div>
+  </div>
+</div>
+
+<div class="container sub-window" id="sub-window">
+  <!-- Sub-window content dynamically added here -->
+</div>
+
   <div class="container">
     <h2>Select an option to upload details</h2>
     <button class="upload-btn" id="rider-btn">Upload Rider Details</button>
     <button class="upload-btn" id="horse-btn">Upload Horse Details</button>
   </div>
 
-  <div class="container sub-window" id="sub-window">
-    <!-- Sub-window content dynamically added here -->
-  </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -117,6 +238,29 @@ function openSubWindow(title) {
   $("#sub-window").show();
 }
 });
+$("#classes-btn").click(function () {
+        $("#classes-list").show();
+      });
+
+      // Add class button event
+      $(document).on("click", "#add-class-btn", function () {
+        const className = $("#class-input").val().trim();
+        if (className !== "") {
+          $("#classes-list tbody").append(`
+            <tr>
+              <td>${className}</td>
+              <td><button class="delete-class-btn">Delete</button></td>
+            </tr>
+          `);
+          $("#class-input").val("");
+        }
+      });
+
+      // Delete class button event
+      $(document).on("click", ".delete-class-btn", function () {
+        $(this).closest("tr").remove();
+      });
+
 </script>
 </body>
 </html>
