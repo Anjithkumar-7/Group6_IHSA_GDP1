@@ -1,133 +1,156 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <title>Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-    header {
-      background-color: #2f4f81;
-      padding: 20px;
-      color: #ffffff;
-    }
+      header {
+        background-color: #2f4f81;
+        padding: 20px;
+        color: #ffffff;
+      }
 
-    nav a {
-      margin-right: 10px;
-      color: #ffffff;
-    }
+      nav a {
+        margin-right: 10px;
+        color: #ffffff;
+      }
 
-    main {
-      padding: 20px;
-    }
+      main {
+        padding: 20px;
+      }
 
-    .btn-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
+      .btn-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
 
-    .admin-btn {
-      width: calc(33.33% - 20px);
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #c13438;
-      text-align: center;
-      color: #ffffff;
-      text-decoration: none;
-      margin-bottom: 20px;
-    }
+      .admin-btn {
+        width: calc(33.33% - 20px);
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #c13438;
+        text-align: center;
+        color: #ffffff;
+        text-decoration: none;
+        margin-bottom: 20px;
+      }
 
-    .btn-icon {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
+      .btn-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
 
-    footer {
-      background-color: #2f4f81;
-      padding: 10px;
-      text-align: center;
-      color: #ffffff;
-    }
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#" style="color: #c13438;">
-        <img src="ihsa-logo4.png" alt="IHSA Logo" height=50px width=70px class="mr-2">Admin Dashboard
-      </a>
-      
-     
-     
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="AdminEvents.html">Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="ihsaHome.html">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <div class ="content">
-  <main>
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 20px;">Admin Dashboard</h2>
-
-      <div class="btn-container">
-        <a href="schedule.html" class="admin-btn">
-          <i class="fas fa-calendar-alt btn-icon"></i>
-          <h5>Schedule</h5>
-          <p>Manage schedules for competitions.</p>
+      footer {
+        background-color: #2f4f81;
+        padding: 10px;
+        text-align: center;
+        color: #ffffff;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" style="color: #c13438">
+          <img
+            src="ihsa-logo4.png"
+            alt="IHSA Logo"
+            height="50px"
+            width="70px"
+            class="mr-2"
+          />Admin Dashboard
         </a>
 
-        <a href="patterns.html" class="admin-btn">
-          <i class="fas fa-shapes btn-icon"></i>
-          <h5>Patterns</h5>
-          <p>Create and manage riding patterns for competitions.</p>
-        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="AdminEvents.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ihsaHome.html">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div class="content">
+      <main>
+        <div class="container">
+          <h2 style="text-align: center; margin-bottom: 20px">
+            Admin Dashboard
+          </h2>
 
-        <a href="userAccess.html" class="admin-btn">
-          <i class="fas fa-users btn-icon"></i>
-          <h5>Users</h5>
-          <p>Manage user accounts and permissions.</p>
-        </a>
+          <div class="btn-container">
+            <a href="schedule.html" class="admin-btn">
+              <i class="fas fa-calendar-alt btn-icon"></i>
+              <h5>Schedule</h5>
+              <p>Manage schedules for competitions.</p>
+            </a>
 
-        <a href="classcategorization.html" class="admin-btn">
-          <i class="fas fa-handshake btn-icon"></i>
-          <h5>Categorizing Classes</h5>
-          <p>Categorize classes for horses and riders</p>
-        </a>
-        <a href="randomizer.html" class="admin-btn">
-          <i class="fas fa-random btn-icon"></i>
-          <h5>Randomiser</h5>
-          <p>Generate random orders for riders or classes.</p>
-        </a>
-    
-        <a href="riderAndHorseDetails.html" class="admin-btn">
-          <i class="fas fa-horse btn-icon"></i>
-          <h5>Riders and Horses</h5>
-          <p>Manage rider and horse information.</p>
-        </a>
-      </div>
+            <a href="patterns.html" class="admin-btn">
+              <i class="fas fa-shapes btn-icon"></i>
+              <h5>Patterns</h5>
+              <p>Create and manage riding patterns for competitions.</p>
+            </a>
+
+            <a href="userAccess.html" class="admin-btn">
+              <i class="fas fa-users btn-icon"></i>
+              <h5>Users</h5>
+              <p>Manage user accounts and permissions.</p>
+            </a>
+
+            <a href="classcategorization.html" class="admin-btn">
+              <i class="fas fa-handshake btn-icon"></i>
+              <h5>Categorizing Classes</h5>
+              <p>Categorize classes for horses and riders</p>
+            </a>
+            <a href="randomizer.html" class="admin-btn">
+              <i class="fas fa-random btn-icon"></i>
+              <h5>Randomiser</h5>
+              <p>Generate random orders for riders or classes.</p>
+            </a>
+
+            <a href="riderAndHorseDetails.html" class="admin-btn">
+              <i class="fas fa-horse btn-icon"></i>
+              <h5>Riders and Horses</h5>
+              <p>Manage rider and horse information.</p>
+            </a>
+            <a href="notifications.html" class="admin-btn">
+              <i class="fas fa-bullhorn btn-icon"></i>
+              <h5>Anouncements</h5>
+              <p>Manage Anouncements.</p>
+            </a>
+          </div>
+        </div>
+      </main>
     </div>
-  </main>
-  </div>
-  <footer style="background-color: #2f4f81; color: #c13438; padding: 10px; text-align: center;">
-    <p>&copy; IHSA. All rights reserved.</p>
-  </footer>
-  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</body>
-</html>    
+    <footer
+      style="
+        background-color: #2f4f81;
+        color: #c13438;
+        padding: 10px;
+        text-align: center;
+      "
+    >
+      <p>&copy; IHSA. All rights reserved.</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
