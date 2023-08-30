@@ -1,278 +1,449 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Rider and Horse Details</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        flex: 1;
+        padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+      }
+      header {
+        background-color: #2f4f81;
+        padding: 20px;
+        color: #ffffff;
+      }
 
-<head>
-  <title>Rider and Horse Details</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .content {
-      flex: 1;
-      padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
-    }
-     header {
-      background-color: #2f4f81;
-      padding: 20px;
-      color: #ffffff;
-    }
+      nav a {
+        margin-right: 10px;
+        color: #ffffff;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
 
-    nav a {
-      margin-right: 10px;
-      color: #ffffff;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
 
-    th, td {
-      padding: 8px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
+      th {
+        background-color: #f2f2f2;
+      }
 
-    th {
-      background-color: #f2f2f2;
-    }
+      .edit-button {
+        background-color: #c13438;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-    .edit-button {
-      background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+      .create-button {
+        background-color: #c13438;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-    .create-button {
-      background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+      .create-button:hover {
+        background-color: #2f4f81;
+      }
 
-    .create-button:hover {
-      background-color: #2f4f81;
-    }
+      .edit-button:hover {
+        background-color: #2f4f81;
+      }
+      .schedule-button {
+        background-color: #c13438;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .schedule-button:hover {
+        background-color: #2f4f81;
+      }
+      .btn-icon {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      footer {
+        background-color: #2f4f81;
+        color: #c13438;
+        padding: 10px;
+        text-align: center;
+      }
+      .editor {
+        width: 40%;
+        height: 20px;
+      }
+      button {
+        background-color: #c13438;
+        color: white;
+      }
 
-    .edit-button:hover {
-      background-color: #2f4f81;
-    }
-    .schedule-button{
-      background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .schedule-button:hover {
-      background-color: #2f4f81;
-    }
-    .btn-icon {
-      font-size: 24px;
-      margin-bottom: 
-      10px;
-    }
-    footer {
-      background-color: #2f4f81;
-      color: #c13438;
-      padding: 10px;
-      text-align: center;
-    }
-    .editor {
-      width: 40%;
-      height: 20px;
-    }
-  </style>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-</head>
+      button:hover {
+        opacity: 0.8;
+        background-color: #2f4f81;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#" style="color: #c13438;">
-            <img src="ihsa-logo4.png" alt="IHSA Logo" height=50px width=70px class="mr-2">Class Categorization
-          </a>
-         
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="ihsaHome.html">Logout</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" style="color: #c13438">
+          <img
+            src="ihsa-logo4.png"
+            alt="IHSA Logo"
+            height="50px"
+            width="70px"
+            class="mr-2"
+          />Class Categorization
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="ihsaHome.html">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <div class="content">
-  <h2>Rider Details</h2>
+      <h2>Rider Details</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Rider Name</th>
-        <th>Height</th>
-        <th>Weight</th>
-        <th>Experience</th>
-        <th>Class</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John Doe</td>
-        <td>175 cm</td>
-        <td>65 kg</td>
-        <td>Intermediate</td>
-        <td>
-          <select class="editor">
-            <option value="Class 8">Class 8 – Open Hunter Seat Equitation over Fences</option>
-            <option value="Class 6">Class 6 – Intermediate Hunter Seat Equitation over Fences</option>
-            <option value="Class 4A">Class 4 – Limit Hunter Seat Equitation over Fences- Section A</option>
-            <option value="Class 4B">Class 4 – Limit Hunter Seat Equitation over Fences- Section B</option>
-            <option value="Class 7">Class 7 – Open Hunter Seat Equitation on the Flat</option>
-            <option value="Class 5">Class 5 – Intermediate Hunter Seat Equitation on the Flat</option>
-            <option value="Class 3A">Class 3 – Limit Hunter Seat Equitation on the Flat- Section A</option>
-            <option value="Class 2B">Class 2B – Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 3B">Class 3 – Limit Hunter Seat Equitation on the Flat- Section B</option>
-            <option value="Class 2C">Class 2B – Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 2D">Class 2B – Novice Hunter Seat Equitation- Section C</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 1A">Class 1 – Introductory Hunter Seat Equitation- Section Heat A</option>
-            <option value="Class 1B">Class 1 – Introductory Hunter Seat Equitation- Section Heat B</option>
-            <option value="Class 1C">Class 1 – Introductory Hunter Seat Equitation- Section Heat C</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Jane Smith</td>
-        <td>163 cm</td>
-        <td>60 kg</td>
-        <td>Advanced</td>
-        <td>
-          <select class="editor">
-            <option value="Class 8">Class 8 – Open Hunter Seat Equitation over Fences</option>
-            <option value="Class 6">Class 6 – Intermediate Hunter Seat Equitation over Fences</option>
-            <option value="Class 4A">Class 4 – Limit Hunter Seat Equitation over Fences- Section A</option>
-            <option value="Class 4B">Class 4 – Limit Hunter Seat Equitation           over Fences- Section B</option>
-            <option value="Class 7">Class 7 – Open Hunter Seat Equitation on the Flat</option>
-            <option value="Class 5">Class 5 – Intermediate Hunter Seat Equitation on the Flat</option>
-            <option value="Class 3A">Class 3 – Limit Hunter Seat Equitation on the Flat- Section A</option>
-            <option value="Class 2B">Class 2B – Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 3B">Class 3 – Limit Hunter Seat Equitation on the Flat- Section B</option>
-            <option value="Class 2C">Class 2B – Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 2D">Class 2B – Novice Hunter Seat Equitation- Section C</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 1A">Class 1 – Introductory Hunter Seat Equitation- Section Heat A</option>
-            <option value="Class 1B">Class 1 – Introductory Hunter Seat Equitation- Section Heat B</option>
-            <option value="Class 1C">Class 1 – Introductory Hunter Seat Equitation- Section Heat C</option>
-          </select>
-        </td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Rider Name</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Experience</th>
+            <th>Class</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John Doe</td>
+            <td>175 cm</td>
+            <td>65 kg</td>
+            <td>Intermediate</td>
+            <td>
+              <select class="editor">
+                <option value="Class 8">
+                  Class 8 – Open Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 6">
+                  Class 6 – Intermediate Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 4A">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section A
+                </option>
+                <option value="Class 4B">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section B
+                </option>
+                <option value="Class 7">
+                  Class 7 – Open Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 5">
+                  Class 5 – Intermediate Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 3A">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section A
+                </option>
+                <option value="Class 2B">
+                  Class 2B – Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 3B">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section B
+                </option>
+                <option value="Class 2C">
+                  Class 2B – Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 2D">
+                  Class 2B – Novice Hunter Seat Equitation- Section C
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 1A">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat A
+                </option>
+                <option value="Class 1B">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat B
+                </option>
+                <option value="Class 1C">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat C
+                </option>
+              </select>
+            </td>
+            <td><input type="text" class="editor"></td>
+          </tr>
+          <tr>
+            <td>Jane Smith</td>
+            <td>163 cm</td>
+            <td>60 kg</td>
+            <td>Advanced</td>
+            <td>
+              <select class="editor">
+                <option value="Class 8">
+                  Class 8 – Open Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 6">
+                  Class 6 – Intermediate Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 4A">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section A
+                </option>
+                <option value="Class 4B">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section B
+                </option>
+                <option value="Class 7">
+                  Class 7 – Open Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 5">
+                  Class 5 – Intermediate Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 3A">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section A
+                </option>
+                <option value="Class 2B">
+                  Class 2B – Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 3B">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section B
+                </option>
+                <option value="Class 2C">
+                  Class 2B – Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 2D">
+                  Class 2B – Novice Hunter Seat Equitation- Section C
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 1A">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat A
+                </option>
+                <option value="Class 1B">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat B
+                </option>
+                <option value="Class 1C">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat C
+                </option>
+              </select>
+            </td>
+            <td><input type="text" class="editor"></td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
 
-  <h2>Horse Details</h2>
+      <h2>Horse Details</h2>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Horse Name</th>
-        <th>Height</th>
-        <th>Weight</th>
-        <th>Spur</th>
-        <th>Rein Hold</th>
-        <th>Class</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Black Beauty</td>
-        <td>160 cm</td>
-        <td>550 kg</td>
-        <td>Yes</td>
-        <td>Full Hold</td>
-        <td>
-          <select class="editor">
-            <option value="Class 8">Class 8 – Open Hunter Seat Equitation over Fences</option>
-            <option value="Class 6">Class 6 – Intermediate Hunter Seat Equitation over Fences</option>
-            <option value="Class 4A">Class 4 – Limit Hunter Seat Equitation over Fences- Section A</option>
-            <option value="Class 4B">Class 4 – Limit Hunter Seat Equitation over Fences- Section B</option>
-            <option value="Class 7">Class 7 – Open Hunter Seat Equitation on the Flat</option>
-            <option value="Class 5">Class 5 – Intermediate Hunter Seat Equitation on the Flat</option>
-            <option value="Class 3A">Class 3 – Limit Hunter Seat Equitation on the Flat- Section A</option>
-            <option value="Class 2B">Class 2B – Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 3B">Class 3 – Limit Hunter Seat Equitation on the Flat- Section B</option>
-            <option value="Class 2C">Class 2B – Novice Hunter Seat Equitation- Section          B</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 2D">Class 2B – Novice Hunter Seat Equitation- Section C</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 1A">Class 1 – Introductory Hunter Seat Equitation- Section Heat A</option>
-            <option value="Class 1B">Class 1 – Introductory Hunter Seat Equitation- Section Heat B</option>
-            <option value="Class 1C">Class 1 – Introductory Hunter Seat Equitation- Section Heat C</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>Midnight</td>
-        <td>155 cm</td>
-        <td>500 kg</td>
-        <td>No</td>
-        <td>Half Hold</td>
-        <td>
-          <select class="editor">
-            <option value="Class 8">Class 8 – Open Hunter Seat Equitation over Fences</option>
-            <option value="Class 6">Class 6 – Intermediate Hunter Seat Equitation over Fences</option>
-            <option value="Class 4A">Class 4 – Limit Hunter Seat Equitation over Fences- Section A</option>
-            <option value="Class 4B">Class 4 – Limit Hunter Seat Equitation over Fences- Section B</option>
-            <option value="Class 7">Class 7 – Open Hunter Seat Equitation on the Flat</option>
-            <option value="Class 5">Class 5 – Intermediate Hunter Seat Equitation on the Flat</option>
-            <option value="Class 3A">Class 3 – Limit Hunter Seat Equitation on the Flat- Section A</option>
-            <option value="Class 2B">Class 2B – Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 3B">Class 3 – Limit Hunter Seat Equitation on the Flat- Section B</option>
-            <option value="Class 2C">Class 2B – Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section A</option>
-            <option value="Class 2D">Class 2B – Novice Hunter Seat Equitation- Section C</option>
-            <option value="Class 2A">Class 2A – Pre-Novice Hunter Seat Equitation- Section B</option>
-            <option value="Class 1A">Class 1 – Introductory Hunter Seat Equitation- Section Heat A</option>
-            <option value="Class 1B">Class 1 – Introductory Hunter Seat Equitation- Section Heat B</option>
-            <option value="Class 1C">Class 1 – Introductory Hunter Seat Equitation- Section Heat C</option>
-          </select>
-        </td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
-</div>
-<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<footer style="background-color: #2f4f81; color: #c13438; padding: 10px; text-align: center;">
-  <p>&copy; IHSA. All rights reserved.</p>
-</footer>
-
-</body>
-
+      <table>
+        <thead>
+          <tr>
+            <th>Horse Name</th>
+            <th>Height</th>
+            <th>Weight</th>
+            <th>Spur</th>
+            <th>Rein Hold</th>
+            <th>Class</th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Black Beauty</td>
+            <td>160 cm</td>
+            <td>550 kg</td>
+            <td>Yes</td>
+            <td>Full Hold</td>
+            <td>
+              <select class="editor">
+                <option value="Class 8">
+                  Class 8 – Open Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 6">
+                  Class 6 – Intermediate Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 4A">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section A
+                </option>
+                <option value="Class 4B">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section B
+                </option>
+                <option value="Class 7">
+                  Class 7 – Open Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 5">
+                  Class 5 – Intermediate Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 3A">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section A
+                </option>
+                <option value="Class 2B">
+                  Class 2B – Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 3B">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section B
+                </option>
+                <option value="Class 2C">
+                  Class 2B – Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 2D">
+                  Class 2B – Novice Hunter Seat Equitation- Section C
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 1A">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat A
+                </option>
+                <option value="Class 1B">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat B
+                </option>
+                <option value="Class 1C">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat C
+                </option>
+              </select>
+            </td>
+            <td><input type="text" class="editor"></td>
+          </tr>
+          <tr>
+            <td>Midnight</td>
+            <td>155 cm</td>
+            <td>500 kg</td>
+            <td>No</td>
+            <td>Half Hold</td>
+            <td>
+              <select class="editor">
+                <option value="Class 8">
+                  Class 8 – Open Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 6">
+                  Class 6 – Intermediate Hunter Seat Equitation over Fences
+                </option>
+                <option value="Class 4A">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section A
+                </option>
+                <option value="Class 4B">
+                  Class 4 – Limit Hunter Seat Equitation over Fences- Section B
+                </option>
+                <option value="Class 7">
+                  Class 7 – Open Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 5">
+                  Class 5 – Intermediate Hunter Seat Equitation on the Flat
+                </option>
+                <option value="Class 3A">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section A
+                </option>
+                <option value="Class 2B">
+                  Class 2B – Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 3B">
+                  Class 3 – Limit Hunter Seat Equitation on the Flat- Section B
+                </option>
+                <option value="Class 2C">
+                  Class 2B – Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section A
+                </option>
+                <option value="Class 2D">
+                  Class 2B – Novice Hunter Seat Equitation- Section C
+                </option>
+                <option value="Class 2A">
+                  Class 2A – Pre-Novice Hunter Seat Equitation- Section B
+                </option>
+                <option value="Class 1A">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat A
+                </option>
+                <option value="Class 1B">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat B
+                </option>
+                <option value="Class 1C">
+                  Class 1 – Introductory Hunter Seat Equitation- Section Heat C
+                </option>
+              </select>
+            </td>
+            <td><input type="text" class="editor"></td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+      <div style="text-align: center; margin-top: 20px">
+        <button class="button">Save</button>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/your-font-awesome-kit.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <footer
+      style="
+        background-color: #2f4f81;
+        color: #c13438;
+        padding: 10px;
+        text-align: center;
+      "
+    >
+      <p>&copy; IHSA. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
-
-
-

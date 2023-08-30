@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Announcements</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    .announcement-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+    }
+    button {
+      background-color: #c13438;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2f4f81;
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement-form">
+    <h2>Create New Announcement</h2>
+    <form>
+      <div class="form-group">
+        <label for="announcementTitle">Title:</label>
+        <input type="text" class="form-control" id="announcementTitle" placeholder="Enter title">
+      </div>
+      <div class="form-group">
+        <label for="announcementContent">Content:</label>
+        <textarea class="form-control" id="announcementContent" placeholder="Enter announcement content"></textarea>
+      </div>
+      <button type="button" class="btn btn-primary" onclick="createAnnouncement()">Create Announcement</button>
+    </form>
+  </div>
+  <script>
+    function createAnnouncement() {
+      var title = document.getElementById("announcementTitle").value;
+      var content = document.getElementById("announcementContent").value;
+      
+      // Here you can implement the logic to save the announcement to a database or display it on the landing page.
+      
+      // For now, let's just display the announcement in the console.
+      console.log("New Announcement:");
+      console.log("Title: " + title);
+      console.log("Content: " + content);
+      
+      alert("Announcement created successfully!");
+      
+      // Clear the form fields after creating the announcement
+      document.getElementById("announcementTitle").value = "";
+      document.getElementById("announcementContent").value = "";
+    }
+  </script>
+</body>
+</html>
