@@ -1,74 +1,389 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Admin Announcements</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-    }
-    .announcement-form {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    label {
-      font-weight: bold;
-    }
-    textarea {
-      width: 100%;
-      height: 150px;
-    }
-    button {
-      background-color: #c13438;
-      color: white;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #2f4f81;
-    }
-  </style>
-</head>
-<body>
-  <div class="announcement-form">
-    <h2>Create New Announcement</h2>
-    <form>
-      <div class="form-group">
-        <label for="announcementTitle">Title:</label>
-        <input type="text" class="form-control" id="announcementTitle" placeholder="Enter title">
+  <head>
+    <title>Admin Announcements</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+
+      header {
+        background-color: #2f4f81;
+        padding: 20px;
+        color: #ffffff;
+      }
+
+      .announcement-form {
+        max-width: 600px;
+        margin: 0 auto;
+        display: none;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      textarea {
+        width: 100%;
+        height: 150px;
+      }
+
+      .anouncement-btn {
+        background-color: #c13438;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .anouncement-btn:hover {
+        background-color: #2f4f81;
+      }
+
+      button {
+        background-color: #c13438;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .link-button{
+        background-color: #c13438;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .link-button:hover{
+        background-color: #2f4f81;
+      }
+      
+      button:hover {
+        background-color: #2f4f81;
+      }
+
+      /* Add a class for styling editable input fields */
+      .editable {
+        border: 1px solid #ccc;
+        padding: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" style="color: #c13438">
+          <img
+            src="ihsa-logo4.png"
+            alt="IHSA Logo"
+            height="30"
+            class="mr-2"
+          />Admin Dashboard
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <br />
+    <br />
+    <div class="container">
+      <h2>Announcements</h2>
+      <button class="anouncement-btn" id="toggleFormBtn">
+        Add Announcement
+      </button>
+      <br /><br />
+      <div class="announcement-form" id="announcementForm">
+        <h2>Create New Announcement</h2>
+        <form>
+          <div class="form-group">
+            <label for="announcementTitle">Title:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="announcementTitle"
+              placeholder="Enter title"
+            />
+          </div>
+          <div class="form-group">
+            <label for="announcementContent">Content:</label>
+            <textarea
+              class="form-control"
+              id="announcementContent"
+              placeholder="Enter announcement content"
+            ></textarea>
+          </div>
+          <button
+            type="button"
+            class="anouncement-btn"
+            onclick="createAnnouncement()"
+          >
+            Create Announcement
+          </button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="announcementContent">Content:</label>
-        <textarea class="form-control" id="announcementContent" placeholder="Enter announcement content"></textarea>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="announcementTable">
+          <!-- Announcement rows will be added dynamically here -->
+        </tbody>
+      </table>
+      <br /><br />
+      <h2>Images</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ImageLink</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="imagesTable">
+          <!-- Image rows will be added dynamically here -->
+        </tbody>
+      </table>
+      <button
+        class="anouncement-btn"
+        id="addImagesBtn"
+        data-toggle="modal"
+        data-target="#imageModal"
+      >
+        Add Images
+      </button>
+    </div>
+
+    <!-- Image Modal -->
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="imageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="imageModalLabel">
+              <h5 class="modal-title" id="imageModalLabel">Add Image Link</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="imageLink">Image Link:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="imageLink"
+                  placeholder="Enter image link"
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="link-button"
+                onclick="addImageLink()"
+              >
+                Add Image
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <button type="button" class="btn btn-primary" onclick="createAnnouncement()">Create Announcement</button>
-    </form>
-  </div>
-  <script>
-    function createAnnouncement() {
-      var title = document.getElementById("announcementTitle").value;
-      var content = document.getElementById("announcementContent").value;
-      
-      // Here you can implement the logic to save the announcement to a database or display it on the landing page.
-      
-      // For now, let's just display the announcement in the console.
-      console.log("New Announcement:");
-      console.log("Title: " + title);
-      console.log("Content: " + content);
-      
-      alert("Announcement created successfully!");
-      
-      // Clear the form fields after creating the announcement
-      document.getElementById("announcementTitle").value = "";
-      document.getElementById("announcementContent").value = "";
-    }
-  </script>
-</body>
-</html>
+  
+      <!-- Script for handling announcements and images -->
+      <script>
+        var announcements = [];
+        var images = [];
+  
+        document
+          .getElementById("toggleFormBtn")
+          .addEventListener("click", function () {
+            var announcementForm = document.getElementById("announcementForm");
+            if (
+              announcementForm.style.display === "none" ||
+              announcementForm.style.display === ""
+            ) {
+              announcementForm.style.display = "block";
+            } else {
+              announcementForm.style.display = "none";
+            }
+          });
+  
+        function createAnnouncement() {
+          var title = document.getElementById("announcementTitle").value;
+          var content = document.getElementById("announcementContent").value;
+  
+          if (title && content) {
+            var announcement = {
+              title: title,
+              content: content,
+              editing: false,
+            };
+  
+            announcements.push(announcement);
+  
+            displayAnnouncements();
+            clearFormFields();
+            // Hide the announcement form after creating an announcement
+            document.getElementById("announcementForm").style.display = "none";
+          }
+        }
+  
+        function addImageLink() {
+          var imageLink = document.getElementById("imageLink").value;
+  
+          if (imageLink) {
+            var image = {
+              link: imageLink,
+            };
+  
+            images.push(image);
+  
+            // Close the image modal
+            $("#imageModal").modal("hide");
+  
+            displayImages();
+            // Clear the image link input field
+            document.getElementById("imageLink").value = "";
+          }
+        }
+  
+        function displayAnnouncements() {
+          var tableBody = document.getElementById("announcementTable");
+          tableBody.innerHTML = "";
+  
+          announcements.forEach(function (announcement, index) {
+            var row = tableBody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+  
+            if (announcement.editing) {
+              cell1.innerHTML = `<input type="text" class="editable" id="editTitle${index}" value="${announcement.title}" />`;
+              cell2.innerHTML = `<textarea class="editable" id="editContent${index}">${announcement.content}</textarea>`;
+              cell3.innerHTML = `<button onclick="saveAnnouncement(${index})">Save</button>`;
+            } else {
+              cell1.textContent = announcement.title;
+              cell2.innerHTML = announcement.content;
+              cell3.innerHTML = `<button onclick="editAnnouncement(${index})">Edit</button>
+                               <button onclick="deleteAnnouncement(${index})">Delete</button>`;
+            }
+          });
+        }
+  
+        function displayImages() {
+          var tableBody = document.getElementById("imagesTable");
+          tableBody.innerHTML = "";
+  
+          images.forEach(function (image, index) {
+            var row = tableBody.insertRow();
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+  
+            cell1.innerHTML = `<a href="${image.link}" target="_blank">${image.link}</a>`;
+            cell2.innerHTML = `<button onclick="deleteImage(${index})">Delete</button>`;
+          });
+        }
+  
+        function clearFormFields() {
+          document.getElementById("announcementTitle").value = "";
+          document.getElementById("announcementContent").value = "";
+        }
+  
+        function deleteAnnouncement(index) {
+          announcements.splice(index, 1);
+          displayAnnouncements();
+        }
+  
+        function editAnnouncement(index) {
+          announcements[index].editing = true;
+          displayAnnouncements();
+        }
+  
+        function saveAnnouncement(index) {
+          var editedTitle = document.getElementById(`editTitle${index}`).value;
+          var editedContent = document.getElementById(
+            `editContent${index}`
+          ).value;
+  
+          announcements[index].title = editedTitle;
+          announcements[index].content = editedContent;
+          announcements[index].editing = false;
+  
+          displayAnnouncements();
+        }
+  
+        function deleteImage(index) {
+          images.splice(index, 1);
+          displayImages();
+        }
+  
+        // Handle the "Add Images" button click event
+        document
+          .getElementById("addImagesBtn")
+          .addEventListener("click", function () {
+            // Clear the image link input field when opening the modal
+            document.getElementById("imageLink").value = "";
+          });
+  
+        // Initial display of announcements and images
+        displayAnnouncements();
+        displayImages();
+      </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+  </html>
+  
