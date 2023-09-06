@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <style>
+        /* Style for the navigation bar */
+        
+        header {
+        background-color: #2f4f81;
+        padding: 0px;
+        color: #ffffff;
+      }
+      nav {
+  background-color: #2f4f81;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+
+        /* Style for the heading */
+        .heading {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px;
+            color: #2f4f81;
+        }
+
+        /* Style for the card container */
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        /* Style for the individual card */
+        .card {
+            width: 300px;
+            margin: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style for the card content */
+        .card-content {
+            padding: 20px;
+        }
+
+        /* Style for the card title */
+        .card-title {
+            font-size: 20px;
+            color: #2f4f81;
+        }
+
+        /* Style for the card description */
+        .card-description {
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Style for the card button */
+        .card-button {
+            background-color: #c13438;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: 15px;
+        }
+        .card-button:hover {
+            background-color: #2f4f81;
+            color: white;
+            text-decoration: none;
+        }
+        .logo {
+             height: 100%;
+            }
+        .logo img {
+            height: 100%;
+            width: 90px;
+        }
+    </style>
+    <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light ">
+          <a class="navbar-brand" href="ihsaHome.html" style="color: #c13438">
+            <img
+              src="ihsa-logo4.png"
+              alt="IHSA Logo"
+              height="50px"
+              width="70px"
+              class="mr-2"
+            />Photo Gallery
+          </a>
+
+        </nav>
+      </header>
+    <!-- Navigation Bar -->
+    
+
+    <!-- Heading -->
+    <h1 class="heading">Photo Gallery</h1>
+
+    <!-- Card Container -->
+    <div class="card-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">NWM Horse Show 1</h2>
+                <p class="card-description">Description of Event 1</p>
+                <a href="#" class="card-button">View Photos</a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">NWM Horse Show 2</h2>
+                <p class="card-description">Description of Event 2</p>
+                <a href="#" class="card-button">View Photos</a>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">NWM Horse Show 3</h2>
+                <p class="card-description">Description of Event 3</p>
+                <a href="#" class="card-button">View Photos</a>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+            <div class="card-content">
+                <h2 class="card-title">NWM Horse Show 4</h2>
+                <p class="card-description">Description of Event 4</p>
+                <a href="#" class="card-button">View Photos</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>
