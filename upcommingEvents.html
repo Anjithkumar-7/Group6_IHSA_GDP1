@@ -40,9 +40,10 @@
     .content {
 
       flex: 1;
-
       padding-bottom: 50px;
       /* Adjust the padding to leave space for the footer */
+      display: flex;
+      flex-direction: column;
 
     }
 
@@ -71,6 +72,7 @@
       border-collapse: collapse;
 
       width: 100%;
+      background-color: #ffffff;
 
     }
 
@@ -92,7 +94,7 @@
 
     th {
 
-      background-color: #f2f2f2;
+      background-color: #ffffff;
 
     }
 
@@ -256,6 +258,27 @@
       padding: 0 20px;
 
     }
+    .half-section {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .patterns-section {
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    .download-button {
+      background-color: #c13438;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      display: inline-block;
+      border-radius: 4px;
+    }
+
+    .download-button:hover {
+      background-color: #2f4f81;
+    }
   </style>
 
 </head>
@@ -287,6 +310,7 @@
 
 
   <div class="content">
+    <div class="half-section patterns-section">
 
     <h2 style="font-weight: bold">Patterns</h2>
 
@@ -297,8 +321,9 @@
         <button class="button">Download</button>
 
       </a>
-
+</div>
     </div>
+    <div class="half-section patterns-section">
 
     <h2><b>Schedule</b></h2>
 
@@ -441,7 +466,7 @@
       </tbody>
 
     </table>
-
+</div>
   </div>
 
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
