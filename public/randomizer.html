@@ -38,7 +38,10 @@
         width: 100%;
         margin-top: 80px;
       }
-
+      .content {
+        flex: 1;
+        padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+      }
       .horse-list,
       .rider-list {
         padding: 20px;
@@ -83,8 +86,8 @@
       }
 
       table {
-        width: 100%;
-        max-width: 200px;
+        width: 50%;
+        min-width: 200px;
         border-collapse: collapse;
       }
 
@@ -129,6 +132,49 @@
       opacity: 0.8;
       background-color: #2f4f81;
     }
+        /* Style for class tables */
+  .class-table {
+    border-collapse: collapse;
+    width: 100% !important;
+    margin-bottom: 20px; /* Add some space between tables */
+    min-width: 600px !important;
+  }
+
+  .class-table thead {
+    background-color: #f0f0f0; /* Header background color */
+  }
+
+  .class-table th, .class-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  .tableContent {
+        flex: 1;
+        padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+      }
+      header {
+        background-color: #2f4f81;
+        padding: 20px;
+        color: #ffffff;
+      }
+
+      nav a {
+        margin-right: 10px;
+        color: #ffffff;
+      }
+    
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
     </style>
   </head>
   <body>
@@ -155,55 +201,8 @@
     <div class="content">
       <div class="dropdown">
         <h5>Class Selection</h5>
-        <select id="classSelection" class="form-control">
-          <option value="Class 8">
-            Class 8 – Open Hunter Seat Equitation over Fences
-          </option>
-          <option value="Class 6">
-            Class 6 – Intermediate Hunter Seat Equitation over Fences
-          </option>
-          <option value="Class 4A">
-            Class 4 – Limit Hunter Seat Equitation over Fences- Section A
-          </option>
-          <option value="Class 4B">
-            Class 4 – Limit Hunter Seat Equitation over Fences- Section B
-          </option>
-          <option value="Class 7">
-            Class 7 – Open Hunter Seat Equitation on the Flat
-          </option>
-          <option value="Class 5">
-            Class 5 – Intermediate Hunter Seat Equitation on the Flat
-          </option>
-          <option value="Class 3A">
-            Class 3 – Limit Hunter Seat Equitation on the Flat- Section A
-          </option>
-          <option value="Class 2B">
-            Class 2B – Novice Hunter Seat Equitation- Section A
-          </option>
-          <option value="Class 3B">
-            Class 3 – Limit Hunter Seat Equitation on the Flat- Section B
-          </option>
-          <option value="Class 2C">
-            Class 2B – Novice Hunter Seat Equitation- Section B
-          </option>
-          <option value="Class 2A">
-            Class 2A – Pre-Novice Hunter Seat Equitation- Section A
-          </option>
-          <option value="Class 2D">
-            Class 2B – Novice Hunter Seat Equitation- Section C
-          </option>
-          <option value="Class 2A">
-            Class 2A – Pre-Novice Hunter Seat Equitation- Section B
-          </option>
-          <option value="Class 1A">
-            Class 1 – Introductory Hunter Seat Equitation- Section Heat A
-          </option>
-          <option value="Class 1B">
-            Class 1 – Introductory Hunter Seat Equitation- Section Heat B
-          </option>
-          <option value="Class 1C">
-            Class 1 – Introductory Hunter Seat Equitation- Section Heat C
-          </option>
+        <select id="classSelection" onchange="updateRandomizer()" class="form-control">
+          <option selected hidden>Select a class</option>
         </select>
       </div>
       <div class="container">
@@ -228,11 +227,16 @@
       </div>
 
       <div style="text-align: center; margin-top: 20px;"> 
-        <button class="button">Save</button>
+        <button onclick=" saveCombinations()" class="button">Save</button>
       </div>
 
     </div>
+    <div class="tableContent" id="class-tables">
+    </div>
+    <script src="./randomizer.js"></script>
     <script>
+
+      /*
       var horses = [
         "Black Beauty",
         "Secretariat",
@@ -262,7 +266,6 @@
           riderNamesList.appendChild(listItem);
         });
       }
-
       function generateRandomCombinations() {
         var randomCombinationsTable =
           document.getElementById("randomCombinations");
@@ -319,6 +322,8 @@
 
       displayHorseNames();
       displayRiderNames();
+*/
+    
     </script>
     <footer
       style="

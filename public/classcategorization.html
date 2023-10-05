@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rider and Horse Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .content {
+      flex: 1;
+      padding-bottom: 50px;
+      margin-bottom: 50px;
+      /* Adjust the padding to leave space for the footer */
+    }
+
+    header {
+      background-color: #2f4f81;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    nav a {
+      margin-right: 10px;
+      color: #ffffff;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .edit-button {
+      background-color: #c13438;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .create-button {
+      background-color: #c13438;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .create-button:hover {
+      background-color: #2f4f81;
+    }
+
+    .edit-button:hover {
+      background-color: #2f4f81;
+    }
+
+    .schedule-button {
+      background-color: #c13438;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .schedule-button:hover {
+      background-color: #2f4f81;
+    }
+
+    .btn-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #2f4f81;
+      color: #c13438;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .editor {
+      width: 40%;
+      height: 20px;
+    }
+
+    button {
+      background-color: #c13438;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
+
+    /* Added styles for the tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .tabs button {
+      background-color: #2f4f81;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 8px 16px;
+      margin: 0 10px;
+    }
+
+    .tabs button.active {
+      background-color: #c13438;
+    }
+
+    /* Default to hide Horse Details and Class Configuration */
+    #horseTable,
+    #class-config {
+      display: none;
+    }
+
+    .class-input {
+      width: 70%;
+      padding: 6px 12px;
+      border: 1px solid #c13438;
+      border-radius: 4px;
+      margin: 40px;
+    }
+
+    .add-class-button {
+      background-color: #c13438;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-class-button:hover {
+      background-color: #2f4f81;
+    }
+
+    .delete-class-button {
+      background-color: #c13438;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .delete-class-button:hover {
+      background-color: #2f4f81;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#" style="color: #c13438">
+        <img src="ihsa-logo4.png" alt="IHSA Logo" height="50px" width="70px" class="mr-2" />Class Categorization
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="ihsaHome.html">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="content">
+    <!-- Tabs to switch between Rider, Horse, and Class Configuration -->
+    <div class="tabs">
+      <button onclick="showRiderTable()">Rider Details</button>
+      <button onclick="showHorseTable()">Horse Details</button>
+      <button onclick="showClassConfig()" class="active">Class Configuration</button>
+    </div>
+
+    <!-- Class Configuration Section -->
+    <div id="class-config">
+      <input type="text" id="class-input" class="class-input" placeholder="Enter class name">
+      <button class="add-class-button" id="add-class-btn">Add Class</button>
+      <!-- Table to Display Added Classes -->
+      <table>
+        <thead>
+          <tr>
+            <th>Class Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="class-list">
+          <!-- Rows for added classes will be displayed here -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Rider Details Table -->
+    <div id="riderTable">
+      <h2>Rider Details</h2>
+      <!-- ... (Rider Details table content) ... -->
+      <div id="riderTable"></div>
+    </div>
+
+    <!-- Horse Details Table -->
+    <div id="horseTable">
+      <h2>Horse Details</h2>
+      <!-- ... (Horse Details table content) ... -->
+      <div id="horseTable"></div>
+    </div>
+  </div>
+  <script src="js/classes.js"></script>
+  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+  <script src=" https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <footer style="
+            background-color: #2f4f81;
+            color: #c13438;
+            padding: 10px;
+            text-align: center;
+            ">
+    <p>&copy; IHSA. All rights reserved.</p>
+  </footer>
+  <script>
+    
+  </script>
+</body>
+
+</html>

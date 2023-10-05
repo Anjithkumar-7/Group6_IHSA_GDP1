@@ -106,6 +106,25 @@
         padding: 10px;
         text-align: center;
       }
+      h4{
+        margin-top: 30px;
+      }
+        /* Style for class tables */
+  .class-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px; /* Add some space between tables */
+  }
+
+  .class-table thead {
+    background-color: #f0f0f0; /* Header background color */
+  }
+
+  .class-table th, .class-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
     </style>
   </head>
 
@@ -142,80 +161,14 @@
         </div>
       </nav>
     </header>
-    <div class="content">
-      <h2>Schedule</h2>
-      <h3 style="font-weight: bold">
-        Class 8 – Open Hunter Seat Equitation over Fences
-      </h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Order</th>
-            <th>Rider ID</th>
-            <th>Rider Name</th>
-            <th>Rider School</th>
-            <th>Horse Name</th>
-            <th>Horse Provider</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>R123</td>
-            <td>John Doe</td>
-            <td>ABC School</td>
-            <td>Black Beauty</td>
-            <td>XYZ Stables</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>R456</td>
-            <td>Jane Smith</td>
-            <td>DEF School</td>
-            <td>Midnight</td>
-            <td>PQR Ranch</td>
-          </tr>
-          <!-- Add more rows as needed -->
-        </tbody>
-      </table>
-      <h3 style="font-weight: bold">
-        Class 6 – Intermediate Hunter Seat Equitation over Fences
-      </h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Order</th>
-            <th>Rider ID</th>
-            <th>Rider Name</th>
-            <th>Rider School</th>
-            <th>Horse Name</th>
-            <th>Horse Provider</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>R123</td>
-            <td>John Doe</td>
-            <td>ABC School</td>
-            <td>Black Beauty</td>
-            <td>XYZ Stables</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>R456</td>
-            <td>Jane Smith</td>
-            <td>DEF School</td>
-            <td>Midnight</td>
-            <td>PQR Ranch</td>
-          </tr>
-          <!-- Add more rows as needed -->
-        </tbody>
-      </table>
-      <div style="text-align: center; margin-top: 20px">
-        <button class="button">Save</button>
-      </div>
+    <div class="content" id="class-tables">
+      
+      
     </div>
+    <div style="text-align: center; margin-top: 20px">
+      <button class="button">Save</button>
+    </div>
+    <script src="js/schedule.js"></script>
     <script
       src="https://kit.fontawesome.com/your-font-awesome-kit.js"
       crossorigin="anonymous"

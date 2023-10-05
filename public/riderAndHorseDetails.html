@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Details</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    header {
+      background-color: #2f4f81;
+      padding: 20px;
+      color: #ffffff;
+    }
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    .upload-btn {
+      background-color: #c13438;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: #c13438 solid 1px;
+      cursor: pointer;
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    .add-btn{
+      background-color: #c13438;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 300px;
+    }
+    .add-btn:hover{
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
+
+
+    .upload-btn:hover {
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
+
+    .sub-window {
+      display: none;
+      text-align: left;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin-top: 30px;
+      background-color: #f2f2f2;
+    }
+
+    .delete-class-btn{
+      cursor: pointer;
+      background-color: #c13438;
+    }
+
+    .delete-class-btn:hover {
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
+    .submit-btn {
+      background-color: #c13438;
+      color: white;         
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: #c13438 solid 1px;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.8;
+      background-color: #2f4f81;
+    }
+
+    .classes-list {
+      display: none;
+    }
+    /* Add your CSS styles here */
+    .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+    }
+    .popup-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .box{
+      border: 1.5px solid #444;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      padding: 0 20px 20px 20px;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#" style="color: #c13438;">
+        <img src="ihsa-logo4.png" alt="IHSA Logo" height="30" class="mr-2">Admin Dashboard
+      </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <br> <br>
+
+ 
+</div>
+
+<div class="container sub-window" id="sub-window">
+  <!-- Sub-window content dynamically added here -->
+</div>
+
+  <div class="container">
+    <h2>Select an option to upload details</h2>
+    <div class="box"><button class="upload-btn" data-toggle="modal" data-target="#rider">Upload Rider Details</button><p id="rfile"></p><button id="rclear" style="display: none;">clear</button></div>
+    <div class="box"><button class="upload-btn" data-toggle="modal" data-target="#horse">Upload Horse Details</button><p id="hfile"></p><button id="hclear" style="display: none;">clear</button></div>
+  </div>
+ 
+ <!-- Rider Modal -->
+ <div class="modal fade" id="rider" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">
+          <h5 class="modal-title" id="imageModalLabel">Upload Riders Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="rider-file">Upload File:</label>
+            <input class="form-control" name="rider-file" type="file" id="rider-file" accept=".xlsx, .xls"/>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="link-button" id="submit-rider" >  <span id="submit-rider-text">Submit</span> </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" > Close </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Horse Modal -->
+<div class="modal fade" id="horse" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Upload Horses Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="horse-file">Upload File:</label>
+          <input class="form-control" name="horse-file" type="file" id="horse-file" accept=".xlsx, .xls"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="link-button" id="submit-horse">Submit</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", async function () {
+    
+      const urlParams = new URLSearchParams(window.location.search);
+      var EventID = urlParams.get('EventID');
+      var EventName = urlParams.get('eventname');
+  if(EventID && EventName){
+    const filename = await fetch("/getfilenames", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      EventID: EventID,
+    }),
+  }).then((res) => res.json());
+  console.log(filename); 
+  if(filename.success){
+    if(filename.rfile.length > 0 ){
+      document.getElementById('rfile').innerText = filename.rfile[0].file_name;
+      document.getElementById('rclear').style.display = "block";
+    }
+    if(filename.hfile.length > 0 ){
+      document.getElementById('hfile').innerText = filename.hfile[0].file_name;
+      document.getElementById('hclear').style.display = "block";
+    }
+  }
+
+  document.getElementById('rclear').addEventListener("click", async function(){
+    document.getElementById('rclear').innerText = "Clearing...!"
+    const clear = await fetch("/deleteFile", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      EventID: EventID,
+      rider : "rider"
+    }),
+  }).then((res) => res.json());
+  console.log(clear);
+  clear.success ? alert(clear.success) : alert(clear.errorMessage);
+  window.location.reload(true);
+  });
+
+  document.getElementById('hclear').addEventListener("click", async function(){
+    document.getElementById('hclear').innerText = "Clearing...!"
+    const clear = await fetch("/deleteFile", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      EventID: EventID,
+      horse : "horse"
+    }),
+  }).then((res) => res.json());
+  console.log(clear);
+  clear.success ? alert(clear.success) : alert(clear.errorMessage);
+  window.location.reload(true);
+  });
+  
+  document.getElementById("submit-rider").addEventListener("click", async function () {
+  // Get the selected file for rider
+  const riderFile = document.getElementById("rider-file").files[0];
+  const submitButton = document.getElementById("submit-rider");
+  const submitButtonText = document.getElementById("submit-rider-text");
+
+  if (riderFile) {
+    // Display "Uploading..." while uploading
+    submitButtonText.innerText = "Uploading...";
+    submitButton.disabled = true; // Disable the button during upload
+
+    // Create a FormData object to send the file to the backend
+    const formData = new FormData();
+    formData.append("riderFile", riderFile);
+    formData.append("EventID", EventID);
+    formData.append("filename", riderFile.name);
+    console.log(riderFile.name)
+    try {
+      // Send the formData to the Node.js backend using fetch or AJAX
+      const result = await axios.post('/uploadRiderDetails', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      console.log(result);
+
+      // Check if the upload was successful
+      if (result.status === 200) {
+        console.log('Successfully uploaded rider details:', result.data);
+        $('#rider').modal('hide'); // Close the rider modal
+        alert('Rider details uploaded successfully.');
+        // Change button text to "Uploaded" after a successful upload
+        submitButtonText.innerText = "Uploaded";
+      } else {
+        console.error('Upload failed with status:', result.status);
+        $('#rider').modal('hide'); // Close the rider modal
+        alert('Rider details upload failed. Please try again.');
+        // Restore the original button text after a failed upload
+        submitButtonText.innerText = "Submit";
+      }
+    } catch (error) {
+      console.error('Error during upload:', error);
+      alert('An error occurred during upload. Please try again.');
+      // Restore the original button text after an error
+      submitButtonText.innerText = "Submit";
+    //  window.location.reload(true);
+    } finally {
+      // Re-enable the button after upload or error
+      submitButton.disabled = false;
+      window.location.reload(true);
+    }
+  } else {
+    alert("Please select a file to upload.");
+  }
+});
+
+  document.getElementById("submit-horse").addEventListener("click", async function () {
+  // Get the selected file for horse
+  const horseFile = document.getElementById("horse-file").files[0];
+  const submitButton = document.getElementById("submit-horse");
+
+  if (horseFile) {
+    // Display "Uploading..." while uploading
+    submitButton.innerText = "Uploading...";
+    submitButton.disabled = true; // Disable the button during upload
+
+    // Create a FormData object to send the file to the backend
+    const formData = new FormData();
+    formData.append("horseFile", horseFile);
+    formData.append("EventID", EventID);
+    formData.append("filename", horseFile.name);
+    try {
+      // Send the formData to the Node.js backend using fetch or AJAX
+      const result2 = await axios.post('/uploadHorseDetails', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      console.log(result2);
+
+      // Check if the upload was successful
+      if (result2.status === 200) {
+        console.log('Successfully uploaded horse details:', result2.data);
+        $('#horse').modal('hide'); // Close the horse modal
+        alert('Horses details uploaded successfully.');
+        // Change button text to "Uploaded" after a successful upload
+        submitButton.innerText = "Uploaded";
+        window.location.reload(true);
+      } else {
+        console.error('Upload failed with status:', result2.status);
+        $('#horse').modal('hide'); // Close the horse modal
+        alert('Horses details upload failed. Please try again.');
+        // Restore the original button text after a failed upload
+        submitButton.innerText = "Submit";
+      
+      }
+    } catch (error) {
+      console.error('Error during upload:', error);
+      alert('An error occurred during upload. Please try again.');
+      // Restore the original button text after an error
+      submitButton.innerText = "Submit";
+     
+    } finally {
+      // Re-enable the button after upload or error
+      submitButton.disabled = false;
+      window.location.reload(true);
+    }
+  } else {
+    alert("Please select a file to upload.");
+  }
+});
+    }
+  });
+</script>
+</body>
+</html>
