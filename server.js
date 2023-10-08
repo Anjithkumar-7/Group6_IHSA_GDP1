@@ -9,7 +9,6 @@ const port = process.env.port;
 
 const server = express();
 
-
 server.use(cors());
 server.use(express.static(publicDirectoryPath))
 server.use(express.urlencoded({ extended: true }));

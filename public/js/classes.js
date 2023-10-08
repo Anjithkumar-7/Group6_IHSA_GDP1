@@ -296,8 +296,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Set the header cell content
       hheaderCell1.textContent = 'Horse Name';
       hheaderCell2.textContent = 'Provider';
-      hheaderCell3.textContent = 'spur';
-      hheaderCell4.textContent = 'Rein Hold';
+      hheaderCell3.textContent = 'HeightConstraint';
+      hheaderCell4.textContent = 'WeightConstraint';
       hheaderCell5.textContent = 'Class';
       hheaderCell6.textContent = 'Remarks';
       hheaderCell7.textContent = 'Action';
