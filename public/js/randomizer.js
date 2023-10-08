@@ -176,13 +176,13 @@ async function updateRandomizer() {
     for (let i = 0; i < riders.length; i++) {
       // const horseIndex = i < horses.length ? i : i % horses.length; // Wrap around available horses if necessary
       //  const horseItem = `<li>${horses[horseIndex].Name}</li>`;
-      if (riders[i].Height !== null && riders[i].Weight !== null) {
+      if (riders[i].Height === "H" && riders[i].Weight === "W") {
         rConstraint.push(riders[i].Name);
         riderName = riders[i].Name + " [H][W]";
-      } else if (riders[i].Height !== null) {
+      } else if (riders[i].Height === "H") {
         rConstraint.push(riders[i].Name);
         riderName = riders[i].Name + " [H]";
-      } else if (riders[i].Weight !== null) {
+      } else if (riders[i].Weight === "W") {
         rConstraint.push(riders[i].Name);
         riderName = riders[i].Name + " [W]";
       } else {
@@ -193,13 +193,13 @@ async function updateRandomizer() {
       riderListElement.innerHTML += riderItem;
     }
     for (let h = 0; h < horses.length; h++) {
-      if (horses[h].Spurs !== null && horses[h].Rein_hold !== null) {
+      if (horses[h].Spurs === "H" && horses[h].Rein_hold === "W") {
         rConstraint.push(horses[h].Name);
         horseName = horses[h].Name + " [H][W]";
-      } else if (horses[h].Spurs !== null) {
+      } else if (horses[h].Spurs === "H") {
         rConstraint.push(horses[h].Name);
         horseName = horses[h].Name + " [H]";
-      } else if (horses[h].Rein_hold !== null) {
+      } else if (horses[h].Rein_hold === "W") {
         rConstraint.push(horses[h].Name);
         horseName = horses[h].Name + " [W]";
       } else {
