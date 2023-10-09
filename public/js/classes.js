@@ -61,110 +61,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Append the header row to the table head
       thead.appendChild(headerRow);
       const tbody = document.createElement('tbody');
-      result.Riders.forEach((data, index) => {
-        const row = document.createElement('tr');
-        const cell1 = document.createElement('td');
-        const cell2 = document.createElement('td');
-        const cell3 = document.createElement('td');
-        const cell4 = document.createElement('td');
-        const cell5 = document.createElement('td');
-        const cell6 = document.createElement('td');
-        const cell7 = document.createElement('td');
-        const cell8 = document.createElement('td');
-        const button = document.createElement('button');
-
-        cell8.innerHTML = `<input type="text" data-original-id="${data.RiderId}" value="${data.RiderId}" class="editor">`
-        cell1.innerHTML = `<input type="text" value="${data.Name}" class="editor">`;
-        cell2.innerHTML = `<input type="text" value="${data.Height}" class="editor">`;
-        cell3.innerHTML = `<input type="text" value="${data.Weight}" class="editor">`;
-        cell4.innerHTML = `<input type="text" value="${data.Experience}" class="editor">`;
-        // cell4.innerHTML = `<input type="text" value="Amsterdam, Washington, Sydney" class="editor" data-role="tagsinput">`;
-        cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Class}"><option hidden selected value="${data.Class}">${data.Class}</option>${classesList} </select>`;
-        //         cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Class}">
-        //   ${classesList.forEach((classItem) => `
-        //     <option value="${classItem}" ${selectedValues.includes(classItem) ? 'selected' : ''}>
-        //       ${classItem}
-        //     </option>
-        //   `).join('\n')}
-        // </select>`
-
-        cell6.innerHTML = `<input type="text" value="${data.Remarks}" class="editor">`;
-        // cell6.innerHTML = `<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" `;
-
-        button.textContent = "Save";
-        button.className = "button";
-        button.addEventListener('click', async function () {
-          // Get the row containing the clicked button
-          const currentRow = this.closest('tr');
-
-          // Extract data from the row's cells
-          const riderId = currentRow.querySelector('td:nth-child(1) input').value;
-          const riderName = currentRow.querySelector('td:nth-child(2) input').value;
-          const height = currentRow.querySelector('td:nth-child(3) input').value;
-          const weight = currentRow.querySelector('td:nth-child(4) input').value;
-          const experience = currentRow.querySelector('td:nth-child(5) input').value;
-
-          // Get the edited class value and the original class value
-          const editedClass = currentRow.querySelector('td:nth-child(6) select').value;
-          const originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
-          const originalId = currentRow.querySelector('td:nth-child(1) input').getAttribute('data-original-id');
-          const remarks = currentRow.querySelector('td:nth-child(7) input').value;
-
-          // Create an object with the captured data
-          const rowData = {
-            riderid: riderId,
-            originalId: originalId,
-            name: riderName,
-            height: height,
-            weight: weight,
-            experience: experience,
-            classname: editedClass, // Use the edited class value here
-            originalClass: originalClass, // Store the original class value
-            remarks: remarks
-          };
-
-          // Send the data to the backend (similar to previous code)
-          // ...
-          const result1 = await fetch('/updateRider', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              EventId: EventID,
-              originalId: originalId,
-              riderid: riderId,
-              name: riderName,
-              height: height,
-              weight: weight,
-              experience: experience,
-              classname: editedClass, // Use the edited class value here
-              originalClass: originalClass, // Store the original class value
-              remarks: remarks
-            })
-          })
-            .then((res) => res.json());
-          console.log(result1);
-          if (result1.success) {
-            alert(result1.success);
-            window.location.reload(true);
-          }
-        });
-
-        cell7.appendChild(button);
-        row.appendChild(cell8)
-        row.appendChild(cell1);
-        row.appendChild(cell2);
-        row.appendChild(cell3);
-        row.appendChild(cell4);
-        row.appendChild(cell5);
-        row.appendChild(cell6);
-        row.appendChild(cell7);
-
-        tbody.appendChild(row);
-      });
-
-      // result.uniqueRiders.forEach((data, index) => {
+      // result.Riders.forEach((data, index) => {
       //   const row = document.createElement('tr');
       //   const cell1 = document.createElement('td');
       //   const cell2 = document.createElement('td');
@@ -183,16 +80,14 @@ document.addEventListener("DOMContentLoaded", async function () {
       //   cell4.innerHTML = `<input type="text" value="${data.Experience}" class="editor">`;
       //   // cell4.innerHTML = `<input type="text" value="Amsterdam, Washington, Sydney" class="editor" data-role="tagsinput">`;
       //   cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Class}"><option hidden selected value="${data.Class}">${data.Class}</option>${classesList} </select>`;
-      //   // cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}"><option hidden selected value="${data.Classes[0]}">${data.Classes[0]}</option>${data.Classes} </select>`;
-      //   // cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}">
-      //   //   ${data.Classes.forEach((classItem) => `
-      //   //     <option value="${classItem}" ${data.Classes.includes(classItem) ? 'selected' : ''}>
+      //   //         cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Class}">
+      //   //   ${classesList.forEach((classItem) => `
+      //   //     <option value="${classItem}" ${selectedValues.includes(classItem) ? 'selected' : ''}>
       //   //       ${classItem}
       //   //     </option>
       //   //   `).join('\n')}
       //   // </select>`
 
-      //   // cell6.innerHTML = `<input type="text" value="${data.Classes.join(",")}" class="editor">`;
       //   cell6.innerHTML = `<input type="text" value="${data.Remarks}" class="editor">`;
       //   // cell6.innerHTML = `<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" `;
 
@@ -268,6 +163,142 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       //   tbody.appendChild(row);
       // });
+
+      result.uniqueRiders.forEach((data, index) => {
+        const row = document.createElement('tr');
+        const cell1 = document.createElement('td');
+        const cell2 = document.createElement('td');
+        const cell3 = document.createElement('td');
+        const cell4 = document.createElement('td');
+        const cell5 = document.createElement('td');
+        const cell6 = document.createElement('td');
+        const cell7 = document.createElement('td');
+        const cell8 = document.createElement('td');
+        const button = document.createElement('button');
+
+        cell8.innerHTML = `<input type="text" data-original-id="${data.RiderId}" value="${data.RiderId}" class="editor">`
+        cell1.innerHTML = `<input type="text" value="${data.Name}" class="editor">`;
+        cell2.innerHTML = `<input type="text" value="${data.Height}" class="editor">`;
+        cell3.innerHTML = `<input type="text" value="${data.Weight}" class="editor">`;
+        cell4.innerHTML = `<input type="text" value="${data.Experience}" class="editor">`;
+        // cell4.innerHTML = `<input type="text" value="Amsterdam, Washington, Sydney" class="editor" data-role="tagsinput">`;
+        // cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}"><option hidden selected value="${data.Class}">${data.Class}</option>${data.Classes} </select>`;
+
+        var options = "";
+        data.Classes.map((op, i) => {
+          options += `<option value="${op}" id="${i}" ${result.Classes.includes(op) ? 'selected' : ''} style="border-radius: 5px;"">${op}</option>`
+        })
+        options += classesList
+        
+
+        // cell5.innerHTML = `<select class="editor" id='multiple-select' onclick="allowPageScroll()" data-original-class="${data.Classes}" multiple>${options}</select>`;
+
+
+        // cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}"><option hidden selected value="${data.Classes[0]}">${data.Classes[0]}</option>${data.Classes} </select>`;
+
+        // console.log('result.Classes ==>', result.Classes);
+        // console.log('data.Classes ==>', data.Classes);
+
+        //This one is the looped version to render the data
+        cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}">
+          ${result.Classes.map((classItem, i) => `
+            <option value="${classItem.classname}" id="${i}" ${data.Classes.includes(classItem.classname) ? 'selected' : ''}>
+              ${classItem.classname}
+            </option>
+          `)}
+        </select>`
+        //
+
+        data.Classes.map((classItem, i)=>{
+          console.log('Result Class name:-', classItem.classname, 'data.classes', data.Classes);
+
+          const tagElement = document.createElement('div');
+          tagElement.className = 'tag';
+          tagElement.textContent = classItem;
+          tagElement.onclick = function() {
+            // Handle tag removal here if needed
+            // Example: row.tags.splice(row.tags.indexOf(tag), 1);
+          };
+          cell5.appendChild(tagElement);
+        })
+        
+
+        // cell6.innerHTML = `<input type="text" value="${data.Classes.join(",")}" class="editor">`;
+        cell6.innerHTML = `<input type="text" value="${data.Remarks}" class="editor">`;
+        // cell6.innerHTML = `<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" `;
+
+        button.textContent = "Save";
+        button.className = "button";
+        button.addEventListener('click', async function () {
+          // Get the row containing the clicked button
+          const currentRow = this.closest('tr');
+
+          // Extract data from the row's cells
+          const riderId = currentRow.querySelector('td:nth-child(1) input').value;
+          const riderName = currentRow.querySelector('td:nth-child(2) input').value;
+          const height = currentRow.querySelector('td:nth-child(3) input').value;
+          const weight = currentRow.querySelector('td:nth-child(4) input').value;
+          const experience = currentRow.querySelector('td:nth-child(5) input').value;
+
+          // Get the edited class value and the original class value
+          const editedClass = currentRow.querySelector('td:nth-child(6) select').value;
+          const originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
+          const originalId = currentRow.querySelector('td:nth-child(1) input').getAttribute('data-original-id');
+          const remarks = currentRow.querySelector('td:nth-child(7) input').value;
+
+          // Create an object with the captured data
+          const rowData = {
+            riderid: riderId,
+            originalId: originalId,
+            name: riderName,
+            height: height,
+            weight: weight,
+            experience: experience,
+            classname: editedClass, // Use the edited class value here
+            originalClass: originalClass, // Store the original class value
+            remarks: remarks
+          };
+
+          // Send the data to the backend (similar to previous code)
+          // ...
+          const result1 = await fetch('/updateRider', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              EventId: EventID,
+              originalId: originalId,
+              riderid: riderId,
+              name: riderName,
+              height: height,
+              weight: weight,
+              experience: experience,
+              classname: editedClass, // Use the edited class value here
+              originalClass: originalClass, // Store the original class value
+              remarks: remarks
+            })
+          })
+            .then((res) => res.json());
+          console.log(result1);
+          if (result1.success) {
+            alert(result1.success);
+            window.location.reload(true);
+          }
+        });
+
+        cell7.appendChild(button);
+        row.appendChild(cell8)
+        row.appendChild(cell1);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        row.appendChild(cell4);
+        row.appendChild(cell5);
+        row.appendChild(cell6);
+        row.appendChild(cell7);
+
+        tbody.appendChild(row);
+      });
 
       table.appendChild(thead);
       table.appendChild(tbody);
