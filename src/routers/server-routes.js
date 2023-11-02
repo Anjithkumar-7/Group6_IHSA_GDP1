@@ -5,6 +5,8 @@ const upload = require("../files-upload/uploader");
 const fs = require('fs');
 const readXlsxFile = require('read-excel-file/node');
 const multer = require('multer');
+const authenticateToken = require("../authenticateToken");
+const jwt = require("jsonwebtoken");
 
 router.get('/list-tables', async (req, res) => {
   const query = `show tables`;
@@ -32,7 +34,7 @@ router.get("/getEvents", async (req, res) => {
 
 });
 
-router.get("/getAllAnnouncements", async (req, res) => {
+router.get("/getAllAnnouncements",authenticateToken, async (req, res) => {
   try {
     const query = `SELECT * FROM announcements`;
     const result = await mysql.query(query);
@@ -51,7 +53,7 @@ router.get("/getAllAnnouncements", async (req, res) => {
 
 });
 
-router.get("/getEventsForPhotos", async (req, res) => {
+router.get("/getEventsForPhotos",authenticateToken, async (req, res) => {
   try {
     const query = `SELECT E.EventID, E.EventName, P.Link
     FROM events AS E
@@ -74,7 +76,7 @@ router.post("/getImagesLink", async (req, res) => {
     const { EventID } = req.body;
     const query = `SELECT * FROM photos WHERE EventID = ${EventID}`;
     const result = await mysql.query(query);
-    console.log(result)
+    console.log(result);
     if (result[0].length == 0) {
       res.status(201).json({ error: "Images Link are empty" });
     } else {
@@ -86,7 +88,7 @@ router.post("/getImagesLink", async (req, res) => {
   }
 });
 
-router.post("/getAnnouncements", async (req, res) => {
+router.post("/getAnnouncements",authenticateToken, async (req, res) => {
   try {
     const { EventID } = req.body;
     const query = `SELECT * FROM announcements WHERE EventID = ${EventID}`;
@@ -129,18 +131,34 @@ router.post("/login", async (req, res) => {
 
   const { username, password } = req.body;
   const sqlQuery = "SELECT * FROM admin WHERE BINARY username = ?";
-  const [users] = await mysql.execute(sqlQuery, [username]);
-
-  if (users.length === 0) {
-    res.json({ msg: "User does not exist" });
-  } else {
-    if (users[0].password === password) {
-      res.status(200).json({ success: "Login successful" });
+  try {
+    const [users] = await mysql.execute(sqlQuery, [username]);
+    let validUser = false;
+    if (users.length === 0) {
+      res.status(401).json({ error: "User does not exist" });
     } else {
-      res.status(500).json({ error: "Invalid credential" });
+      for (const user of users) {
+        if (user.password === password) {
+          const token = jwt.sign(
+            { username: user.username },
+            process.env.JWT_SECRET,
+            {
+              expiresIn: "1h",
+            }
+          );
+          res.status(200).json({ success: "Login successful", token });
+          validUser = true;
+          break;
+        }
+      }
+      if (!validUser) {
+        res.status(401).json({ error: "Invalid credentials" });
+      }
     }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
-
 });
 
 router.post("/addEvent", async (req, res) => {

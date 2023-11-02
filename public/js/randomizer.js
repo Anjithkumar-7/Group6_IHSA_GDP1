@@ -144,9 +144,7 @@ async function updateRandomizer() {
   const classSelcted = document.getElementById("classSelection").value;
   displayClassTables(classSelcted);
   var horses = [],
-    riders = [],
-    hConstraint = [],
-    rConstraint = [];
+    riders = [];
   console.log(classSelcted);
   const result2 = await fetch("/getRandom", {
     method: "POST",
@@ -174,33 +172,24 @@ async function updateRandomizer() {
     let riderName = "";
 
     for (let i = 0; i < riders.length; i++) {
-      // const horseIndex = i < horses.length ? i : i % horses.length; // Wrap around available horses if necessary
-      //  const horseItem = `<li>${horses[horseIndex].Name}</li>`;
-      if (riders[i].Height === "H" && riders[i].Weight === "W") {
-        rConstraint.push(riders[i].Name);
-        riderName = riders[i].Name + " [H][W]";
-      } else if (riders[i].Height === "H") {
-        rConstraint.push(riders[i].Name);
+      if (riders[i].Height !== null && riders[i].Weight !== null) {
+        riderName = riders[i].Name + " [HW]";
+      } else if (riders[i].Height !== null) {
         riderName = riders[i].Name + " [H]";
-      } else if (riders[i].Weight === "W") {
-        rConstraint.push(riders[i].Name);
+      } else if (riders[i].Weight !== null) {
         riderName = riders[i].Name + " [W]";
       } else {
         riderName = riders[i].Name;
       }
       const riderItem = `<li>${riderName}</li>`;
-      // horseListElement.innerHTML += horseItem;
       riderListElement.innerHTML += riderItem;
     }
     for (let h = 0; h < horses.length; h++) {
-      if (horses[h].Spurs === "H" && horses[h].Rein_hold === "W") {
-        rConstraint.push(horses[h].Name);
-        horseName = horses[h].Name + " [H][W]";
-      } else if (horses[h].Spurs === "H") {
-        rConstraint.push(horses[h].Name);
+      if (horses[h].Spurs !== null && horses[h].Rein_hold !== null) {
+        horseName = horses[h].Name + " [HW]";
+      } else if (horses[h].Spurs !== null) {
         horseName = horses[h].Name + " [H]";
-      } else if (horses[h].Rein_hold === "W") {
-        rConstraint.push(horses[h].Name);
+      } else if (horses[h].Rein_hold !== null) {
         horseName = horses[h].Name + " [W]";
       } else {
         horseName = horses[h].Name;
@@ -287,23 +276,86 @@ function generateRandomCombinations() {
   let horsearray = horses.map((horse) => horse.textContent);
   let riderarray = riders.map((rider) => rider.textContent);
 
-  let hConstraint = horsearray.filter((horse) => horse.includes("["));
-  let rConstraint = riderarray.filter((rider) => rider.includes("["));
+  //Filtering Horse Height constraint
+  let hHConstraint = horsearray.filter((horse) => horse.includes("[H]"));
+  //Filtering Horse Weight Constraint
+  let hWConstraint = horsearray.filter((horse) => horse.includes("[W]"));
+  //Filtering horses with both height and weight constraints
+  let hHWConstraint = horsearray.filter((horse) => horse.includes("[HW]"));
+  console.log("hHWConstraint:"+hHWConstraint);
 
+  //Filtering the rider with Height Contraint
+  let rHConstraint = riderarray.filter((rider) => rider.includes("[H]"));
+  //Filtering the rider with weight Constraint
+  let rWConstraint = riderarray.filter((rider) => rider.includes("[W]"));
+  //Filtering the rider with both height and weight constraint
+  let rHWConstraint = riderarray.filter((rider) => rider.includes("[HW]"));
+
+  // Filtering the horses with no height constraint
+  let nHHConstraint = horsearray.filter(
+    (horse) => !new Set(hHConstraint).has(horse)&& !new Set(hHWConstraint).has(horse)
+  );
+  console.log("nHHConstraint:"+nHHConstraint);
+  // Filtering the horses with no weight constraint
+  let nHWConstraint = horsearray.filter(
+    (horse) => !new Set(hWConstraint).has(horse)&& !new Set(hHWConstraint).has(horse)
+  );
+  console.log("nHWConstraint:"+nHWConstraint);
+
+  //Filtering the horses with no constraints
   let nHConstraint = horsearray.filter(
-    (horse) => !new Set(hConstraint).has(horse)
+    (horse) => !new Set(hHConstraint).has(horse)&& !new Set(hHWConstraint).has(horse) && !new Set(hWConstraint).has(horse)
   );
-  let nRConstraint = riderarray.filter(
-    (rider) => !new Set(rConstraint).has(rider)
+  console.log("nHConstraint"+nHConstraint);
+
+  // Filtering the rider with no Height constraint 
+  let nRHConstraint = riderarray.filter(
+    (rider) => !new Set(rHConstraint).has(rider)&& !new Set(rHWConstraint).has(rider)
+  );
+  
+  //Filtering the rider with no weight constraint
+  let nRWConstraint = riderarray.filter(
+    (rider) => !new Set(rWConstraint).has(rider)&& !new Set(rHWConstraint).has(rider)
   );
 
-  let shuffledHorses = customShuffling(nHConstraint, rConstraint);
-  let shuffledRiders = shuffleArray(rConstraint);
-  let unUsedHorses = horsearray.filter(
-    (unHorse) => !new Set(shuffledHorses).has(unHorse)
+  //Filtering the rider with no constraints
+  let nRConstraint = riderarray.filter(
+    (rider) => !new Set(rHConstraint).has(rider)&& !new Set(rWConstraint).has(rider) && !new Set(rHWConstraint).has(rider)
   );
-  let shuffledHorses2 = customShuffling(unUsedHorses, nRConstraint);
-  let shuffledRiders2 = shuffleArray(nRConstraint);
+
+//(nHConstraint,hWConstraint,rHConstraint)
+//(nHConstraint)
+// (nHConstraint,hWConstraint,rHconstraint)
+// (nHConstraint,hHConstraint,rWConstraint)
+// (nHConstraint,rHWConstraint)
+// (horseArray,nRConstraint)
+
+// shuffling no Height Constraint horses
+let nHShuffledHorses = customShuffling(nHHConstraint,rHConstraint);
+let hShuffledRiders = shuffleArray(rHConstraint);
+console.log("nHShuffledHorses: "+nHShuffledHorses);
+console.log("rHConstraint:"+rHConstraint);
+// shuffling no Weight Constraint horses
+let nWShuffledHorses = customShuffling(nHWConstraint,rWConstraint);
+let wShuffledRiders = shuffleArray(rWConstraint);
+console.log("nWShuffledHorses: "+nWShuffledHorses);
+console.log("rWConstraint:"+rWConstraint);
+//shuffling no Height Weight and both Constraint Horses
+let  nHWShuffledHorses = customShuffling(nHConstraint,rHWConstraint);
+let hWShuffledRiders = shuffleArray(rHWConstraint);
+console.log("nHWShuffledHorses: "+nHWShuffledHorses);
+console.log("rHWConstraint:"+rHWConstraint);
+// shuffling horses 
+let shuffledHorses =  customShuffling(horsearray,nRConstraint);
+let shuffledRiders = shuffleArray(nRConstraint);
+console.log("shuffledHorses: "+shuffledHorses);
+console.log("nRConstraint:"+nRConstraint);
+  
+  // let unUsedHorses = horsearray.filter(
+  //   (unHorse) => !new Set(shuffledHorses).has(unHorse)
+  // );
+  // let shuffledHorses2 = customShuffling(unUsedHorses, nRConstraint);
+  // let shuffledRiders2 = shuffleArray(nRConstraint);
 
   var tableHeader = document.createElement("thead");
   var headerRow = document.createElement("tr");
@@ -317,9 +369,9 @@ function generateRandomCombinations() {
   randomCombinationsTable.appendChild(tableHeader);
 
   var tableBody = document.createElement("tbody");
-  for (var i = 0; i < shuffledHorses.length; i++) {
-    var horseName = shuffledHorses[i];
-    var riderName = shuffledRiders[i];
+  for (var i = 0; i < nHShuffledHorses.length; i++) {
+    var horseName = nHShuffledHorses[i];
+    var riderName = hShuffledRiders[i];
 
     var row = document.createElement("tr");
     var horseCell = document.createElement("td");
@@ -331,9 +383,37 @@ function generateRandomCombinations() {
     tableBody.appendChild(row);
   }
 
-  for (var i = 0; i < shuffledHorses2.length; i++) {
-    var horseName = shuffledHorses2[i];
-    var riderName = shuffledRiders2[i];
+  for (var i = 0; i < nWShuffledHorses.length; i++) {
+    var horseName = nWShuffledHorses[i];
+    var riderName = wShuffledRiders[i];
+
+    var row = document.createElement("tr");
+    var horseCell = document.createElement("td");
+    horseCell.innerText = horseName;
+    var riderCell = document.createElement("td");
+    riderCell.innerText = riderName;
+    row.appendChild(horseCell);
+    row.appendChild(riderCell);
+    tableBody.appendChild(row);
+  }
+
+  for (var i = 0; i < nHWShuffledHorses.length; i++) {
+    var horseName = nHWShuffledHorses[i];
+    var riderName = hWShuffledRiders[i];
+
+    var row = document.createElement("tr");
+    var horseCell = document.createElement("td");
+    horseCell.innerText = horseName;
+    var riderCell = document.createElement("td");
+    riderCell.innerText = riderName;
+    row.appendChild(horseCell);
+    row.appendChild(riderCell);
+    tableBody.appendChild(row);
+  }
+
+  for (var i = 0; i < shuffledHorses.length; i++) {
+    var horseName = shuffledHorses[i];
+    var riderName = shuffledRiders[i];
 
     var row = document.createElement("tr");
     var horseCell = document.createElement("td");
@@ -367,8 +447,8 @@ async function saveCombinations() {
     const columns = row.getElementsByTagName("td");
     console.log(columns);
     // Extract horse and rider values from the columns
-    const horse = columns[0].innerText.replace(/\[.*\]/g, "").trim();
-    const rider = columns[1].innerText.replace(/\[.*\]/g, "").trim();
+    const horse = columns[0].innerText.replace(/\[.*?\]/g, '').trim();
+    const rider = columns[1].innerText.replace(/\[.*?\]/g, '').trim();
 
     // Push the values into their respective arrays
     if (horse !== "undefined") {
@@ -392,7 +472,7 @@ async function saveCombinations() {
     riders: ridersArray,
   };
 
-  console.log("Hiii  " + savedCombination.horses + savedCombination.riders);
+  console.log(savedCombination.horses + savedCombination.riders);
   savedCombinations.push(savedCombination);
 
   //console.log(savedCombinations);

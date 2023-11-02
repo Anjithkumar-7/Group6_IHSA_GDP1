@@ -71,6 +71,9 @@
   </div>
   <script src="js/login.js"></script>
   <script>
+    sessionStorage.removeItem("token");
+  </script>
+  <!-- <script>
     function validateLogin() {
       var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
@@ -91,7 +94,6 @@
         alert("Invalid login credentials. Please try again.");
       }
     }
-  </script>
-
+  </script> -->
 </body>
 </html>

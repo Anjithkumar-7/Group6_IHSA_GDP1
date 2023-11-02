@@ -82,7 +82,7 @@
               <a class="nav-link" href="AdminEvents.html">Events</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="ihsaHome.html">Logout</a>
+              <a class="nav-link" href="adminLogin.html" id="logout-link">Logout</a>
             </li>
           </ul>
         </div>
@@ -154,6 +154,20 @@
     >
       <p>&copy; IHSA. All rights reserved.</p>
     </footer>
+    <script>
+      document.getElementById("logout-link").addEventListener("click", function(event) {
+  event.preventDefault();
+  console.log("Logout link clicked"); // Check if this message appears in the console
+  sessionStorage.removeItem("token");
+  window.history.pushState({}, '', '/adminLogin.html');
+  window.location.href = "/adminLogin.html"; // Replace with the correct login page URL
+  if( window.location.href = "/adminLogin.html"){
+    sessionStorage.removeItem("token");
+  }
+});
+
+    </script>
+    <script src="js/login.js"></script>
     <script src="js/events.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
