@@ -54,7 +54,13 @@ var universities = [
     // Region 3
     { name: 'Gustavus Adolphus College', region: 3, lat: 44.3213, lon: -93.9760,isAnchorSchool:'No' },
     { name: 'North Dakota State University', region: 3, lat: 46.8742, lon: -96.7898, isAnchorSchool:'Yes' },
-    // Add more universities for Region 3...
+    { name: 'University of Minnesota, Crookston', region: 3, lat: 47.7949, lon: -96.6063, isAnchorSchool: 'Yes' },
+    { name: 'University of Wisconsin-River Falls', region: 3, lat: 44.8486, lon: -92.6232, isAnchorSchool: 'Yes' },
+    { name: 'Bethany Lutheran College', region: 3, lat: 44.1696, lon: -94.0177, isAnchorSchool: 'No' },
+    { name: 'Carleton College', region: 3, lat: 44.4614, lon: -93.1538, isAnchorSchool: 'No' },
+    { name: 'Lakehead University', region: 3, lat: 48.4254, lon: -89.2577, isAnchorSchool: 'No' },
+
+    
 
     // Region 4
     { name: 'Augustana College', region: 4, lat: 43.5446, lon: -96.7311, isAnchorSchool:'Yes' },
