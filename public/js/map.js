@@ -13,6 +13,14 @@ var universities = [
     // Region 1
     { name: 'Ball State University', region: 1, lat: 40.2044, lon: -85.4088, isAnchorSchool:'Yes' },
     { name: 'Butler University', region: 1, lat: 39.8380, lon: -86.1700, isAnchorSchool:'No' },
+    { name: 'Earlham College', region: 1, lat: 39.8244, lon: -85.0089, isAnchorSchool: 'Yes' },
+    { name: 'Indiana University', region: 1, lat: 39.1765, lon: -86.5125, isAnchorSchool: 'No' },
+    { name: 'Lake Land College', region: 1, lat: 39.4762, lon: -88.3665, isAnchorSchool: 'Yes' },
+    { name: 'Purdue University', region: 1, lat: 40.4240, lon: -86.9626, isAnchorSchool: 'Yes' },
+    { name: 'St Mary of the Woods', region: 1, lat: 39.5111, lon: -87.4086, isAnchorSchool: 'Yes' },
+    { name: 'Taylor University', region: 1, lat: 40.2586, lon: -85.6599, isAnchorSchool: 'No' },
+    { name: 'University of Illinois at Urbana-Champaign', region: 1, lat: 40.1010, lon: -88.2272, isAnchorSchool: 'Yes' },
+    { name: 'University of Notre Dame', region: 1, lat: 41.7031, lon: -86.2396, isAnchorSchool: 'No' },
     // Add more universities for Region 1...
 
     // Region 2
@@ -167,5 +175,3 @@ for (var i = 0; i < universities.length; i++) {
     cell3.textContent = university.region;
     cell4.textContent = university.isAnchorSchool;
 }
-
-
