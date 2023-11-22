@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +23,7 @@
 
     h1 {
       margin-bottom: 20px;
-      
+
     }
 
     form {
@@ -48,7 +49,7 @@
       color: white;
     }
 
-    button[type="submit"]:hover{
+    button[type="submit"]:hover {
       background-color: #2f4f81;
     }
 
@@ -57,7 +58,8 @@
       width: 100%;
     }
 
-    th, td {
+    th,
+    td {
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
@@ -93,25 +95,26 @@
     }
 
     .mail-button {
-    background-color: #c13438;
-    color: white;
-  }
+      background-color: #c13438;
+      color: white;
+    }
 
-  .mail-button:hover {
-    
-    background-color: #2f4f81 ;
-  }
+    .mail-button:hover {
 
+      background-color: #2f4f81;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#" style="color: #c13438;">
         <img src="ihsa-logo4.png" alt="IHSA Logo" height=50px width=70px class="mr-2">User Manager
       </a>
-     
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -132,13 +135,11 @@
       </div>
       <div>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username"
-        required>
+        <input type="text" id="username" name="username" required>
       </div>
       <div>
         <label for="emailId">Email ID:</label>
-        <input type="text" id="emailID" name="emailID"
-        required>
+        <input type="text" id="emailID" name="emailID" required>
       </div>
       <div>
         <label for="password">Initial Password:</label>
@@ -153,8 +154,10 @@
           <th>Name</th>
           <th>Username</th>
           <th>Initial Password</th>
-          <th>Action</th>
           <th>Email ID</th>
+          <th>Update</th>
+          <th>Delete</th>
+          <th>Mail</th>
         </tr>
       </thead>
       <tbody>
@@ -164,48 +167,41 @@
   </div>
 
   <script>
-    document.getElementById("userForm").addEventListener("submit", function(event) {
+    document.getElementById("userForm").addEventListener("submit", async function (event) {
       event.preventDefault(); // Prevent form submission
 
+      let url_string = window.location;
+      let url = new URL(url_string);
+      let eventId = url.searchParams.get("EventID");
       // Get form values
       var name = document.getElementById("name").value;
       var username = document.getElementById("username").value;
-      var password = document.getElementById("password").value;
       var emailID = document.getElementById("emailID").value
+      var password = document.getElementById("password").value;
 
-      // Create a new user row
-      var userRow = document.createElement("tr");
-      var nameCell = document.createElement("td");
-      var usernameCell = document.createElement("td");
-      var passwordCell = document.createElement("td");
-      var actionCell = document.createElement("td");
-      var editButton = document.createElement("button"); 
-      var emailIDCell = document.createElement("td");
-      var mailButton = document.createElement("button");
+      // console.log('Data in the user table:-', name, username, emailID, password);
 
-      mailButton.innerHTML = '<i class="fa fa-envelope"></i>';
+      const apiResult = await fetch('/create-show-admin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+          name: name,
+          eventId: eventId,
+          email: emailID,
+          createdBy: 1
+        })
+      }).then((res) => res.json());
+      if (apiResult.statusCode) {
+        alert(apiResult.statusMessage);
+        window.location.reload(true);
+      } else {
+        apiResult.error ? alert(apiResult.error) : alert(apiResult.errorMessage);
+      }
 
-      nameCell.textContent = name;
-      usernameCell.textContent = username;
-      passwordCell.textContent = password;
-      emailIDCell.textContent = emailID;
-      editButton.textContent = "Edit";
-      editButton.className = "edit-button";
-      mailButton.className = "mail-button"
-      
-      
-
-      actionCell.appendChild(editButton);
-      emailIDCell.appendChild(mailButton);
-
-      userRow.appendChild(nameCell);
-      userRow.appendChild(usernameCell);
-      userRow.appendChild(passwordCell);
-      userRow.appendChild(actionCell);
-      userRow.appendChild(emailIDCell);
-
-      // Append the new user row to the table
-      document.getElementById("userTable").getElementsByTagName("tbody")[0].appendChild(userRow);
 
       // Clear the form fields
       document.getElementById("name").value = "";
@@ -213,10 +209,177 @@
       document.getElementById("password").value = "";
       document.getElementById("emailID").value = "";
     });
+
+    document.addEventListener('DOMContentLoaded', async function () {
+
+      let url_string = window.location;
+      let url = new URL(url_string);
+      let eventId = url.searchParams.get("EventID");
+      let eventName = url.searchParams.get("eventname");
+
+      //Making the api call here which will lists all the show admins for a particular eventId.
+      const result = await fetch('/listShowAdminsByEventId?eventId=' + eventId, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+        .then((res) => res.json())
+      console.log('Result', result);
+
+      //Iterating all the records to render the table data values.
+      result.data.forEach((element, index) => {
+        //Find the table to which the data need to be appended. 
+        const tableBody = document.getElementById('userTable');
+        //Create a row for each record that is looped from the array of records.
+        const newRow = tableBody.insertRow();
+
+        // Insert data into cells/columns for the current row that is iterating
+        const name_cell = newRow.insertCell();
+        const username_cell = newRow.insertCell();
+        const password_cell = newRow.insertCell();
+        const email_cell = newRow.insertCell();
+        const editDetails_cell = newRow.insertCell();
+        const deleteDetails_cell = newRow.insertCell();
+        const mailButton_cell = newRow.insertCell();
+        // Create a clickable row
+        newRow.style.cursor = 'pointer';
+
+        name_cell.innerHTML = `<span class="editable-field" readonly>${element.name}</span>`;
+        username_cell.innerHTML = `<span class="editable-field" readonly>${element.username}</span>`;
+        password_cell.innerHTML = `<span class="editable-field" readonly>${element.password}</span>`;
+        email_cell.innerHTML = `<span class="editable-field" readonly>${element.email}</span>`;
+        // mailButton_cell.innerHTML = `<span class="editable-field">${element.id}</span>`;
+        // Create "Mail" button
+        const emailButton = document.createElement('button');
+        emailButton.textContent = 'Email Details';
+        emailButton.classList.add('edit-button');
+        mailButton_cell.appendChild(emailButton);
+        mailButton_cell.addEventListener('click', async function (event) {
+
+          if (confirm("Are you sure, you want to mail the user details to " + element.email + " show admin?")) {
+            event.stopPropagation();
+            //Make api call to email the show admin details.
+            const editResult = await fetch('/send-admin-details-by-email', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                adminname: element.name,
+                username: element.username,
+                password: element.password,
+                email: element.email,
+                eventId: element.eventId,
+                eventName: eventName || 'Default Event Name'
+                // id: element.id,
+              })
+            })
+              .then((res) => res.json());
+            console.log(editResult);
+            if (editResult.statusCode == 1) {
+              alert(editResult.statusMessage);
+              // window.location.reload(true);
+            } else {
+              editResult.error ? alert(editResult.error) : alert(editResult.errorMessage);
+            }
+            // } 
+
+            //Handle the email logic here.
+          }
+        })
+
+        //Create "edit" button
+        const editButton2 = document.createElement('button');
+        editButton2.textContent = 'Edit';
+        editButton2.classList.add('edit-button');
+        editButton2.addEventListener('click', async function (event) {
+          event.stopPropagation();
+          const row = this.parentNode.parentNode;
+          const cells = row.getElementsByTagName('td');
+          const editableFields = row.getElementsByClassName('editable-field');
+          console.log(editableFields[0].innerHTML, editableFields[1].innerHTML, editableFields[2].innerHTML, editableFields[3].innerHTML, element.eventId, element)
+          if (row.classList.contains('edit-mode')) {
+            // Update button clicked
+            row.classList.remove('edit-mode');
+            this.textContent = 'Edit';
+            for (let i = 0; i < editableFields.length - 1; i++) {
+              editableFields[i].contentEditable = 'false';
+              editableFields[i].classList.remove('edit-mode');
+            }
+            //Make api call to update the show admin details.
+            const editResult = await fetch('/update-show-admin', {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                adminname: editableFields[0].innerHTML,
+                username: editableFields[1].innerHTML,
+                password: editableFields[2].innerHTML,
+                email: editableFields[3].innerHTML,
+                id: element.id,
+                eventId: element.eventId
+              })
+            })
+              .then((res) => res.json());
+            console.log(editResult);
+            if (editResult.statusCode == 1) {
+              alert(editResult.statusMessage);
+              window.location.reload(true);
+            } else {
+              editResult.error ? alert(editResult.error) : alert(editResult.errorMessage);
+            }
+          } else {
+            // Edit button clicked
+            row.classList.add('edit-mode');
+            this.textContent = 'Update';
+
+            for (let i = 0; i < editableFields.length - 1; i++) {
+              editableFields[i].contentEditable = 'true';
+              editableFields[i].classList.add('edit-mode');
+            }
+          }
+        });
+        editDetails_cell.appendChild(editButton2);
+
+
+        //Create a Delete button and make an api call when clicked.
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.classList.add('edit-button');
+        deleteButton.addEventListener('click', async function (event) {
+          event.stopPropagation();
+          if (confirm("Are you sure, you want to delete this show admin?")) {
+            const apiResult = await fetch('/delete-show-admin', {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                eventId: element.eventId,
+                userId: element.id
+              })
+            }).then((res) => res.json());
+            // console.log(apiResult);
+            if (apiResult.statusCode) {
+              alert(apiResult.statusMessage);
+              window.location.reload(true);
+            } else {
+              apiResult.error ? alert(apiResult.error) : alert(apiResult.errorMessage);
+            }
+          }
+        });
+
+        deleteDetails_cell.appendChild(deleteButton);
+      })
+
+    });
   </script>
 
   <footer>
     <p>&copy; IHSA. All rights reserved.</p>
   </footer>
 </body>
+
 </html>
