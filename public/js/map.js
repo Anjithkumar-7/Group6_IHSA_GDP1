@@ -41,6 +41,15 @@ var universities = [
     { name: 'Baylor University', region: 2, lat: 31.5469, lon: -97.1219, isAnchorSchool: 'No' },
     { name: 'Mesalands Community College', region: 2, lat: 35.2505, lon: -103.2503, isAnchorSchool: 'No' },
     { name: 'New Mexico State University', region: 2, lat: 32.2782, lon: -106.7475, isAnchorSchool: 'No' },
+    { name: 'Redlands Community College', region: 2, lat: 35.5259, lon: -98.7286, isAnchorSchool: 'No' },
+    { name: 'Southern Methodist University', region: 2, lat: 32.8412, lon: -96.7845, isAnchorSchool: 'No' },
+    { name: 'Southwestern University', region: 2, lat: 30.6244, lon: -97.6789, isAnchorSchool: 'No' },
+    { name: 'Stephen F. Austin State University', region: 2, lat: 31.6117, lon: -94.6500, isAnchorSchool: 'No' },
+    { name: 'Tarleton State University', region: 2, lat: 32.2217, lon: -98.2155, isAnchorSchool: 'No' },
+    { name: 'Texas A&M University-Commerce', region: 2, lat: 33.2393, lon: -95.9030, isAnchorSchool: 'No' },
+    { name: 'Texas Tech University', region: 2, lat: 33.5849, lon: -101.8787, isAnchorSchool: 'No' },
+    { name: 'The University of Oklahoma', region: 2, lat: 35.2058, lon: -97.4453, isAnchorSchool: 'No' },
+    { name: 'University of North Texas', region: 2, lat: 33.2110, lon: -97.1525, isAnchorSchool: 'No' },
     
     // Region 3
     { name: 'Gustavus Adolphus College', region: 3, lat: 44.3213, lon: -93.9760,isAnchorSchool:'No' },
