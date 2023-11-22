@@ -5,7 +5,7 @@ const path = require('path');
 const dotenv = require('dotenv').config();
 const publicDirectoryPath=path.join(__dirname,'public');
 
-const port = process.env.PORT || 8080;
+const port = process.env.POgitRT || 8080;
 
 const server = express();
 
