@@ -97,8 +97,14 @@ var universities = [
     { name: 'Truman State University', region: 5, lat: 40.1933, lon: -92.5833, isAnchorSchool: 'Yes' },
     { name: 'Washington University in St. Louis', region: 5, lat: 38.6489, lon: -90.3108, isAnchorSchool: 'No' },
     { name: 'Drake University', region: 5, lat: 41.6020, lon: -93.6516, isAnchorSchool: 'No' },
-    // Add more universities for Region 5...
-];
+    { name: 'Illinois State University', region: 5, lat: 40.6331, lon: -89.3985, isAnchorSchool: 'No' },
+    { name: 'Maryville University', region: 5, lat: 38.6631, lon: -90.5500, isAnchorSchool: 'No' },
+    { name: 'Northeastern Oklahoma A&M College', region: 5, lat: 36.7231, lon: -94.3989, isAnchorSchool: 'No' },
+    { name: 'Northern Illinois University', region: 5, lat: 41.9398, lon: -88.7732, isAnchorSchool: 'No' },
+    { name: 'Northwest Missouri State University', region: 5, lat: 40.3509, lon: -94.8829, isAnchorSchool: 'No' },
+    { name: 'Southern Illinois University-Edwardsville', region: 5, lat: 38.7954, lon: -89.9647, isAnchorSchool: 'No' },
+    { name: 'Western Illinois University', region: 5, lat: 40.4710, lon: -90.6818, isAnchorSchool: 'No' },
+]
 
 // Define marker colors for each region
 var markerColors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'];
