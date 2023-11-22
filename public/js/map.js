@@ -49,6 +49,7 @@ for (var i = 0; i < universities.length; i++) {
     var university = universities[i];
     var marker = L.marker([university.lat, university.lon], {
         title: university.name,
+        originalColor: markerColors[university.region-1],
         icon: L.divIcon({
             className: 'custom-marker',
             iconSize: originalIconSize, // Adjust the size of the marker
@@ -117,7 +118,7 @@ function highlightMarker(index) {
         selectedMarker.setIcon(L.divIcon({
             className: 'custom-marker',
             iconSize: originalIconSize,
-            html: '<div class="circle" style="background-color: #FFFFFF" ></div>',
+            html: '<div class="circle" style="background-color: '+selectedMarker.options.originalColor+';" ></div>',
         }));
     }
 
