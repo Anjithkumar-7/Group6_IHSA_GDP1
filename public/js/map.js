@@ -36,8 +36,12 @@ var universities = [
     // Region 2
     { name: 'North Central Texas College', region: 2, lat: 33.2140, lon: -97.1344, isAnchorSchool:'Yes' },
     { name: 'Oklahoma Panhandle State University', region: 2, lat: 36.4376, lon: -101.4452, isAnchorSchool:'No' },
-    // Add more universities for Region 2...
-
+    { name: 'Southern Nazarene University', region: 2, lat: 35.6127, lon: -97.5444, isAnchorSchool: 'No' },
+    { name: 'West Texas A&M University', region: 2, lat: 35.2030, lon: -101.8767, isAnchorSchool: 'Yes' },
+    { name: 'Baylor University', region: 2, lat: 31.5469, lon: -97.1219, isAnchorSchool: 'No' },
+    { name: 'Mesalands Community College', region: 2, lat: 35.2505, lon: -103.2503, isAnchorSchool: 'No' },
+    { name: 'New Mexico State University', region: 2, lat: 32.2782, lon: -106.7475, isAnchorSchool: 'No' },
+    
     // Region 3
     { name: 'Gustavus Adolphus College', region: 3, lat: 44.3213, lon: -93.9760,isAnchorSchool:'No' },
     { name: 'North Dakota State University', region: 3, lat: 46.8742, lon: -96.7898, isAnchorSchool:'Yes' },
