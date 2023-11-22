@@ -70,7 +70,13 @@ var universities = [
     // Region 4
     { name: 'Augustana College', region: 4, lat: 43.5446, lon: -96.7311, isAnchorSchool:'Yes' },
     { name: 'Iowa State University', region: 4, lat: 42.0271, lon: -93.6465, isAnchorSchool:'No' },
-    // Add more universities for Region 4...
+    { name: 'University of Wisconsin-Madison', region: 4, lat: 43.0766, lon: -89.4125, isAnchorSchool: 'Yes' },
+    { name: 'University of Wisconsin-Platteville', region: 4, lat: 42.7349, lon: -90.4785, isAnchorSchool: 'Yes' },
+    { name: 'Bradley University', region: 4, lat: 40.6985, lon: -89.6165, isAnchorSchool: 'No' },
+    { name: 'Ellsworth Community College', region: 4, lat: 42.0964, lon: -93.6239, isAnchorSchool: 'No' },
+    { name: 'Illinois Wesleyan University', region: 4, lat: 40.5094, lon: -88.9928, isAnchorSchool: 'No' },
+    { name: 'Knox College', region: 4, lat: 40.9429, lon: -90.3700, isAnchorSchool: 'No' },
+    { name: 'Lake Forest College', region: 4, lat: 42.2525, lon: -87.8290, isAnchorSchool: 'No' },
 
     // Region 5
     { name: 'Black Hawk College', region: 5, lat: 41.4530, lon: -90.5307, isAnchorSchool:'No' },
