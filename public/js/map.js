@@ -21,7 +21,17 @@ var universities = [
     { name: 'Taylor University', region: 1, lat: 40.2586, lon: -85.6599, isAnchorSchool: 'No' },
     { name: 'University of Illinois at Urbana-Champaign', region: 1, lat: 40.1010, lon: -88.2272, isAnchorSchool: 'Yes' },
     { name: 'University of Notre Dame', region: 1, lat: 41.7031, lon: -86.2396, isAnchorSchool: 'No' },
-    // Add more universities for Region 1...
+    { name: 'DePauw University', region: 1, lat: 39.6382, lon: -86.8642, isAnchorSchool: 'No' },
+    { name: 'Eastern Illinois University', region: 1, lat: 39.4817, lon: -88.1763, isAnchorSchool: 'No' },
+    { name: 'Indiana University at South Bend', region: 1, lat: 41.6699, lon: -86.2542, isAnchorSchool: 'No' },
+    { name: 'Indiana University East', region: 1, lat: 39.8206, lon: -84.8890, isAnchorSchool: 'No' },
+    { name: 'Indiana University Purdue University Fort Wayne', region: 1, lat: 41.1157, lon: -85.1227, isAnchorSchool: 'No' },
+    { name: 'Indiana University Purdue University Indianapolis', region: 1, lat: 39.7739, lon: -86.1830, isAnchorSchool: 'No' },
+    { name: 'IUPUI', region: 1, lat: 39.7739, lon: -86.1830, isAnchorSchool: 'No' },
+    { name: 'Manchester University', region: 1, lat: 41.0009, lon: -85.7597, isAnchorSchool: 'No' },
+    { name: 'Saint Mary’s College', region: 1, lat: 41.7188, lon: -86.2424, isAnchorSchool: 'No' },
+    { name: 'University of Saint Francis', region: 1, lat: 41.0937, lon: -85.1394, isAnchorSchool: 'No' },
+    
 
     // Region 2
     { name: 'North Central Texas College', region: 2, lat: 33.2140, lon: -97.1344, isAnchorSchool:'Yes' },
