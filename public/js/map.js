@@ -77,6 +77,15 @@ var universities = [
     { name: 'Illinois Wesleyan University', region: 4, lat: 40.5094, lon: -88.9928, isAnchorSchool: 'No' },
     { name: 'Knox College', region: 4, lat: 40.9429, lon: -90.3700, isAnchorSchool: 'No' },
     { name: 'Lake Forest College', region: 4, lat: 42.2525, lon: -87.8290, isAnchorSchool: 'No' },
+    { name: 'Marquette University', region: 4, lat: 43.0389, lon: -87.9288, isAnchorSchool: 'No' },
+    { name: 'Northwestern University', region: 4, lat: 42.0551, lon: -87.6750, isAnchorSchool: 'No' },
+    { name: 'Purdue University North Central', region: 4, lat: 41.4821, lon: -87.0435, isAnchorSchool: 'No' },
+    { name: 'Purdue University Northwest', region: 4, lat: 41.5738, lon: -87.2884, isAnchorSchool: 'No' },
+    { name: 'Ripon College', region: 4, lat: 43.8454, lon: -88.8443, isAnchorSchool: 'No' },
+    { name: 'Robert Morris University', region: 4, lat: 40.6042, lon: -80.1918, isAnchorSchool: 'No' },
+    { name: 'University of Wisconsin-Green Bay', region: 4, lat: 44.5192, lon: -87.9896, isAnchorSchool: 'No' },
+    { name: 'University of Wisconsin-La Crosse', region: 4, lat: 43.8153, lon: -91.2295, isAnchorSchool: 'No' },
+    { name: 'University of Wisconsin-Milwaukee', region: 4, lat: 43.0764, lon: -87.8825, isAnchorSchool: 'No' },
 
     // Region 5
     { name: 'Black Hawk College', region: 5, lat: 41.4530, lon: -90.5307, isAnchorSchool:'No' },
