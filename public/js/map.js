@@ -59,8 +59,10 @@ var universities = [
     { name: 'Bethany Lutheran College', region: 3, lat: 44.1696, lon: -94.0177, isAnchorSchool: 'No' },
     { name: 'Carleton College', region: 3, lat: 44.4614, lon: -93.1538, isAnchorSchool: 'No' },
     { name: 'Lakehead University', region: 3, lat: 48.4254, lon: -89.2577, isAnchorSchool: 'No' },
-
-    
+    { name: 'Montana State University', region: 3, lat: 45.6666, lon: -110.7987, isAnchorSchool: 'No' },
+    { name: 'Rochester Community and Technical College', region: 3, lat: 44.0216, lon: -92.4630, isAnchorSchool: 'No' },
+    { name: 'South Dakota State University', region: 3, lat: 44.3243, lon: -96.7843, isAnchorSchool: 'No' },
+    { name: 'St Cloud State University', region: 3, lat: 45.5569, lon: -94.1995, isAnchorSchool: 'No' },
 
     // Region 4
     { name: 'Augustana College', region: 4, lat: 43.5446, lon: -96.7311, isAnchorSchool:'Yes' },
