@@ -63,6 +63,9 @@ var universities = [
     { name: 'Rochester Community and Technical College', region: 3, lat: 44.0216, lon: -92.4630, isAnchorSchool: 'No' },
     { name: 'South Dakota State University', region: 3, lat: 44.3243, lon: -96.7843, isAnchorSchool: 'No' },
     { name: 'St Cloud State University', region: 3, lat: 45.5569, lon: -94.1995, isAnchorSchool: 'No' },
+    { name: 'St Olaf College', region: 3, lat: 44.4612, lon: -93.1546, isAnchorSchool: 'No' },
+    { name: 'University of Minnesota-Twin Cities', region: 3, lat: 44.9778, lon: -93.2341, isAnchorSchool: 'No' },
+    { name: 'University of Wisconsin-Eau Claire', region: 3, lat: 44.7967, lon: -91.4985, isAnchorSchool: 'No' },
 
     // Region 4
     { name: 'Augustana College', region: 4, lat: 43.5446, lon: -96.7311, isAnchorSchool:'Yes' },
