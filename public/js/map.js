@@ -103,7 +103,7 @@ var universities = [
     { name: 'Northern Illinois University', region: 5, lat: 41.9398, lon: -88.7732, isAnchorSchool: 'No' },
     { name: 'Northwest Missouri State University', region: 5, lat: 40.3509, lon: -94.8829, isAnchorSchool: 'No' },
     { name: 'Southern Illinois University-Edwardsville', region: 5, lat: 38.7954, lon: -89.9647, isAnchorSchool: 'No' },
-    { name: 'Western Illinois University', region: 5, lat: 40.4710, lon: -90.6818, isAnchorSchool: 'No' },
+    { name: 'Western Illinois University', region: 5, lat: 40.4710, lon: -90.6818, isAnchorSchool: 'No' }
 ]
 
 // Define marker colors for each region
