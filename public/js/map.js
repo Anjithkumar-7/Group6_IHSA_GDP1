@@ -96,7 +96,7 @@ var universities = [
     { name: 'Southern Illinois University Carbondale', region: 5, lat: 37.7155, lon: -89.2211, isAnchorSchool: 'Yes' },
     { name: 'Truman State University', region: 5, lat: 40.1933, lon: -92.5833, isAnchorSchool: 'Yes' },
     { name: 'Washington University in St. Louis', region: 5, lat: 38.6489, lon: -90.3108, isAnchorSchool: 'No' },
-    { name: 'Drake University', region: 5, lat: 41.6020, lon: -93.6516, isAnchorSchool: 'No' }
+    { name: 'Drake University', region: 5, lat: 41.6020, lon: -93.6516, isAnchorSchool: 'No' },
     // Add more universities for Region 5...
 ];
 
