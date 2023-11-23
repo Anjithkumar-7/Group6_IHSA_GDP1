@@ -57,6 +57,9 @@
         text-align: center;
         color: #ffffff;
       }
+      .hidden-card-class{
+        display: none;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -79,7 +82,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="AdminEvents.html">Events</a>
+              <a class="nav-link" href="AdminEvents.html" id="events-hyper-link-header">Events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="adminLogin.html" id="logout-link">Logout</a>
@@ -96,46 +99,46 @@
           </h2>
 
           <div class="btn-container">
-            <a href="schedule.html" class="admin-btn">
+            <a href="schedule.html" class="admin-btn" id="schedule-card">
               <i class="fas fa-calendar-alt btn-icon"></i>
               <h5>Schedule</h5>
               <p>Manage schedules for competitions.</p>
             </a>
 
-            <a href="patterns.html" class="admin-btn">
+            <a href="patterns.html" class="admin-btn" id="patterns-card">
               <i class="fas fa-shapes btn-icon"></i>
               <h5>Patterns</h5>
               <p>Create and manage riding patterns for competitions.</p>
             </a>
 
-            <a href="userAccess.html" class="admin-btn">
+            <a href="userAccess.html" class="admin-btn" id="useraccess-card">
               <i class="fas fa-users btn-icon"></i>
               <h5>Users</h5>
               <p>Manage user accounts and permissions.</p>
             </a>
 
-            <a href="classcategorization.html" class="admin-btn">
+            <a href="classcategorization.html" class="admin-btn" id="class-categorization-card">
               <i class="fas fa-handshake btn-icon"></i>
               <h5>Categorizing Classes</h5>
               <p>Categorize classes for horses and riders</p>
             </a>
-            <a href="randomizer.html" class="admin-btn">
+            <a href="randomizer.html" class="admin-btn" id="randomizer-card">
               <i class="fas fa-random btn-icon"></i>
               <h5>Randomiser</h5>
               <p>Generate random orders for riders or classes.</p>
             </a>
 
-            <a href="riderAndHorseDetails.html" class="admin-btn">
+            <a href="riderAndHorseDetails.html" class="admin-btn" id="rider-horse-details-card">
               <i class="fas fa-horse btn-icon"></i>
               <h5>Riders and Horses</h5>
               <p>Manage rider and horse information.</p>
             </a>
-            <a href="anouncements.html" class="admin-btn">
+            <a href="anouncements.html" class="admin-btn" id="announcements-card">
               <i class="fas fa-bullhorn btn-icon"></i>
               <h5>Anouncements & Photos</h5>
               <p>Manage Anouncements.</p>
             </a>
-            <a href="riderAndHorsePoints.html" class="admin-btn">
+            <a href="riderAndHorsePoints.html" class="admin-btn" id="rider-horse-points-card">
               <i class="fas fa-trophy btn-icon"></i>
               <h5>Riders and Horse Points</h5>
               <p>Providing riders and horses scores.</p>
