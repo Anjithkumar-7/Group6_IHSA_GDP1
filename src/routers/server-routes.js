@@ -7,12 +7,25 @@ const readXlsxFile = require('read-excel-file/node');
 const multer = require('multer');
 const authenticateToken = require("../authenticateToken");
 const jwt = require("jsonwebtoken");
+const sendmail = require('./../mail-helper');
 
 router.get('/list-tables', async (req, res) => {
   const query = `show tables`;
   const result = await mysql.query(query);
   res.send(result);
-})
+});
+
+router.get('/get-table-desc', async (req, res) => {
+  const query = `show create table admin`;
+  const result = await mysql.query(query);
+  res.send(result);
+});
+
+router.get('/get-table-data', async (req, res) => {
+  const query = `select * from admin`;
+  const result = await mysql.query(query);
+  res.send(result);
+});
 
 router.get("/getEvents", async (req, res) => {
   try {
@@ -34,7 +47,7 @@ router.get("/getEvents", async (req, res) => {
 
 });
 
-router.get("/getAllAnnouncements",authenticateToken, async (req, res) => {
+router.get("/getAllAnnouncements", authenticateToken, async (req, res) => {
   try {
     const query = `SELECT * FROM announcements`;
     const result = await mysql.query(query);
@@ -53,7 +66,7 @@ router.get("/getAllAnnouncements",authenticateToken, async (req, res) => {
 
 });
 
-router.get("/getEventsForPhotos",authenticateToken, async (req, res) => {
+router.get("/getEventsForPhotos", authenticateToken, async (req, res) => {
   try {
     const query = `SELECT E.EventID, E.EventName, P.Link
     FROM events AS E
@@ -88,7 +101,7 @@ router.post("/getImagesLink", async (req, res) => {
   }
 });
 
-router.post("/getAnnouncements",authenticateToken, async (req, res) => {
+router.post("/getAnnouncements", authenticateToken, async (req, res) => {
   try {
     const { EventID } = req.body;
     const query = `SELECT * FROM announcements WHERE EventID = ${EventID}`;
@@ -133,6 +146,7 @@ router.post("/login", async (req, res) => {
   const sqlQuery = "SELECT * FROM admin WHERE BINARY username = ?";
   try {
     const [users] = await mysql.execute(sqlQuery, [username]);
+    console.log('User data', users)
     let validUser = false;
     if (users.length === 0) {
       res.status(401).json({ error: "User does not exist" });
@@ -160,6 +174,220 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+//Login Api for show admins & the root admin based on the eventId
+router.post("/showAdminLogin", async (req, res) => {
+
+  const { username, password, usertype, event } = req.body;
+  var sqlQuery;
+  if (usertype == 'admin') {
+    sqlQuery = "SELECT * FROM admin WHERE username = ?";
+  } else if (usertype == 'show_admin' && event) {
+    // sqlQuery = "SELECT * FROM showadmin WHERE username= ? and status=1 and eventId=" + event;
+    sqlQuery = "select a.*,b.* from showadmin a, events b where a.eventId = b.EventID and a.username= ? and a.status = 1 and a.eventId =" + event;
+  }
+  try {
+    const [users] = await mysql.execute(sqlQuery, [username]);
+    let validUser = false;
+    if (users.length === 0) {
+      res.status(401).json({ error: "User does not exist" });
+    } else if (users.length) {
+      // for (const user of users) {
+      let user = users[0];
+      if (user.password === password) {
+        const token = jwt.sign(
+          {
+            id: user.id,
+            username: user.username
+          },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "1h",
+          }
+        );
+        res.status(200).json({ success: "Login successful", token, user });
+      }
+      else {
+        res.status(401).json({ error: "Invalid credentials" });
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error", errorMsg: error });
+  }
+});
+
+//API to create the show admins from the root admin login screen for a particular event.
+router.post('/create-show-admin', async (req, res) => {
+  const { username, password, name, eventId, email, createdBy } = req.body;
+  try {
+    const query = "INSERT INTO showadmin (username, password, name, eventId, status, email, createdBy) VALUES (?,?,?,?,?,?,?)";
+    let signup = await mysql.query(query, [username, password, name, eventId, 1, email, createdBy]);
+    console.log(signup)
+    res.status(201).json({ statusCode: 1, statusMessage: "User Added Succesfully", data: signup });
+  } catch (err) {
+    res.status(500).json({ error: err })
+  }
+  // res.send('Endpoint hit, need to implement logic for create show admin');
+});
+
+//API to delete the show admins from the root admin login screen for a particular event.
+router.delete('/delete-show-admin', async (req, res) => {
+  const { eventId, userId } = req.body;
+  try {
+    let deleteQuery = "DELETE FROM showadmin WHERE eventId = ? and id = ?";
+    let queryResult = await mysql.query(deleteQuery, [eventId, userId]);
+    res.status(200).json({ statusCode: 1, statusMessage: 'Show Admin deleted Succesfully', data: queryResult });
+
+  } catch (error) {
+    res.status(500).json({ error, errorMessage: error });
+  }
+});
+
+//Update logic for show admin yet to be implemented.
+router.put('/update-show-admin', async (req, res) => {
+  const { username, password, adminname, email, id, eventId } = req.body;
+
+  try {
+    let updateQuery = "UPDATE showadmin SET username = ?, password = ?,  name = ?, email = ? WHERE id = ? and eventId = ?";
+    let queryResult = await mysql.query(updateQuery, [username, password, adminname, email, id, eventId]);
+    res.status(200).json({ statusCode: 1, statusMessage: 'Show Admin updated Succesfully', data: queryResult });
+
+  } catch (error) {
+    res.status(500).json({ error, errorMessage: error });
+  }
+
+})
+
+//API to send the admin details by email.
+router.post('/send-admin-details-by-email', async (req, res) => {
+  var input = req.body;
+  let emailText = `You have been assigned as an showadmin for the event ${input.eventName}, Your login details are as follows:- Email = ${input.email}, Password = ${input.password}, Name = ${input.adminname}`
+  var mailOptions = {
+    from: 'youremail@gmail.com',
+    to: input.email,
+    subject: 'Your account details are as follows:-',
+    text: emailText
+  };
+  sendmail.sendEmail(mailOptions);
+  res.status(200).json({ statusCode: 1, statusMessage: 'Email sent Succesfully', data: input });
+})
+
+
+//APi to save the rider points
+router.post('/saveRiderPoints', async (req, res) => {
+
+  const riderDetailsArray = req.body;
+
+  // await mysql.beginTransaction();
+
+  // try {
+  //   const statement = await mysql.prepare(`
+  //     INSERT INTO rider-points (riderId, points)
+  //     VALUES (?, ?)
+  //     ON DUPLICATE KEY UPDATE points = points + VALUES(points)
+  //   `);
+
+  //   for (const riderDetails of riderDetailsArray) {
+  //     const { riderId, pointsAssigned } = riderDetails;
+  //     await mysql.query(statement, [riderId, pointsAssigned]);
+  //   }
+
+  //   // await connection.commit();
+
+  //   res.status(200).json({ statusCode: 1, statusMessage: 'Rider points updated succsfully', data: queryResult });
+
+  // } catch (error) {
+  //   res.status(500).json({ error, errorMessage: error });
+  // }
+  const connection = await mysql.getConnection();
+  await connection.beginTransaction();
+
+  try {
+    // Create a prepared statement for the update/insert operation
+    const statement = await connection.prepare(`
+      INSERT INTO riderpoints (riderName, riderId, points)
+      VALUES (?, ?, ?)
+      ON DUPLICATE KEY UPDATE points = points + VALUES(points)
+    `);
+
+    // Map each riderDetails to an array of values and execute the statement
+    await Promise.all(
+      riderDetailsArray.map(async (riderDetails) => {
+        const { riderName, riderId, pointsAssigned } = riderDetails;
+        await statement.execute([riderName, riderId, pointsAssigned]);
+      })
+    );
+
+    // Commit the transaction
+    await connection.commit();
+
+    res.status(200).json({ statusCode: 1, statusMessage: 'Rider points updated succsfully' });
+  } catch (error) {
+    // Rollback the transaction in case of an error
+    await connection.rollback();
+    console.error('Error saving rider details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    // Release the MySQL connection
+    connection.release();
+  }
+})
+
+
+//API to save the horse points.
+router.post('/saveHorsePoints', async (req, res) => {
+
+  const horseDetailsArray = req.body;
+
+  const connection = await mysql.getConnection();
+  await connection.beginTransaction();
+
+  try {
+    // Create a prepared statement for the update/insert operation
+    const statement = await connection.prepare(`
+      INSERT INTO horsepoints (horsename, points)
+      VALUES (?, ?)
+      ON DUPLICATE KEY UPDATE points = points + VALUES(points)
+    `);
+
+    // Map each riderDetails to an array of values and execute the statement
+    await Promise.all(
+      horseDetailsArray.map(async (horseDetails) => {
+        const { horseName, pointsAssigned } = horseDetails;
+        await statement.execute([horseName, pointsAssigned]);
+      })
+    );
+
+    // Commit the transaction
+    await connection.commit();
+
+    res.status(200).json({ statusCode: 1, statusMessage: 'Horse points updated succsfully' });
+  } catch (error) {
+    // Rollback the transaction in case of an error
+    await connection.rollback();
+    console.error('Error saving rider details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    // Release the MySQL connection
+    connection.release();
+  }
+
+
+})
+
+router.get('/listShowAdminsByEventId', async (req, res) => {
+  const { eventId } = req.query;
+  try {
+    const query = "SELECT * FROM showadmin where eventId=?";
+    let listAdmins = await mysql.query(query, [eventId]);
+    console.log('List of Admins', listAdmins);
+    // listAdmins = new Buffer(listAdmins, 'binary').toString('base64')
+    res.status(201).json({ msg: 'Admins Fetched Successfully', data: listAdmins[0] })
+  } catch (error) {
+    res.status(500).json({ error: err })
+  }
+})
 
 router.post("/addEvent", async (req, res) => {
   const { name, time, location } = req.body;

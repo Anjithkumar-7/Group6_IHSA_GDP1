@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', async function () {
               const EventID = editableFields[3].textContent.toString();
               const eventname = editableFields[0].textContent;
               window.location.href = `schedule.html?eventname=${eventname}&EventID=${EventID}`;
+              // window.location.href = `schedule.html?EventID=${EventID}`;
             });
         
             cell5.appendChild(scheduleButton);
@@ -256,6 +257,7 @@ document.getElementById('eventForm').addEventListener('submit', async function(e
         const EventID = editableFields[3].textContent.toString();
         const eventname = editableFields[0].textContent;
         window.location.href = `admin.html?eventname=${eventname}&EventID=${EventID}`;
+        // window.location.href = `admin.html?EventID=${EventID}`;
       }
     }
   });

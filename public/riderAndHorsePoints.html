@@ -5,11 +5,13 @@
   <title>Riders and Horses Points</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
       padding: 0;
     }
+
     body {
       display: flex;
       flex-direction: column;
@@ -17,11 +19,14 @@
       margin: 0;
       padding: 0;
     }
+
     .content {
       flex: 1;
-      padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+      padding-bottom: 50px;
+      /* Adjust the padding to leave space for the footer */
     }
-     header {
+
+    header {
       background-color: #2f4f81;
       padding: 20px;
       color: #ffffff;
@@ -31,12 +36,14 @@
       margin-right: 10px;
       color: #ffffff;
     }
+
     table {
       border-collapse: collapse;
       width: 100%;
     }
 
-    th, td {
+    th,
+    td {
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
@@ -58,15 +65,18 @@
     .submit-button:hover {
       background-color: #2f4f81;
     }
+
     .btn-icon {
       font-size: 24px;
-      margin-bottom: 
-      10px;
+      margin-bottom:
+        10px;
     }
+
     .editor {
       width: auto;
       height: 30px;
     }
+
     footer {
       background-color: #2f4f81;
       color: #c13438;
@@ -74,7 +84,7 @@
       text-align: center;
     }
   </style>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -83,8 +93,9 @@
       <a class="navbar-brand" href="#" style="color: #c13438;">
         <img src="ihsa-logo4.png" alt="IHSA Logo" height=50px width=70px class="mr-2">Riders and Horses Points
       </a>
-     
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -97,37 +108,43 @@
     </nav>
   </header>
   <div class="content">
-  <h1>Riders and Horses points</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Riders</th>
-        <th>Rider Points</th>
-        <th>Horses</th>
-        <th>Horse Points</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Rider 1</td>
-        <td><textarea class="editor"></textarea></td>
-        <td>Horse 1</td>
-        <td><textarea class="editor"></textarea></td>
-      </tr>
-      <tr>
-        <td>Rider 2</td>
-        <td><textarea class="editor"></textarea></td>
-        <td>Horse 2</td>
-        <td><textarea class="editor"></textarea></td>
-      </tr>
-
-      <!-- Add more event rows here -->
-    </tbody>
-  </table>
-  <br>
-  <button class ="submit-button" href="#">Submit</button>
+    <h1>Riders points</h1>
+    <!-- <table>
+      <thead>
+        <tr>
+          <th>Riders</th>
+          <th>Rider Points</th>
+          <th>Horses</th>
+          <th>Horse Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Rider 1</td>
+          <td><textarea class="editor"></textarea></td>
+          <td>Horse 1</td>
+          <td><textarea class="editor"></textarea></td>
+        </tr>
+        <tr>
+          <td>Rider 2</td>
+          <td><textarea class="editor"></textarea></td>
+          <td>Horse 2</td>
+          <td><textarea class="editor"></textarea></td>
+        </tr>        
+      </tbody>
+    </table> -->
+    <span></span>
+    <div class="tableContent" id="rider-tables">
+    </div>
+    <span><br></br><hr style="height:2px;border-width:0;color:gray;background-color:gray"></span>
+    <h1>Horses points</h1>
+    <div class="tableContent" id="horse-tables">
+    </div>
+    <br>
+    <!-- <button class="submit-button" href="#">Submit</button> -->
   </div>
   <!-- Add event editing form or modal here -->
+  <script src="js/points.js"></script>
 
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

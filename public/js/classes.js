@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           // Get the edited class value and the original class value
           const editedClass = currentRow.querySelector('td:nth-child(6) select').value;
-         // const originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
+          const originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
           const originalId = currentRow.querySelector('td:nth-child(1) input').getAttribute('data-original-id');
           const remarks = currentRow.querySelector('td:nth-child(7) input').value;
 
@@ -377,7 +377,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           // Get the edited class value and the original class value
           const editedClass = currentRow.querySelector('td:nth-child(5) select').value;
-          //const originalClass = currentRow.querySelector('td:nth-child(5) select').getAttribute('data-original-class');
+          const originalClass = currentRow.querySelector('td:nth-child(5) select').getAttribute('data-original-class');
 
           const remarks = currentRow.querySelector('td:nth-child(6) input').value;
 

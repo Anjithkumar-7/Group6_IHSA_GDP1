@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>IHSA Admin Login</title>
   <style>
@@ -31,7 +32,7 @@
     }
 
     button {
-      background-color: #c13438 ;
+      background-color: #c13438;
       color: white;
       padding: 14px 20px;
       margin: 8px 0;
@@ -46,32 +47,38 @@
     }
 
     .logo {
-      width:150px;
+      width: 150px;
       height: 150px;
       margin-top: 10;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <img src="ihsa-logo4.png" alt="IHSA Logo" class="logo">
     <h2>Admin Login</h2>
     <form id="loginForm">
       <label for="usertype">User Type:</label>
-        <select id="usertype" name="usertype">
-            <option value="admin">Admin</option>
-            <option value="show_admin">Show Admin</option>
-        </select>
-        <br><br>
+      <select id="usertype" name="usertype">
+        <option value="show_admin">Show Admin</option>
+        <option value="admin">Admin</option>
+      </select>
+      <br>
+      <label for="eventType">Event:</label>
+      <select id="eventType" name="event">
+      </select>
+      <br><br>
       <input type="text" id="username" name="username" placeholder="Username" required><br>
       <input type="password" id="password" name="password" placeholder="Password" required><br>
-      
-    <button type="submit">Login</button>
+
+      <button type="submit">Login</button>
     </form>
   </div>
   <script src="js/login.js"></script>
   <script>
     sessionStorage.removeItem("token");
+
   </script>
   <!-- <script>
     function validateLogin() {
@@ -96,4 +103,5 @@
     }
   </script> -->
 </body>
+
 </html>
