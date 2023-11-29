@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <head>
   <title>Rider and Horse Details</title>
@@ -43,17 +44,17 @@
       width: 100%;
     }
 
+    
     th {
       padding: 8px;
       text-align: center;
       border-bottom: 1px solid #ddd;
-    }
-    td{
-      text-align: center;
+      background-color: #f2f2f2;
     }
 
-    th {
-      background-color: #f2f2f2;
+    
+    td{
+      text-align: center;
     }
 
     .edit-button {
@@ -91,9 +92,7 @@
       cursor: pointer;
     }
 
-    .schedule-button:hover {
-      background-color: #2f4f81;
-    }
+    
 
     .btn-icon {
       font-size: 24px;
@@ -112,15 +111,52 @@
       background-color: #ffffff;
       border: 1px solid #ddd;
       border-radius: 2px;
-      padding: 20px;
-      width: 100%;
-      max-width: 600px;
+      width: 120%;
+      max-width: 1000px;
       font-family: Arial, Helvetica, sans-serif; /* Set your desired font-family */
-      font-size: 16px;
-      height: 57px;
+      font-size: 12px;
+      height: 60px;
     }
 
+    .id-editor{
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 20px;
+      width: 60%;
+      max-width: 2000px;
+      font-family: Arial, Helvetica, sans-serif; /* Set your desired font-family */
+      font-size: 16px;
+      height: 60px;
+    }
+
+    .name-editor{
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 20px;
+      width: 120%;
+      max-width: 2000px;
+      font-family: Arial, Helvetica, sans-serif; /* Set your desired font-family */
+      font-size: 16px;
+      height: 60px;
+    }
    
+    .remarks-editor{
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 20px;
+      width: 60%;
+      max-width: 2000px;
+      font-family: Arial, Helvetica, sans-serif; /* Set your desired font-family */
+      font-size: 16px;
+      height: 60px;
+    }
+
+    .hidden-editor{
+      width: 0px;
+    }
 
     button {
       background-color: #c13438; /* Set the desired color */
@@ -207,8 +243,20 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    .custom-select {
+  width: 100%; /* Set your desired width */
+  height:100%; /* Set your desired height */
+   /* Add border radius */
+  padding: 5px; /* Add padding */
+  /* Add any other styles as needed */
+}
+
+
+
+
+
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  
 </head>
 
 <body>
@@ -247,8 +295,7 @@
       <table>
         <thead>
           <tr>
-            <th>Class Name</th>
-            <th>Action</th>
+            <th>Class Names</th>
           </tr>
         </thead>
         <tbody id="class-list">
@@ -272,10 +319,7 @@
     </div>
   </div>
   <script src="js/classes.js"></script>
-  <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
-  <script src=" https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
   <footer style="
             background-color: #2f4f81;
             color: #c13438;

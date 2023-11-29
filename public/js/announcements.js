@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': sessionStorage.token
             },
             body: JSON.stringify({
                 EventID : EventID

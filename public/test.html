@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Multiple Options</title>
+    <style>
+        /* Some basic styles for the tags */
+        .tag {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 5px 8px;
+            border-radius: 10px;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Column with Multiple Select</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <select id="selectOptions" multiple>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                    <option value="option5">Option 5</option>
+                </select>
+                <button onclick="renderTags()">Add Selected</button>
+                <div id="tagContainer"></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+    // Function to handle the selection and rendering of tags
+    function renderTags() {
+        const selectElement = document.getElementById('selectOptions');
+        const selectedOptions = selectElement.selectedOptions;
+        
+        const tagContainer = document.getElementById('tagContainer');
+        tagContainer.innerHTML = '';
+        
+        for (let i = 0; i < selectedOptions.length; i++) {
+            const selectedValue = selectedOptions[i].value;
+            const tag = document.createElement('span');
+            tag.classList.add('tag');
+            tag.textContent = selectedValue;
+            tagContainer.appendChild(tag);
+        }
+    }
+</script>
+
+</body>
+</html>

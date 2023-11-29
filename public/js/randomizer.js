@@ -172,6 +172,7 @@ async function updateRandomizer() {
     let riderName = "";
 
     for (let i = 0; i < riders.length; i++) {
+      console.log(riders[i].Height +" " +riders[i].Weight);
       if (riders[i].Height !== null && riders[i].Weight !== null) {
         riderName = riders[i].Name + " [HW]";
       } else if (riders[i].Height !== null) {

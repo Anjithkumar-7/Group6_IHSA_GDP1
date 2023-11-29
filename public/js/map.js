@@ -113,17 +113,23 @@ var markerColors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF'];
 var markers = [];
 var originalIconSize = [20, 20]; // Store the original icon size
 var selectedMarker = null; 
+var markerImages = [
+    './redicon.png',
+    './greenicon.png',
+    './blueicon.png',
+    './yellowicon.png',
+    './purpleicon.png'
+];
 
 // Add markers to the map with modified style
 for (var i = 0; i < universities.length; i++) {
     var university = universities[i];
     var marker = L.marker([university.lat, university.lon], {
         title: university.name,
-        originalColor: markerColors[university.region-1],
-        icon: L.divIcon({
-            className: 'custom-marker',
-            iconSize: originalIconSize, // Adjust the size of the marker
-            html: '<div class="circle" style="background-color: ' + markerColors[university.region - 1] + ';"></div>',
+        originalUrl: markerImages[university.region-1],
+        icon: L.icon({
+            iconUrl: markerImages[university.region - 1], // Select the marker image based on the region
+            iconSize: [20, 20], // set the icon size as needed
         })
     }).addTo(mymap);
 
@@ -138,7 +144,6 @@ for (var i = 0; i < universities.length; i++) {
     marker.on('mouseout', function (event) {
         event.target.closeTooltip();
     });
-    
 }
 
 function filterUniversities() {
@@ -181,29 +186,29 @@ function filterUniversities() {
         }
     }
 }
+
 function highlightMarker(index) {
     console.log('markerColors array:', markerColors);
     // Reset the icon for the previously selected marker
     if (selectedMarker) {
-        selectedMarker.setIcon(L.divIcon({
-            className: 'custom-marker',
-            iconSize: originalIconSize,
-            html: '<div class="circle" style="background-color: '+selectedMarker.options.originalColor+';" ></div>',
+        selectedMarker.setIcon(L.icon({
+            iconUrl: selectedMarker.options.originalUrl,
+            iconSize: [20, 20],
         }));
     }
 
-    // Increase the size of the clicked marker
+    // Change the icon for the clicked marker
     var marker = markers[index];
-    marker.setIcon(L.divIcon({
-        className: 'custom-marker',
-        iconSize: [originalIconSize[0] * 1.5, originalIconSize[1] * 1.5],
-        html: '<div class="circle" style="background-color: #000000 '  + ';"></div>',
+    marker.setIcon(L.icon({
+        iconUrl: './pinpoint.png', // Set the new icon image path
+        iconSize: [50, 50],
     }));
     selectedMarker = marker;
 
     // Center the map on the selected marker
     mymap.panTo(marker.getLatLng());
-}
+    console.log(marker.getLatLng())
+;}
 
 // Populate the university list table with clickable links
 var universityTable = document.querySelector('#university-table-body');

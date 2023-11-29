@@ -116,24 +116,36 @@
       border-radius: 8px;
       padding: 0 20px 20px 20px;
     }
+
+    .container{
+      flex: 1;
+      padding-bottom: 50px;
+    }
+
+    footer {
+      background-color: #2f4f81;
+      color: #c13438;
+      padding: 10px;
+      text-align: center;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#" style="color: #c13438;">
-        <img src="ihsa-logo4.png" alt="IHSA Logo" height="30" class="mr-2">Admin Dashboard
+      <a class="navbar-brand" href="#" style="color: #c13438">
+        <img src="ihsa-logo4.png" alt="IHSA Logo" height="50px" width="70px" class="mr-2" />Upload files
       </a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-        aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Logout</a>
+            <a class="nav-link" href="ihsaHome.html">Logout</a>
           </li>
         </ul>
       </div>
@@ -150,8 +162,8 @@
 
   <div class="container">
     <h2>Select an option to upload details</h2>
-    <div class="box"><button class="upload-btn" data-toggle="modal" data-target="#rider">Upload Rider Details</button><p id="rfile"></p><button id="rclear" style="display: none;">clear</button></div>
-    <div class="box"><button class="upload-btn" data-toggle="modal" data-target="#horse">Upload Horse Details</button><p id="hfile"></p><button id="hclear" style="display: none;">clear</button></div>
+    <div class="box"><button class="upload-btn" data-toggle="modal" data-target="#rider">Upload Rider Details</button><p id="rfile"></p><button id="rclear" class="submit-btn" style="display: none;">clear</button></div>
+    <div class="box"><button class="upload-btn" data-toggle="modal" data-target="#horse">Upload Horse Details</button><p id="hfile"></p><button id="hclear" class="submit-btn" style="display: none;">clear</button></div>
   </div>
  
  <!-- Rider Modal -->
@@ -172,8 +184,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="link-button" id="submit-rider" >  <span id="submit-rider-text">Submit</span> </button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" > Close </button>
+          <button type="submit" class="submit-btn" id="submit-rider" >  <span id="submit-rider-text">Submit</span> </button>
+          <button type="button" class="submit-btn" data-dismiss="modal" > Close </button>
         </div>
       </div>
     </div>
@@ -196,8 +208,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="link-button" id="submit-horse">Submit</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="submit-btn" id="submit-horse">Submit</button>
+        <button type="button" class="submit-btn" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -385,4 +397,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   });
 </script>
 </body>
+<footer>
+  <p>&copy; IHSA. All rights reserved.</p>
+</footer>
 </html>

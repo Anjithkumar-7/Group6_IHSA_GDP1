@@ -19,16 +19,14 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         //Hide the particular card using the anchor id for that particular element.
         if(sessionStorage.usertype == 'show_admin'){
-            var scheduleCard = document.getElementById("schedule-card");
-            scheduleCard.classList.add("hidden-card-class");
             var usersCard = document.getElementById("useraccess-card");
             usersCard.classList.add("hidden-card-class");
             var eventsHeaderLink = document.getElementById("events-hyper-link-header");
             eventsHeaderLink.classList.add("hidden-card-class");
-            
+            document.getElementById("admin-dashboard").innerHTML = '<img src="ihsa-logo4.png" alt="IHSA Logo" height="50px" width="70px" class="mr-2" />Show Admin Dashboard';
         }
-        // document.getElementById("dashboardName").innerText = eventName + " - Dashboard";
-        document.getElementById("dashboardName").innerText =  eventName + " - Admin Dashboard";
+        document.getElementById("dashboardName").innerText = eventName + " - Dashboard";
+        
         /*  const result = await fetch('/createEventDashboard', {
                method: 'POST',
                headers: {

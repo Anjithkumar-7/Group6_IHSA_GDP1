@@ -5,11 +5,13 @@
   <title>Field Patterns</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
-    html, body {
+    html,
+    body {
       height: 100%;
       margin: 0;
       padding: 0;
     }
+
     body {
       display: flex;
       flex-direction: column;
@@ -17,11 +19,14 @@
       margin: 0;
       padding: 0;
     }
+
     .content {
       flex: 1;
-      padding-bottom: 50px; /* Adjust the padding to leave space for the footer */
+      padding-bottom: 50px;
+      /* Adjust the padding to leave space for the footer */
     }
-     header {
+
+    header {
       background-color: #2f4f81;
       padding: 20px;
       color: #ffffff;
@@ -31,12 +36,14 @@
       margin-right: 10px;
       color: #ffffff;
     }
+
     table {
       border-collapse: collapse;
       width: 100%;
     }
 
-    th, td {
+    th,
+    td {
       padding: 8px;
       text-align: left;
       border-bottom: 1px solid #ddd;
@@ -58,15 +65,18 @@
     .upload-button:hover {
       background-color: #2f4f81;
     }
+
     .btn-icon {
       font-size: 24px;
-      margin-bottom: 
-      10px;
+      margin-bottom:
+        10px;
     }
+
     .editor {
       width: 60%;
       height: 30px;
     }
+
     footer {
       background-color: #2f4f81;
       color: #c13438;
@@ -74,7 +84,7 @@
       text-align: center;
     }
   </style>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -83,8 +93,9 @@
       <a class="navbar-brand" href="#" style="color: #c13438;">
         <img src="ihsa-logo4.png" alt="IHSA Logo" height=50px width=70px class="mr-2">Patterns
       </a>
-     
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -96,36 +107,37 @@
       </div>
     </nav>
   </header>
-  <div class="content">
-  <h1>Field Patterns</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Event Name</th>
-        <th>Date and Time</th>
-        <th>Location</th>
-        <th>Pattern Name</th>
-        <th>Pattern Image and Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Horse Event 1</td>
-        <td>2023-06-15 12:30 pm</td>
-        <td>Main Arena</td>
-        <td><textarea class="editor"></textarea></td>
+  <div class="content" id="patterns-table">
+    <h1>Field Patterns</h1>
+    <table id="pattern-table">
+      <thead>
+        <tr>
+          <th>Event Name</th>
+          <th>Date and Time</th>
+          <th>Location</th>
+          <th>Pattern Name</th>
+          <th>Upload Pattern</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>Horse Event 1</td>
+          <td>2023-06-15 12:30 pm</td>
+          <td>Main Arena</td>
+          <td><textarea class="editor"></textarea></td>
           <td>
             <input type="file" class="file-input" />
             <button class="upload-button">Upload</button>
           </td>
-      </tr>
+        </tr> -->
 
-      <!-- Add more event rows here -->
-    </tbody>
-  </table>
+        <!-- Add more event rows here -->
+      </tbody>
+    </table>
   </div>
   <!-- Add event editing form or modal here -->
 
+  <script src="js/patterns.js"></script>
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

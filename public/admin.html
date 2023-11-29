@@ -1,180 +1,176 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Admin Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
 
-      header {
-        background-color: #2f4f81;
-        padding: 20px;
-        color: #ffffff;
-      }
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+    }
 
-      nav a {
-        margin-right: 10px;
-        color: #ffffff;
-      }
+    header {
+      background-color: #2f4f81;
+      padding: 20px;
+      color: #ffffff;
+    }
 
-      main {
-        padding: 20px;
-      }
+    nav a {
+      margin-right: 10px;
+      color: #ffffff;
+    }
 
-      .btn-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-top: 20px;
-      }
+    main {
+      padding: 20px;
+    }
 
-      .admin-btn {
-        width: calc(33.33% - 20px);
-        padding: 20px;
-        border-radius: 8px;
-        background-color: #c13438;
-        text-align: center;
-        color: #ffffff;
-        text-decoration: none;
-        margin-bottom: 20px;
-      }
+    .btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
 
-      .btn-icon {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
+    .admin-btn {
+      width: calc(33.33% - 20px);
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #c13438;
+      text-align: center;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
 
-      footer {
-        background-color: #2f4f81;
-        padding: 10px;
-        text-align: center;
-        color: #ffffff;
-      }
-      .hidden-card-class{
-        display: none;
-      }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#" style="color: #c13438">
-          <img
-            src="ihsa-logo4.png"
-            alt="IHSA Logo"
-            height="50px"
-            width="70px"
-            class="mr-2"
-          />Admin Dashboard
-        </a>
+    .btn-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="AdminEvents.html" id="events-hyper-link-header">Events</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="adminLogin.html" id="logout-link">Logout</a>
-            </li>
-          </ul>
+    footer {
+      background-color: #2f4f81;
+      padding: 10px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .hidden-card-class {
+      display: none;
+    }
+    .content{
+  flex: 1;
+      padding-bottom: 50px;
+}
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#" style="color: #c13438" id="admin-dashboard">
+        <img src="ihsa-logo4.png" alt="IHSA Logo" height="50px" width="70px" class="mr-2" />Admin Dashboard
+      </a>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="AdminEvents.html" id="events-hyper-link-header">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="adminLogin.html" id="logout-link">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="content">
+    <main>
+      <div class="container">
+        <h2 id="dashboardName" style="text-align: center; margin-bottom: 20px">
+          Admin Dashboard
+        </h2>
+
+        <div class="btn-container">
+          <a href="schedule.html" class="admin-btn" id="schedule-card">
+            <i class="fas fa-calendar-alt btn-icon"></i>
+            <h5>Schedule</h5>
+            <p>View the final schedule.</p>
+          </a>
+
+          <a href="patterns.html" class="admin-btn" id="patterns-card">
+            <i class="fas fa-shapes btn-icon"></i>
+            <h5>Patterns</h5>
+            <p>Create and manage riding patterns for competitions.</p>
+          </a>
+
+          <a href="userAccess.html" class="admin-btn" id="useraccess-card">
+            <i class="fas fa-users btn-icon"></i>
+            <h5>Users</h5>
+            <p>Manage user accounts and permissions.</p>
+          </a>
+
+          <a href="classcategorization.html" class="admin-btn" id="class-categorization-card">
+            <i class="fas fa-handshake btn-icon"></i>
+            <h5>Categorizing Classes</h5>
+            <p>Categorize classes for horses and riders.</p>
+          </a>
+          <a href="randomizer.html" class="admin-btn" id="randomizer-card">
+            <i class="fas fa-random btn-icon"></i>
+            <h5>Randomiser</h5>
+            <p>Generate random orders for riders and horses.</p>
+          </a>
+
+          <a href="riderAndHorseDetails.html" class="admin-btn" id="rider-horse-details-card">
+            <i class="fas fa-horse btn-icon"></i>
+            <h5>Riders and Horses</h5>
+            <p>Upload riders and horses details.</p>
+          </a>
+          <a href="anouncements.html" class="admin-btn" id="announcements-card">
+            <i class="fas fa-bullhorn btn-icon"></i>
+            <h5>Anouncements & Photos</h5>
+            <p>Manage Announcements and photo links.</p>
+          </a>
+          <a href="riderAndHorsePoints.html" class="admin-btn" id="rider-horse-points-card">
+            <i class="fas fa-trophy btn-icon"></i>
+            <h5>Riders and Horse Points</h5>
+            <p>Provide riders and horses scores.</p>
+          </a>
         </div>
-      </nav>
-    </header>
-    <div class="content">
-      <main>
-        <div class="container">
-          <h2 id="dashboardName" style="text-align: center; margin-bottom: 20px">
-            Admin Dashboard
-          </h2>
-
-          <div class="btn-container">
-            <a href="schedule.html" class="admin-btn" id="schedule-card">
-              <i class="fas fa-calendar-alt btn-icon"></i>
-              <h5>Schedule</h5>
-              <p>Manage schedules for competitions.</p>
-            </a>
-
-            <a href="patterns.html" class="admin-btn" id="patterns-card">
-              <i class="fas fa-shapes btn-icon"></i>
-              <h5>Patterns</h5>
-              <p>Create and manage riding patterns for competitions.</p>
-            </a>
-
-            <a href="userAccess.html" class="admin-btn" id="useraccess-card">
-              <i class="fas fa-users btn-icon"></i>
-              <h5>Users</h5>
-              <p>Manage user accounts and permissions.</p>
-            </a>
-
-            <a href="classcategorization.html" class="admin-btn" id="class-categorization-card">
-              <i class="fas fa-handshake btn-icon"></i>
-              <h5>Categorizing Classes</h5>
-              <p>Categorize classes for horses and riders</p>
-            </a>
-            <a href="randomizer.html" class="admin-btn" id="randomizer-card">
-              <i class="fas fa-random btn-icon"></i>
-              <h5>Randomiser</h5>
-              <p>Generate random orders for riders or classes.</p>
-            </a>
-
-            <a href="riderAndHorseDetails.html" class="admin-btn" id="rider-horse-details-card">
-              <i class="fas fa-horse btn-icon"></i>
-              <h5>Riders and Horses</h5>
-              <p>Manage rider and horse information.</p>
-            </a>
-            <a href="anouncements.html" class="admin-btn" id="announcements-card">
-              <i class="fas fa-bullhorn btn-icon"></i>
-              <h5>Anouncements & Photos</h5>
-              <p>Manage Anouncements.</p>
-            </a>
-            <a href="riderAndHorsePoints.html" class="admin-btn" id="rider-horse-points-card">
-              <i class="fas fa-trophy btn-icon"></i>
-              <h5>Riders and Horse Points</h5>
-              <p>Providing riders and horses scores.</p>
-            </a>
-          </div>
-        </div>
-      </main>
-    </div>
-    <footer
-      style="
+      </div>
+    </main>
+  </div>
+  <footer style="
         background-color: #2f4f81;
         color: #c13438;
         padding: 10px;
         text-align: center;
-      "
-    >
-      <p>&copy; IHSA. All rights reserved.</p>
-    </footer>
-    <script>
-      document.getElementById("logout-link").addEventListener("click", function(event) {
-  event.preventDefault();
-  console.log("Logout link clicked"); // Check if this message appears in the console
-  sessionStorage.removeItem("token");
-  window.history.pushState({}, '', '/adminLogin.html');
-  window.location.href = "/adminLogin.html"; // Replace with the correct login page URL
-  if( window.location.href = "/adminLogin.html"){
-    sessionStorage.removeItem("token");
-  }
-});
+      ">
+    <p>&copy; IHSA. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById("logout-link").addEventListener("click", function (event) {
+      event.preventDefault();
+      console.log("Logout link clicked"); // Check if this message appears in the console
+      sessionStorage.removeItem("token");
+      window.history.pushState({}, '', '/adminLogin.html');
+      window.location.href = "/adminLogin.html"; // Replace with the correct login page URL
+      if (window.location.href = "/adminLogin.html") {
+        sessionStorage.removeItem("token");
+      }
+    });
 
-    </script>
-    <script src="js/login.js"></script>
-    <script src="js/events.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  </body>
+  </script>
+  <script src="js/login.js"></script>
+  <script src="js/events.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
 </html>
-

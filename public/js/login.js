@@ -5,6 +5,7 @@ const token = sessionStorage.getItem("token");
 document.addEventListener("DOMContentLoaded", async function () {
   const usertypeSelect = document.getElementById("usertype");
   const eventTypeSelect = document.getElementById("eventType");
+  const eventLabel = document.getElementById("event-label");
 
   // Add an event listener to the usertype select dropdown
   usertypeSelect.addEventListener("change", function () {
@@ -12,10 +13,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Check if the selected value is "admin" and hide eventTypeSelect
     if (selectedValue === "admin") {
-      eventTypeSelect.style.display = "none";
+      eventLabel.style.display = "none";
     } else {
       // For any other value, show eventTypeSelect
-      eventTypeSelect.style.display = "block";
+      eventLabel.style.display = "block";
     }
   });
 

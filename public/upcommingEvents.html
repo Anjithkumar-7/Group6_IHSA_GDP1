@@ -258,6 +258,7 @@
       padding: 0 20px;
 
     }
+
     .half-section {
       flex: 1;
       padding: 20px;
@@ -267,10 +268,11 @@
       background-color: #f2f2f2;
       padding: 20px;
     }
+
     .download-button {
       background-color: #c13438;
       color: white;
-      padding: 10px;
+      padding: 8px;
       text-decoration: none;
       display: inline-block;
       border-radius: 4px;
@@ -299,12 +301,12 @@
 
         </a>
 
-        <span style="color: white;">NWM Horse Show</span>
+        <span style="color: white;">Schedule and  Pattern</span>
 
       </a>
 
     </nav>
-    
+
   </header>
 
 
@@ -312,161 +314,20 @@
   <div class="content">
     <div class="half-section patterns-section">
 
-    <h2 style="font-weight: bold">Patterns</h2>
+      <h2 style="font-weight: bold">Patterns</h2>
 
-    <div style="margin-bottom: 20px; text-align: left">
+      <div style="margin-bottom: 20px; text-align: left">
 
-      <a id="download-link" href="Downloads" download>
+        <a id="download-link" href="Downloads" download>
 
-        <button class="button">Download</button>
+          <button class="download-button">Download</button>
 
-      </a>
-</div>
+        </a>
+        <span id="no-file-text" style="display: none;">No file available to download</span>
+      </div>
     </div>
-    <div class="half-section patterns-section">
-
     <h2><b>Schedule</b></h2>
-
-    <h3 style="font-weight: bold">
-
-      Class 8 – Open Hunter Seat Equitation over Fences
-
-    </h3>
-
-    <table>
-
-      <thead>
-
-        <tr>
-
-          <th>Order</th>
-
-          <th>Rider ID</th>
-
-          <th>Rider Name</th>
-
-          <th>Rider School</th>
-
-          <th>Horse Name</th>
-
-          <th>Horse Provider</th>
-
-
-
-        </tr>
-
-      </thead>
-
-      <tbody>
-
-        <tr>
-
-          <td>1</td>
-
-          <td>R123</td>
-
-          <td>John Doe</td>
-
-          <td>ABC School</td>
-
-          <td>Black Beauty</td>
-
-          <td>XYZ Stables</td>
-
-
-
-        </tr>
-
-        <tr>
-
-          <td>2</td>
-
-          <td>R456</td>
-
-          <td>Jane Smith</td>
-
-          <td>DEF School</td>
-
-          <td>Midnight</td>
-
-          <td>PQR Ranch</td>
-
-        </tr>
-
-        <!-- Add more rows as needed -->
-
-      </tbody>
-
-    </table>
-
-    <h3 style="font-weight: bold">
-
-      Class 6 – Intermediate Hunter Seat Equitation over Fences
-
-    </h3>
-
-    <table>
-
-      <thead>
-
-        <tr>
-
-          <th>Order</th>
-
-          <th>Rider ID</th>
-
-          <th>Rider Name</th>
-
-          <th>Rider School</th>
-
-          <th>Horse Name</th>
-
-          <th>Horse Provider</th>
-
-        </tr>
-
-      </thead>
-
-      <tbody>
-
-        <tr>
-
-          <td>1</td>
-
-          <td>R123</td>
-
-          <td>John Doe</td>
-
-          <td>ABC School</td>
-
-          <td>Black Beauty</td>
-
-          <td>XYZ Stables</td>
-
-        </tr>
-
-        <tr>
-
-          <td>2</td>
-
-          <td>R456</td>
-
-          <td>Jane Smith</td>
-
-          <td>DEF School</td>
-
-          <td>Midnight</td>
-
-          <td>PQR Ranch</td>
-
-        </tr>
-
-        <!-- Add more rows as needed -->
-
-      </tbody>
-
-    </table>
-</div>
+    <div class="content" id="class-tables"></div>
   </div>
 
   <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
@@ -476,6 +337,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="js/upcomingEvents.js"></script>
 
 
   </script>

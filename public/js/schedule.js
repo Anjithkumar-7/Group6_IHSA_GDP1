@@ -82,6 +82,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 // Create an "Edit" button
                 var editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
+                editButton.className = 'submit-button'
                 editButton.addEventListener('click', function () {
                     // Make the "Order" cell editable
                     orderCell.contentEditable = true;

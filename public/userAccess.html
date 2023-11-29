@@ -10,8 +10,11 @@
   <title>Add User</title>
   <style>
     body {
+      display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+  margin: 0;
       font-family: Arial, sans-serif;
-      margin: 0;
       padding: 0px;
     }
 
@@ -85,13 +88,21 @@
     .edit-button:hover {
       background-color: #2f4f81;
     }
+    button{
+      padding: 5px 10px;
+      background-color: #c13438;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 3px;
+    }
 
     footer {
       background-color: #2f4f81;
       color: #c13438;
       padding: 10px;
       text-align: center;
-      margin-top: 50px;
+      margin-top: auto;
     }
 
     .mail-button {
@@ -103,6 +114,11 @@
 
       background-color: #2f4f81;
     }
+    .container{
+      flex: 1;
+      padding-bottom: 50px;
+    }
+
   </style>
 </head>
 
@@ -137,10 +153,10 @@
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
       </div>
-      <div>
+      <!-- <div>
         <label for="emailId">Email ID:</label>
         <input type="text" id="emailID" name="emailID" required>
-      </div>
+      </div> -->
       <div>
         <label for="password">Initial Password:</label>
         <input type="password" id="password" name="password" required>
@@ -154,10 +170,9 @@
           <th>Name</th>
           <th>Username</th>
           <th>Initial Password</th>
-          <th>Email ID</th>
+          <!-- <th>Email ID</th> -->
           <th>Update</th>
           <th>Delete</th>
-          <th>Mail</th>
         </tr>
       </thead>
       <tbody>
@@ -176,7 +191,8 @@
       // Get form values
       var name = document.getElementById("name").value;
       var username = document.getElementById("username").value;
-      var emailID = document.getElementById("emailID").value
+      //var emailID = document.getElementById("emailID").value
+      var emailID = "";
       var password = document.getElementById("password").value;
 
       // console.log('Data in the user table:-', name, username, emailID, password);
@@ -207,7 +223,7 @@
       document.getElementById("name").value = "";
       document.getElementById("username").value = "";
       document.getElementById("password").value = "";
-      document.getElementById("emailID").value = "";
+     // document.getElementById("emailID").value = "";
     });
 
     document.addEventListener('DOMContentLoaded', async function () {
@@ -238,7 +254,7 @@
         const name_cell = newRow.insertCell();
         const username_cell = newRow.insertCell();
         const password_cell = newRow.insertCell();
-        const email_cell = newRow.insertCell();
+        //const email_cell = newRow.insertCell();
         const editDetails_cell = newRow.insertCell();
         const deleteDetails_cell = newRow.insertCell();
         const mailButton_cell = newRow.insertCell();
@@ -248,48 +264,48 @@
         name_cell.innerHTML = `<span class="editable-field" readonly>${element.name}</span>`;
         username_cell.innerHTML = `<span class="editable-field" readonly>${element.username}</span>`;
         password_cell.innerHTML = `<span class="editable-field" readonly>${element.password}</span>`;
-        email_cell.innerHTML = `<span class="editable-field" readonly>${element.email}</span>`;
+        //email_cell.innerHTML = `<span class="editable-field" readonly>${element.email}</span>`;
         // mailButton_cell.innerHTML = `<span class="editable-field">${element.id}</span>`;
         // Create "Mail" button
-        const emailButton = document.createElement('button');
-        emailButton.textContent = 'Email Details';
-        emailButton.classList.add('edit-button');
-        mailButton_cell.appendChild(emailButton);
-        mailButton_cell.addEventListener('click', async function (event) {
+        // const emailButton = document.createElement('button');
+        // emailButton.textContent = 'Email Details';
+        // emailButton.classList.add('edit-button');
+        // mailButton_cell.appendChild(emailButton);
+        // mailButton_cell.addEventListener('click', async function (event) {
 
-          if (confirm("Are you sure, you want to mail the user details to " + element.email + " show admin?")) {
-            event.stopPropagation();
-            //Make api call to email the show admin details.
-            const editResult = await fetch('/send-admin-details-by-email', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                adminname: element.name,
-                username: element.username,
-                password: element.password,
-                email: element.email,
-                eventId: element.eventId,
-                eventName: eventName || 'Default Event Name'
-                // id: element.id,
-              })
-            })
-              .then((res) => res.json());
-            console.log(editResult);
-            if (editResult.statusCode == 1) {
-              alert(editResult.statusMessage);
-              // window.location.reload(true);
-            } else {
-              editResult.error ? alert(editResult.error) : alert(editResult.errorMessage);
-            }
-            // } 
+        //   if (confirm("Are you sure, you want to mail the user details to " + element.email + " show admin?")) {
+        //     event.stopPropagation();
+        //     //Make api call to email the show admin details.
+        //     const editResult = await fetch('/send-admin-details-by-email', {
+        //       method: 'POST',
+        //       headers: {
+        //         'Content-Type': 'application/json',
+        //       },
+        //       body: JSON.stringify({
+        //         adminname: element.name,
+        //         username: element.username,
+        //         password: element.password,
+        //         email: element.email,
+        //         eventId: element.eventId,
+        //         eventName: eventName || 'Default Event Name'
+        //         // id: element.id,
+        //       })
+        //     })
+        //       .then((res) => res.json());
+        //     console.log(editResult);
+        //     if (editResult.statusCode == 1) {
+        //       alert(editResult.statusMessage);
+        //       // window.location.reload(true);
+        //     } else {
+        //       editResult.error ? alert(editResult.error) : alert(editResult.errorMessage);
+        //     }
+        //     // } 
 
-            //Handle the email logic here.
-          }
-        })
+        //     //Handle the email logic here.
+        //   }
+        // })
 
-        //Create "edit" button
+        // //Create "edit" button
         const editButton2 = document.createElement('button');
         editButton2.textContent = 'Edit';
         editButton2.classList.add('edit-button');

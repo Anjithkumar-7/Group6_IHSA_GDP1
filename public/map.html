@@ -6,66 +6,76 @@
     <title>University Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        #map {
-            height: 500px;
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
         }
-        /* Add your styles here if needed */
 
+        #container {
+            display: flex;
+            width: 100vw;
+        }
 
-#university-list {
-    width: 100%;
-    padding: 20px;
-}
+        #map {
+            flex: 1;
+            height: 600px;
+        }
 
-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
+        #university-list {
+            flex: 1;
+            padding: 20px;
+        }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
 
-th {
-    background-color: #f2f2f2;
-}
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
 
         .custom-marker {
-    position: relative; /* Ensure proper positioning of child elements */
-    width: 16px; /* Set the width of the marker */
-    height: 16px; /* Set the height of the marker */
-}
+            position: relative;
+            width: 16px;
+            height: 16px;
+        }
 
-.custom-marker .circle {
-    width: 100%;
-    height: 100%;
-    background-color: #3498db; /* Set the background color of the circle */
-    border-radius: 50%; /* Make the circle round */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute; /* Position the circle within the marker */
-}
+        .custom-marker .circle {
+            width: 100%;
+            height: 100%;
+            background-color: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+        }
 
-.custom-marker .circle:hover {
-    transform: scale(1.2); /* Add a hover effect to scale the circle on hover */
-}
+        .custom-marker .circle:hover {
+            transform: scale(1.2);
+        }
 
-.square{
-    height: 15px;
-    width: 15px;
-}
-
+        .square {
+            height: 15px;
+            width: 15px;
+        }
     </style>
 </head>
 <body>
     <div id="container">
-        <div id="map" class="half"></div>
+        <div id="map"></div>
 
-        <div id="university-list" class="half">
+        <div id="university-list">
             <label for="region-filter">Select Region:</label>
             <select id="region-filter" onchange="filterUniversities()">
                 <option value="all">All Regions</option>

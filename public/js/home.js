@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', async function () {
             console.log(result.events);
             const Container = document.getElementById('event-card-container');
             result.events.forEach((data,index) => {
-                var temp = `<a href="upcommingEvents.html" class="event-card-link">
+                var temp = `<a href="upcommingEvents.html?eventname=${data.EventName}&EventID=${data.EventID}" class="event-card-link">
+                
 
                 <div class="event-card">
       

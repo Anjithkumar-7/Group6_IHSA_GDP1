@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Create the table head (thead) and header row (tr)
       const thead = document.createElement('thead');
       const headerRow = document.createElement('tr');
-
+      
       // Create the header cells (th) for the table
       const headerCell1 = document.createElement('th');
       const headerCell2 = document.createElement('th');
@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Set the header cell content
       headerCell8.textContent = 'Rider ID';
       headerCell1.textContent = 'Rider Name';
-      headerCell2.textContent = 'Height';
-      headerCell3.textContent = 'Weight';
+      headerCell2.textContent = 'HeightConstraint';
+      headerCell3.textContent = 'WeightConstraint';
       headerCell4.textContent = 'Experience';
       headerCell5.textContent = 'Class';
       headerCell6.textContent = 'Remarks';
@@ -61,108 +61,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Append the header row to the table head
       thead.appendChild(headerRow);
       const tbody = document.createElement('tbody');
-      // result.Riders.forEach((data, index) => {
-      //   const row = document.createElement('tr');
-      //   const cell1 = document.createElement('td');
-      //   const cell2 = document.createElement('td');
-      //   const cell3 = document.createElement('td');
-      //   const cell4 = document.createElement('td');
-      //   const cell5 = document.createElement('td');
-      //   const cell6 = document.createElement('td');
-      //   const cell7 = document.createElement('td');
-      //   const cell8 = document.createElement('td');
-      //   const button = document.createElement('button');
-
-      //   cell8.innerHTML = `<input type="text" data-original-id="${data.RiderId}" value="${data.RiderId}" class="editor">`
-      //   cell1.innerHTML = `<input type="text" value="${data.Name}" class="editor">`;
-      //   cell2.innerHTML = `<input type="text" value="${data.Height}" class="editor">`;
-      //   cell3.innerHTML = `<input type="text" value="${data.Weight}" class="editor">`;
-      //   cell4.innerHTML = `<input type="text" value="${data.Experience}" class="editor">`;
-      //   // cell4.innerHTML = `<input type="text" value="Amsterdam, Washington, Sydney" class="editor" data-role="tagsinput">`;
-      //   cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Class}"><option hidden selected value="${data.Class}">${data.Class}</option>${classesList} </select>`;
-      //   //         cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Class}">
-      //   //   ${classesList.forEach((classItem) => `
-      //   //     <option value="${classItem}" ${selectedValues.includes(classItem) ? 'selected' : ''}>
-      //   //       ${classItem}
-      //   //     </option>
-      //   //   `).join('\n')}
-      //   // </select>`
-
-      //   cell6.innerHTML = `<input type="text" value="${data.Remarks}" class="editor">`;
-      //   // cell6.innerHTML = `<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" `;
-
-      //   button.textContent = "Save";
-      //   button.className = "button";
-      //   button.addEventListener('click', async function () {
-      //     // Get the row containing the clicked button
-      //     const currentRow = this.closest('tr');
-
-      //     // Extract data from the row's cells
-      //     const riderId = currentRow.querySelector('td:nth-child(1) input').value;
-      //     const riderName = currentRow.querySelector('td:nth-child(2) input').value;
-      //     const height = currentRow.querySelector('td:nth-child(3) input').value;
-      //     const weight = currentRow.querySelector('td:nth-child(4) input').value;
-      //     const experience = currentRow.querySelector('td:nth-child(5) input').value;
-
-      //     // Get the edited class value and the original class value
-      //     const editedClass = currentRow.querySelector('td:nth-child(6) select').value;
-      //     const originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
-      //     const originalId = currentRow.querySelector('td:nth-child(1) input').getAttribute('data-original-id');
-      //     const remarks = currentRow.querySelector('td:nth-child(7) input').value;
-
-      //     // Create an object with the captured data
-      //     const rowData = {
-      //       riderid: riderId,
-      //       originalId: originalId,
-      //       name: riderName,
-      //       height: height,
-      //       weight: weight,
-      //       experience: experience,
-      //       classname: editedClass, // Use the edited class value here
-      //       originalClass: originalClass, // Store the original class value
-      //       remarks: remarks
-      //     };
-
-      //     // Send the data to the backend (similar to previous code)
-      //     // ...
-      //     const result1 = await fetch('/updateRider', {
-      //       method: 'POST',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify({
-      //         EventId: EventID,
-      //         originalId: originalId,
-      //         riderid: riderId,
-      //         name: riderName,
-      //         height: height,
-      //         weight: weight,
-      //         experience: experience,
-      //         classname: editedClass, // Use the edited class value here
-      //         originalClass: originalClass, // Store the original class value
-      //         remarks: remarks
-      //       })
-      //     })
-      //       .then((res) => res.json());
-      //     console.log(result1);
-      //     if (result1.success) {
-      //       alert(result1.success);
-      //       window.location.reload(true);
-      //     }
-      //   });
-
-      //   cell7.appendChild(button);
-      //   row.appendChild(cell8)
-      //   row.appendChild(cell1);
-      //   row.appendChild(cell2);
-      //   row.appendChild(cell3);
-      //   row.appendChild(cell4);
-      //   row.appendChild(cell5);
-      //   row.appendChild(cell6);
-      //   row.appendChild(cell7);
-
-      //   tbody.appendChild(row);
-      // });
 
       result.uniqueRiders.forEach((data, index) => {
         const row = document.createElement('tr');
@@ -174,58 +72,49 @@ document.addEventListener("DOMContentLoaded", async function () {
         const cell6 = document.createElement('td');
         const cell7 = document.createElement('td');
         const cell8 = document.createElement('td');
+        const cell9 = document.createElement('td');
+        const cell10 = document.createElement('td');
         const button = document.createElement('button');
 
-        cell8.innerHTML = `<input type="text" data-original-id="${data.RiderId}" value="${data.RiderId}" class="editor">`
-        cell1.innerHTML = `<input type="text" value="${data.Name}" class="editor">`;
-        cell2.innerHTML = `<input type="text" value="${data.Height}" class="editor">`;
-        cell3.innerHTML = `<input type="text" value="${data.Weight}" class="editor">`;
-        cell4.innerHTML = `<input type="text" value="${data.Experience}" class="editor">`;
-        // cell4.innerHTML = `<input type="text" value="Amsterdam, Washington, Sydney" class="editor" data-role="tagsinput">`;
-        // cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}"><option hidden selected value="${data.Class}">${data.Class}</option>${data.Classes} </select>`;
+        cell8.innerHTML = `<input type="text" data-original-id="${data.RiderId}" value="${data.RiderId}" class="id-editor">`
+        cell1.innerHTML = `<input type="text" value="${data.Name}" class="name-editor">`;
+        cell2.innerHTML = `<input type="text" value="${data.Height ? data.Height : 0}" class="id-editor">`;
+        cell3.innerHTML = `<input type="text" value="${data.Weight ? data.Weight : 0}" class="id-editor">`;
+        cell4.innerHTML = `<input type="text" value="${data.Experience ? data.Experience : 0}" class="remarks-editor">`;
 
         var options = "";
         data.Classes.map((op, i) => {
           options += `<option value="${op}" id="${i}" ${result.Classes.includes(op) ? 'selected' : ''} style="border-radius: 5px;"">${op}</option>`
         })
         options += classesList
-        
 
-        // cell5.innerHTML = `<select class="editor" id='multiple-select' onclick="allowPageScroll()" data-original-class="${data.Classes}" multiple>${options}</select>`;
-
-
-        // cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}"><option hidden selected value="${data.Classes[0]}">${data.Classes[0]}</option>${data.Classes} </select>`;
-
-        // console.log('result.Classes ==>', result.Classes);
-        // console.log('data.Classes ==>', data.Classes);
-
-        //This one is the looped version to render the data
-        cell5.innerHTML = `<select class="editor" onclick="allowPageScroll()" data-original-class="${data.Classes}">
+        cell5.innerHTML = `<select class="editor" multiple id="mySelect${index}" onclick="allowPageScroll()" data-original-class="${data.Classes}">
           ${result.Classes.map((classItem, i) => `
             <option value="${classItem.classname}" id="${i}" ${data.Classes.includes(classItem.classname) ? 'selected' : ''}>
               ${classItem.classname}
             </option>
           `)}
         </select>`
+
+
+
+        // data.Classes.forEach((classItem) => {
+        //   const tagElement = document.createElement('div');
+        //   tagElement.className = 'tag';
+        //   tagElement.textContent = classItem;
+        //   tagElement.onclick = function () {
+        //     // Handle tag removal here if needed
+        //     // Example: row.classes.splice(row.classes.indexOf(classItem), 1);
+        //     tagElement.remove(); // Remove tag element from UI
+        //   };
+        //   cell5.appendChild(tagElement);
+        // });
         //
 
-        data.Classes.map((classItem, i)=>{
-          console.log('Result Class name:-', classItem.classname, 'data.classes', data.Classes);
 
-          const tagElement = document.createElement('div');
-          tagElement.className = 'tag';
-          tagElement.textContent = classItem;
-          tagElement.onclick = function() {
-            // Handle tag removal here if needed
-            // Example: row.tags.splice(row.tags.indexOf(tag), 1);
-          };
-          cell5.appendChild(tagElement);
-        })
-        
-
-        // cell6.innerHTML = `<input type="text" value="${data.Classes.join(",")}" class="editor">`;
-        cell6.innerHTML = `<input type="text" value="${data.Remarks}" class="editor">`;
-        // cell6.innerHTML = `<input type="text" value="Amsterdam,Washington,Sydney,Beijing,Cairo" data-role="tagsinput" `;
+        cell6.innerHTML = `<input type="text" value="${data.Remarks}" class="remarks-editor">`;
+        cell9.innerHTML = `<input type="hidden" value="${data.School}" class="hidden-editor" >`;
+        cell10.innerHTML = `<input type="hidden" value="${data.file_name}" class="hidden-editor" >`;
 
         button.textContent = "Save";
         button.className = "button";
@@ -233,58 +122,69 @@ document.addEventListener("DOMContentLoaded", async function () {
           // Get the row containing the clicked button
           const currentRow = this.closest('tr');
 
+          let selectedClasses = [];
           // Extract data from the row's cells
           const riderId = currentRow.querySelector('td:nth-child(1) input').value;
           const riderName = currentRow.querySelector('td:nth-child(2) input').value;
-          const height = currentRow.querySelector('td:nth-child(3) input').value;
-          const weight = currentRow.querySelector('td:nth-child(4) input').value;
-          const experience = currentRow.querySelector('td:nth-child(5) input').value;
+          const height = currentRow.querySelector('td:nth-child(3) input').value==0?null:currentRow.querySelector('td:nth-child(3) input').value;
+          const weight = currentRow.querySelector('td:nth-child(4) input').value == 0?null:currentRow.querySelector('td:nth-child(4) input').value;
+          const experience = currentRow.querySelector('td:nth-child(5) input').value == 0 ? null:currentRow.querySelector('td:nth-child(5) input').value;
 
           // Get the edited class value and the original class value
           const editedClass = currentRow.querySelector('td:nth-child(6) select').value;
-          const originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
+          //test
+          const testClass = currentRow.querySelector('td:nth-child(6) select');
+          const selectedOptions = testClass.selectedOptions;
+
+          // Loop through the selected options
+          for (let i = 0; i < selectedOptions.length; i++) {
+            const selectedOption = selectedOptions[i];
+            const selectedValue = selectedOption.value;
+            // Do something with each selected value, for instance, log it
+            console.log('Selected Value:', selectedValue);
+            selectedClasses.push(selectedValue);
+          }
+          //test ends
+          var originalClass = currentRow.querySelector('td:nth-child(6) select').getAttribute('data-original-class');
+          originalClass = originalClass.split(',')
+
           const originalId = currentRow.querySelector('td:nth-child(1) input').getAttribute('data-original-id');
           const remarks = currentRow.querySelector('td:nth-child(7) input').value;
+          let school = currentRow.querySelector('td:nth-child(9) input').value;
+          let filename = currentRow.querySelector('td:nth-child(10) input').value;
+          // alert(school);
 
-          // Create an object with the captured data
-          const rowData = {
-            riderid: riderId,
-            originalId: originalId,
-            name: riderName,
-            height: height,
-            weight: weight,
-            experience: experience,
-            classname: editedClass, // Use the edited class value here
-            originalClass: originalClass, // Store the original class value
-            remarks: remarks
-          };
-
-          // Send the data to the backend (similar to previous code)
-          // ...
-          const result1 = await fetch('/updateRider', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              EventId: EventID,
-              originalId: originalId,
-              riderid: riderId,
-              name: riderName,
-              height: height,
-              weight: weight,
-              experience: experience,
-              classname: editedClass, // Use the edited class value here
-              originalClass: originalClass, // Store the original class value
-              remarks: remarks
-            })
-          })
-            .then((res) => res.json());
-          console.log(result1);
-          if (result1.success) {
-            alert(result1.success);
-            window.location.reload(true);
+          if (selectedClasses.length) {
+            const result1 = await fetch('/updateRider', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                EventId: EventID,
+                originalId: originalId,
+                riderid: riderId,
+                name: riderName,
+                height: height,
+                weight: weight,
+                experience: experience,
+                classname: editedClass, // Use the edited class value here
+                originalClass: originalClass, // Store the original class value
+                remarks: remarks,
+                school,
+                filename,
+                selectedClasses
+              })
+            }).then((res) => res.json());
+            console.log(result1);
+            if (result1.success) {
+              alert(result1.success);
+              window.location.reload(true);
+            }
+          } else {
+            alert('Atleast one class should be present, you are trying to delete/unselect all the classes')
           }
+
         });
 
         cell7.appendChild(button);
@@ -296,6 +196,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         row.appendChild(cell5);
         row.appendChild(cell6);
         row.appendChild(cell7);
+        row.appendChild(cell9);
+        row.appendChild(cell10);
 
         tbody.appendChild(row);
       });
@@ -307,7 +209,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       container.appendChild(table);
 
 
-      /// Horse Table ---------------
+      /// Horse Table Data Rendering From Here  ---------------
       const htable = document.createElement('table');
       htable.className = 'table'; // Add any desired classes
 
@@ -344,7 +246,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Append the header row to the table head
       head.appendChild(hheaderRow);
       const ttbody = document.createElement('tbody');
-      result.Horses.forEach((data, index) => {
+      result.uniqueHorses.forEach((data, index) => {
         const hrow = document.createElement('tr');
         const hcell1 = document.createElement('td');
         const hcell2 = document.createElement('td');
@@ -353,14 +255,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         const hcell5 = document.createElement('td');
         const hcell6 = document.createElement('td');
         const hcell7 = document.createElement('td');
+        const hcell8 = document.createElement('td');
         const hbutton = document.createElement('button');
 
-        hcell1.innerHTML = `<input type="text" data-original-name="${data.Name}" value="${data.Name}" class="editor">`;
-        hcell2.innerHTML = `<input type="text" value="${data.Provider}" class="editor">`;
-        hcell3.innerHTML = `<input type="text" value="${data.Spurs}" class="editor">`;
-        hcell4.innerHTML = `<input type="text" value="${data.Rein_hold}" class="editor">`
-        hcell5.innerHTML = `<select class="editor" style="overflow: scroll;" data-original-class="${data.Class}"><option selected hidden value="${data.Class}">${data.Class}</option>${classesList} </select>`;
-        hcell6.innerHTML = `<input type="text" value="${data.Remarks}" class="editor">`;
+        hcell1.innerHTML = `<input type="text" data-original-name="${data.Name}" value="${data.Name}" class="name-editor">`;
+        hcell2.innerHTML = `<input type="text" value="${data.Provider}" class="id-editor">`;
+        hcell3.innerHTML = `<input type="text" value="${data.Spurs}" class="id-editor">`;
+        hcell4.innerHTML = `<input type="text" value="${data.Rein_hold}" class="id-editor">`
+        // hcell5.innerHTML = `<select class="editor" style="overflow: scroll;" data-original-class="${data.Class}"><option selected hidden value="${data.Class}">${data.Class}</option>${classesList} </select>`;
+        hcell5.innerHTML = `<select class="editor" multiple id="mySelect${index}" onclick="allowPageScroll()" data-original-class="${data.Classes}">
+          ${result.Classes.map((classItem, i) => `
+            <option value="${classItem.classname}" id="${i}" ${data.Classes.includes(classItem.classname) ? 'selected' : ''}>
+              ${classItem.classname}
+            </option>
+          `)}
+        </select>`
+        hcell6.innerHTML = `<input type="text" value="${data.Remarks}" class="remarks-editor">`;
+        hcell8.innerHTML = `<input type="hidden" value="${data.file_name}" class="editor">`;
         hbutton.textContent = "Save";
         hbutton.className = "button";
         // ...
@@ -368,6 +279,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           // Get the row containing the clicked button
           const currentRow = this.closest('tr');
 
+          let selectedClasses = [];
           // Extract data from the row's cells
           const horseName = currentRow.querySelector('td:nth-child(1) input').value;
           const originalName = currentRow.querySelector('td:nth-child(1) input').getAttribute('data-original-name');
@@ -377,49 +289,57 @@ document.addEventListener("DOMContentLoaded", async function () {
 
           // Get the edited class value and the original class value
           const editedClass = currentRow.querySelector('td:nth-child(5) select').value;
-          const originalClass = currentRow.querySelector('td:nth-child(5) select').getAttribute('data-original-class');
+          var originalClass = currentRow.querySelector('td:nth-child(5) select').getAttribute('data-original-class');
+          originalClass = originalClass.split(',')
+
+          const selectMenuRow = currentRow.querySelector('td:nth-child(5) select');
+          const selectedOptions = selectMenuRow.selectedOptions;
+
+          // Loop through the selected options
+          for (let i = 0; i < selectedOptions.length; i++) {
+            const selectedOption = selectedOptions[i];
+            const selectedValue = selectedOption.value;
+            selectedClasses.push(selectedValue);
+          }
+          //test ends
+
 
           const remarks = currentRow.querySelector('td:nth-child(6) input').value;
+          const filename = currentRow.querySelector('td:nth-child(8) input').value;
 
-          // Create an object with the captured data
-          const rowData = {
-            originalName: originalName,
-            name: horseName,
-            provider: provider,
-            spurs: spur,
-            rein_hold: reinHold,
-            classname: editedClass, // Use the edited class value here
-            originalClass: originalClass, // Store the original class value
-            remarks: remarks,
-          };
 
-          // Send the data to the backend (similar to previous code)
-          // ...
-          //  console.log(rowData);
+          if (selectedClasses.length) {
 
-          const result1 = await fetch('/updateHorse', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              EventId: EventID,
-              originalName: originalName,
-              name: horseName,
-              provider: provider,
-              spurs: spur,
-              rein_hold: reinHold,
-              classname: editedClass, // Use the edited class value here
-              originalClass: originalClass, // Store the original class value
-              remarks: remarks
+            const horseUpdatedData = await fetch('/updateHorse', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                EventId: EventID,
+                originalName: originalName,
+                name: horseName,
+                provider: provider,
+                spurs: spur,
+                rein_hold: reinHold,
+                classname: editedClass, // Use the edited class value here
+                originalClass: originalClass, // Store the original class value
+                remarks: remarks,
+                selectedClasses,
+                filename
+              })
             })
-          })
-            .then((res) => res.json());
-          console.log(result1);
-          if (result1.success) {
-            alert(result1.success);
-            window.location.reload(true);
+              .then((res) => res.json());
+            console.log(horseUpdatedData);
+            if (horseUpdatedData.success) {
+              alert(horseUpdatedData.success);
+              window.location.reload(true);
+            }
+
+          } else {
+            alert('Atleast one class should be present, you are trying to delete/unselect all the classes')
           }
+
 
           // ...
         });
@@ -431,6 +351,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         hrow.appendChild(hcell5);
         hrow.appendChild(hcell6);
         hrow.appendChild(hcell7);
+        hrow.appendChild(hcell8);
 
         ttbody.appendChild(hrow);
       });
@@ -578,6 +499,8 @@ async function getClasses() {
     result1.errorMessage ? alert(result1.errorMessage) : alert(result1.error);
   }
 }
+
+
 
 // Attach event listener to the delete buttons
 function attachDeleteClassListener(row) {

@@ -47,7 +47,141 @@ router.get("/getEvents", async (req, res) => {
 
 });
 
-router.get("/getAllAnnouncements", authenticateToken, async (req, res) => {
+//Api to get the event data by eventId.
+router.get("/getEventByEventId", async (req, res) => {
+  let eventId = req.query.eventId;
+  try {
+    const query = `SELECT * FROM events WHERE EventID = ${eventId}`;
+    const result = await mysql.query(query);
+    console.log('Event results:-', result);
+    if (result[0].length) {
+      res.status(200).json({ event: result[0] });
+    } else {
+      res.status(201).json({ error: "Event not found with the EventID" });
+    }
+
+  } catch (err) {
+    // console.log("Error in fetching the event data from events table:-", err);
+    res.status(500).json({ errorMessage: `Error while fetching events from database:- ${err}` });
+  }
+
+});
+
+//API to find event data along with pattern data.
+router.get("/getEventByEventIdAndPatternData", async (req, res) => {
+  let eventId = req.query.eventId;
+  try {
+    const eventQuery = `SELECT * FROM events WHERE EventID = ${eventId}`;
+    const patternQuery = `SELECT * FROM patterns WHERE eventId = ${eventId}`;
+    const eventResult = await mysql.query(eventQuery);
+    const patternResult = await mysql.query(patternQuery);
+    console.log('Event results:-', eventResult);
+    console.log('Pattern results:-', patternResult);
+    if (eventResult[0].length) {
+      res.status(200).json({ event: eventResult[0], patternData: patternResult[0] });
+    } else {
+      res.status(201).json({ error: "Event not found with the EventID" });
+    }
+
+  } catch (err) {
+    // console.log("Error in fetching the event data from events table:-", err);
+    res.status(500).json({ errorMessage: `Error while fetching events from database2:- ${err}` });
+  }
+
+});
+
+const myfileupload = multer();
+router.post('/uploadPatternData', myfileupload.single('file'), async function (req, res) {
+  const eventId = req.body.eventId;
+  const eventName = req.body.eventName;
+  const patternName = req.body.patternName;
+  const file = req.file;
+  console.log('File Data', file);
+
+  if (!file) {
+    return res.status(400).json({ success: false, error: 'No file uploaded.' });
+  }
+  try {
+    const deleteExistingQuery = 'DELETE FROM patterns WHERE eventId =' + eventId;
+    const deletePatternResult = await mysql.query(deleteExistingQuery);
+    console.log('Existing patterns deleted for eventId' + eventId + ':-', deletePatternResult);
+    const fileContent = file.buffer;
+    const query = 'INSERT INTO patterns (eventId, eventName, patternName, fileName, fileContent) VALUES (?, ?, ?, ?, ?)';
+    const result = await mysql.query(query, [eventId, eventName, patternName, file.originalname, fileContent]);
+    console.log('Event results:-', result);
+    if (result) {
+      res.status(200).json({ statusCode: 1, statusMessage: 'Pattern uploaded successfully for the event:- ' + eventName, data: result });
+    } else {
+      res.status(300).json({ error: "Unable to perform the operation" });
+    }
+
+  } catch (error) {
+    console.log('Error in saving the patterns data into the database');
+    res.status(500).json({ errorMessage: `Error while saving patterns data into the database:-` + error });
+  }
+});
+
+// router.get('/getPatternsData', async function (req, res) {
+//   try {
+//     const query = 'SELECT eventId, eventName, patternName, fileName, fileContent FROM patterns where eventId = ?';
+//     const results = await mysql.query(query, [req.query.eventId]);
+//     res.status(200).json({ statusCode: 1, statusMessage: 'Patterns data fetched succesfully', patterns: results[0] });
+//   } catch (error) {
+//     console.error('Error fetching patterns:', error);
+//     res.status(500).json({ success: false, error: 'Failed to fetch patterns.' });
+//   }
+
+// });
+
+router.get('/getPatternsData', async function (req, res) {
+  try {
+    const query = 'SELECT eventId, eventName, patternName, fileName, fileContent FROM patterns WHERE eventId = ?';
+    const results = await mysql.query(query, [req.query.eventId]);
+
+    if (results[0].length === 0 || !results[0][0].fileContent) {
+      res.status(404).json({ success: false, error: 'No file available to download' });
+      return;
+    }
+
+    const file = results[0][0];
+    const fileContent = file.fileContent;
+    const fileName = file.fileName;
+
+    // Set appropriate content type header for the response
+    res.set('Content-Type', 'application/pdf'); // Change this to 'application/pdf'
+
+    // Send the file content as the response
+    res.status(200).send(fileContent);
+  } catch (error) {
+    console.error('Error fetching patterns:', error);
+    res.status(500).json({ success: false, error: 'Failed to fetch patterns.' });
+  }
+});
+
+
+
+// router.get('/getPatternsData', async function (req, res) {
+//   try {
+//     const query = 'SELECT eventId, eventName, patternName, fileName, fileContent FROM patterns where eventId = ?';
+//     const results = await mysql.query(query, [req.query.eventId]);
+//     const pattern = results[0];
+//     console.log('Pattern', pattern, 'lll', pattern[0])
+
+//     if (pattern[0] && pattern[0].fileContent) {
+//       // Read the file content as base64 string
+//       const fileContent = fs.readFileSync(pattern[0].fileContent, { encoding: 'base64' });
+
+//       res.status(200).json({ statusCode: 1, statusMessage: 'Patterns data fetched successfully', pattern: { ...pattern[0], fileContent } });
+//     } else {
+//       res.status(404).json({ success: false, error: 'Pattern not found or file content missing.' });
+//     }
+//   } catch (error) {
+//     console.error('Error fetching patterns:', error);
+//     res.status(500).json({ success: false, error: 'Failed to fetch patterns.' });
+//   }
+// });
+
+router.get("/getAllAnnouncements", async (req, res) => {
   try {
     const query = `SELECT * FROM announcements`;
     const result = await mysql.query(query);
@@ -66,7 +200,7 @@ router.get("/getAllAnnouncements", authenticateToken, async (req, res) => {
 
 });
 
-router.get("/getEventsForPhotos", authenticateToken, async (req, res) => {
+router.get("/getEventsForPhotos", async (req, res) => {
   try {
     const query = `SELECT E.EventID, E.EventName, P.Link
     FROM events AS E
@@ -101,7 +235,7 @@ router.post("/getImagesLink", async (req, res) => {
   }
 });
 
-router.post("/getAnnouncements", authenticateToken, async (req, res) => {
+router.post("/getAnnouncements", async (req, res) => {
   try {
     const { EventID } = req.body;
     const query = `SELECT * FROM announcements WHERE EventID = ${EventID}`;
@@ -279,27 +413,6 @@ router.post('/saveRiderPoints', async (req, res) => {
 
   const riderDetailsArray = req.body;
 
-  // await mysql.beginTransaction();
-
-  // try {
-  //   const statement = await mysql.prepare(`
-  //     INSERT INTO rider-points (riderId, points)
-  //     VALUES (?, ?)
-  //     ON DUPLICATE KEY UPDATE points = points + VALUES(points)
-  //   `);
-
-  //   for (const riderDetails of riderDetailsArray) {
-  //     const { riderId, pointsAssigned } = riderDetails;
-  //     await mysql.query(statement, [riderId, pointsAssigned]);
-  //   }
-
-  //   // await connection.commit();
-
-  //   res.status(200).json({ statusCode: 1, statusMessage: 'Rider points updated succsfully', data: queryResult });
-
-  // } catch (error) {
-  //   res.status(500).json({ error, errorMessage: error });
-  // }
   const connection = await mysql.getConnection();
   await connection.beginTransaction();
 
@@ -332,10 +445,48 @@ router.post('/saveRiderPoints', async (req, res) => {
     // Release the MySQL connection
     connection.release();
   }
-})
+});
+
+//API to save the rider points for a specific class in a event.
+router.post('/saveRiderPointsToEventClass', async (req, res) => {
+
+  const riderDetailsArray = req.body;
+
+  const connection = await mysql.getConnection();
+  await connection.beginTransaction();
+
+  try {
+    const statement = await connection.prepare(`
+    UPDATE riders SET points = ? WHERE EventID = ? and RiderId = ? and Class = ?;
+  `);
+
+    // Map each riderDetails to an array of values and execute the statement
+    await Promise.all(
+      riderDetailsArray.map(async (riderDetails) => {
+        const { riderId, ridersPointsAssigned, EventID, className } = riderDetails;
+        await statement.execute([ridersPointsAssigned, EventID, riderId, className]);
+      })
+    );
+
+    // Commit the transaction
+    await connection.commit();
+
+    res.status(200).json({ statusCode: 1, statusMessage: 'Rider points updated succsfully' });
+  } catch (error) {
+    // Rollback the transaction in case of an error
+    await connection.rollback();
+    console.error('Error saving rider details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    // Release the MySQL connection
+    connection.release();
+  }
+
+});
 
 
 //API to save the horse points.
+//Need to implement this.
 router.post('/saveHorsePoints', async (req, res) => {
 
   const horseDetailsArray = req.body;
@@ -374,7 +525,49 @@ router.post('/saveHorsePoints', async (req, res) => {
   }
 
 
+});
+
+//API to save the horse points for a specific class in a event.
+//Need to implement this.
+router.post('/saveHorsePointsToEventClass', async (req, res) => {
+
+  const horseDetailsArray = req.body;
+
+  const connection = await mysql.getConnection();
+  await connection.beginTransaction();
+
+  try {
+    // Create a prepared statement for the update/insert operation
+    const statement = await connection.prepare(`
+    UPDATE horses SET points = ? WHERE EventID = ? and Name = ? and Class = ? 
+    `);
+
+    // Map each riderDetails to an array of values and execute the statement
+    await Promise.all(
+      horseDetailsArray.map(async (horseDetails) => {
+        const { EventID, className, horseName, horsePointsAssigned } = horseDetails;
+        await statement.execute([horsePointsAssigned, EventID, horseName, className]);
+      })
+    );
+
+    // Commit the transaction
+    await connection.commit();
+
+    res.status(200).json({ statusCode: 1, statusMessage: 'Horse points updated succsfully' });
+  } catch (error) {
+    // Rollback the transaction in case of an error
+    await connection.rollback();
+    console.error('Error saving rider details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    // Release the MySQL connection
+    connection.release();
+  }
+
+
 })
+
+
 
 router.get('/listShowAdminsByEventId', async (req, res) => {
   const { eventId } = req.query;
@@ -387,7 +580,7 @@ router.get('/listShowAdminsByEventId', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: err })
   }
-})
+});
 
 router.post("/addEvent", async (req, res) => {
   const { name, time, location } = req.body;
@@ -883,45 +1076,108 @@ router.post("/getSchedule", async (req, res) => {
 });
 
 router.post("/updateRider", async (req, res) => {
-
+  const connection = await mysql.getConnection();
+  await connection.beginTransaction();
+  //Add Delete logic for unselected riders.
   try {
-    const { name, riderid, height, weight, EventId, experience, classname, remarks, originalClass, originalId } = req.body;
-    // console.log(name,riderid,height,weight,EventId,experience,classname,remarks,originalClass, originalId)
-    if (EventId) {
-      const query = `UPDATE riders SET  Name = ? ,RiderId = ?,Height = ?,Weight = ?,Experience = ?,Class =  ?,Remarks = ? WHERE EventID = ${EventId} AND Class = \'${originalClass}\' AND RiderId = ${originalId} ;`;
-      const result = await mysql.query(query, [name, riderid, height, weight, experience, classname, remarks]);
-      // console.log(result);
-      res.status(200).json({ success: "Rider data edited successfully" });
-    } else {
-      res.status(404).json({ error: "Page not found" });
+    const { name, riderid, height, weight, EventId, experience, classname, school, remarks, originalId, filename } = req.body;
+    let selectedClasses = req.body.selectedClasses;
+    let originalClasses = req.body.originalClass;
+    let commonRecords = selectedClasses.filter(record => originalClasses.includes(record));
+    let unCommonRecords = selectedClasses.filter(record => !originalClasses.includes(record));
+    let notPickedRecords = originalClasses.filter(record => !commonRecords.includes(record));
+
+    const updateQuery = 'UPDATE riders SET Name = ?, RiderId = ?, Height = ?, Weight = ?, Experience = ?, Class = ?, Remarks = ? WHERE EventID = ? AND Class = ? AND RiderId = ?';
+    const insertQuery = 'INSERT into riders (EventID, RiderId, Name, Height, Weight, Experience, School, Class, remarks, file_name) VALUES (?, ?, ?, ?,?,?,?,?,?, ?)';
+    const deleteQuery = 'DELETE FROM riders WHERE EventId = ? AND Class = ? and RiderId = ?';
+
+    for (const classDetails of commonRecords) {
+      console.log('Update Query Executed for updating riders:-', classDetails);
+      await connection.query(updateQuery, [name, riderid, height, weight, experience, classDetails, remarks, EventId, classDetails, riderid]);
     }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ errorMessage: `Error while adding rider data to database` });
+
+    for (const classDetails of unCommonRecords) {
+      console.log('Insert Query Executed for updating riders:-', classDetails);
+      await connection.query(insertQuery, [EventId, riderid, name, height, weight, experience, school, classDetails, remarks, filename]);
+    }
+
+    for (const classDetails of notPickedRecords) {
+      console.log('Delete Query Executed for updating riders:-', classDetails);
+      await connection.query(deleteQuery, [EventId, classDetails, riderid]);
+    }
+
+    await connection.commit();
+    res.status(200).json({ success: "Rider data edited successfully" });
+  } catch (error) {
+    await connection.rollback();
+    console.error('Error saving rider details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    connection.release();
   }
-
-})
-
+});
 
 router.post("/updateHorse", async (req, res) => {
-
+  const connection = await mysql.getConnection();
+  await connection.beginTransaction();
   try {
-    const { name, spurs, rein_hold, EventId, provider, classname, remarks, originalClass, originalName } = req.body;
+    const { EventId, name, originalClass, originalName, provider, rein_hold, remarks, selectedClasses, spurs, filename } = req.body;
+    let originalClasses = originalClass;
+    let commonRecords = selectedClasses.filter(record => originalClasses.includes(record));
+    let unCommonRecords = selectedClasses.filter(record => !originalClasses.includes(record));
+    let notPickedRecords = originalClasses.filter(record => !commonRecords.includes(record));
 
-    if (EventId) {
-      const query = `UPDATE horses SET  Name = ? ,Provider = ?,Spurs = ?,Rein_hold =  ?, Class = ?,Remarks = ? WHERE EventID = ${EventId} AND Class = \'${originalClass}\' AND Name = \'${originalName}\' ;`;
-      const result = await mysql.query(query, [name, provider, spurs, rein_hold, classname, remarks]);
-      // console.log(result);
-      res.status(200).json({ success: "Horse data edited successfully" });
-    } else {
-      res.status(404).json({ error: "Page not found" });
+
+    const updateQuery = 'UPDATE horses SET Name = ?, Provider = ?, Spurs = ?, Rein_hold = ?, Class = ?, Remarks = ? WHERE EventID = ? AND Class = ? AND Name = ?';
+    const insertQuery = 'INSERT into horses (EventID, Name, Provider, Spurs, Rein_hold, Class, Remarks, file_name) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const deleteQuery = 'DELETE FROM horses WHERE EventId = ? AND Class = ? and Name = ?';
+
+    for (const classDetails of commonRecords) {
+      console.log('Update Query Executed for updating horses:-', classDetails);
+      await connection.query(updateQuery, [name, provider, spurs, rein_hold, classDetails, remarks, EventId, classDetails, originalName]);
     }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ errorMessage: `Error while adding horse data to database` });
-  }
 
+    for (const classDetails of unCommonRecords) {
+      console.log('Insert Query Executed for updating horses:-', classDetails);
+      await connection.query(insertQuery, [EventId, name, provider, spurs, rein_hold, classDetails, remarks, filename]);
+    }
+    for (const classDetails of notPickedRecords) {
+      console.log('Delete Query Executed for updating horses:-', classDetails);
+      await connection.query(deleteQuery, [EventId, classDetails, originalName]);
+    }
+
+    await connection.commit();
+    res.status(200).json({ success: "Horse data edited successfully" });
+  } catch (error) {
+    await connection.rollback();
+    console.error('Error saving horse details:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } finally {
+    connection.release();
+  }
 });
+
+
+
+// router.post("/updateHorse", async (req, res) => {
+
+//   try {
+//     const { name, spurs, rein_hold, EventId, provider, classname, remarks, originalClass, originalName } = req.body;
+
+//     if (EventId) {
+//       const query = `UPDATE horses SET  Name = ? ,Provider = ?,Spurs = ?,Rein_hold =  ?, Class = ?,Remarks = ? WHERE EventID = ${EventId} AND Class = \'${originalClass}\' AND Name = \'${originalName}\' ;`;
+//       const result = await mysql.query(query, [name, provider, spurs, rein_hold, classname, remarks]);
+//       // console.log(result);
+//       res.status(200).json({ success: "Horse data edited successfully" });
+//     } else {
+//       res.status(404).json({ error: "Page not found" });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ errorMessage: `Error while adding horse data to database` });
+//   }
+
+// });
 
 router.post("/getfilenames", async (req, res) => {
 
